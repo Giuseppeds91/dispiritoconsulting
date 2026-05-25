@@ -127,6 +127,135 @@
     .menu a:hover,
     .menu-link:hover{color:var(--text)}
 
+
+    /* Mobile menu */
+    .mobile-toggle{
+      display:none;
+      width:46px;
+      height:46px;
+      border-radius:50%;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.58);
+      color:var(--brown);
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      flex-shrink:0;
+    }
+
+    .mobile-toggle span,
+    .mobile-toggle span::before,
+    .mobile-toggle span::after{
+      content:"";
+      display:block;
+      width:19px;
+      height:2px;
+      border-radius:99px;
+      background:var(--brown);
+      transition:.25s ease;
+      position:relative;
+    }
+
+    .mobile-toggle span::before{
+      position:absolute;
+      top:-7px;
+      left:0;
+    }
+
+    .mobile-toggle span::after{
+      position:absolute;
+      top:7px;
+      left:0;
+    }
+
+    body.menu-open .mobile-toggle span{
+      background:transparent;
+    }
+
+    body.menu-open .mobile-toggle span::before{
+      top:0;
+      transform:rotate(45deg);
+    }
+
+    body.menu-open .mobile-toggle span::after{
+      top:0;
+      transform:rotate(-45deg);
+    }
+
+    .mobile-panel{
+      display:none;
+      position:fixed;
+      top:84px;
+      left:14px;
+      right:14px;
+      z-index:80;
+      border-radius:30px;
+      border:1px solid var(--line);
+      background:rgba(251,248,242,.94);
+      backdrop-filter:blur(20px);
+      box-shadow:0 30px 90px rgba(43,33,27,.22);
+      padding:16px;
+      transform:translateY(-10px);
+      opacity:0;
+      pointer-events:none;
+      transition:.25s ease;
+    }
+
+    body.menu-open .mobile-panel{
+      transform:translateY(0);
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .mobile-panel a,
+    .mobile-panel button{
+      width:100%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border:0;
+      background:transparent;
+      padding:16px 6px;
+      border-bottom:1px solid var(--line);
+      color:var(--text);
+      font:inherit;
+      font-size:16px;
+      font-weight:800;
+      cursor:pointer;
+      text-align:left;
+    }
+
+    .mobile-panel a:last-child{
+      border-bottom:0;
+    }
+
+    .mobile-panel .btn{
+      margin-top:10px;
+      justify-content:center;
+      border-radius:999px;
+      color:var(--ivory);
+      background:var(--brown);
+      border-bottom:0;
+    }
+
+    .mobile-backdrop{
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:70;
+      background:rgba(43,33,27,.18);
+      backdrop-filter:blur(6px);
+      opacity:0;
+      pointer-events:none;
+      transition:.25s ease;
+    }
+
+    body.menu-open .mobile-backdrop{
+      opacity:1;
+      pointer-events:auto;
+    }
+
     .about-modal{
       position:fixed;
       inset:0;
@@ -878,6 +1007,9 @@
       .about-trust{grid-template-columns:1fr}
       .about-story{padding:30px}
       .menu{display:none}
+      .mobile-toggle{display:flex}
+      .mobile-panel,.mobile-backdrop{display:block}
+      .nav > .btn-primary{display:none}
       .hero{padding:84px 0 72px}
       .hero-grid,.section-head,.approach-grid,.private-layout,.complete-grid,.advisor-panel,.contact-grid{grid-template-columns:1fr;gap:42px}
       .visual{min-height:420px}
@@ -920,9 +1052,25 @@
       <a href="#contatti">Contatti</a>
     </nav>
 
+    <button class="mobile-toggle" type="button" aria-label="Apri menu" aria-expanded="false">
+      <span></span>
+    </button>
+
     <a class="btn btn-primary" href="#contatti">Prenota una call</a>
   </div>
 </header>
+
+<div class="mobile-backdrop" data-close-menu></div>
+
+<nav class="mobile-panel" aria-label="Menu mobile">
+  <button type="button" data-open-about>Chi sono <span>↘</span></button>
+  <a href="#approccio">Approccio <span>↘</span></a>
+  <a href="#consulenze">Consulenze <span>↘</span></a>
+  <a href="#come-lavoro">Come lavoro <span>↘</span></a>
+  <a href="#advisor">Advisor <span>↘</span></a>
+  <a href="#contatti">Contatti <span>↘</span></a>
+  <a class="btn btn-primary" href="#contatti">Prenota una call</a>
+</nav>
 
 <div class="about-modal" id="aboutModal" aria-hidden="true">
   <div class="about-dialog" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
@@ -1311,6 +1459,35 @@
 </footer>
 
 <script>
+
+  const mobileToggle = document.querySelector('.mobile-toggle');
+  const mobileMenuLinks = document.querySelectorAll('.mobile-panel a, .mobile-panel button');
+  const mobileBackdrop = document.querySelector('[data-close-menu]');
+
+  function closeMobileMenu(){
+    document.body.classList.remove('menu-open');
+    if(mobileToggle){
+      mobileToggle.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  if(mobileToggle){
+    mobileToggle.addEventListener('click', () => {
+      const isOpen = document.body.classList.toggle('menu-open');
+      mobileToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  }
+
+  mobileMenuLinks.forEach(item => {
+    item.addEventListener('click', () => {
+      closeMobileMenu();
+    });
+  });
+
+  if(mobileBackdrop){
+    mobileBackdrop.addEventListener('click', closeMobileMenu);
+  }
+
   const aboutModal = document.getElementById('aboutModal');
   const openAboutButtons = document.querySelectorAll('[data-open-about]');
   const closeAboutButtons = document.querySelectorAll('[data-close-about]');
@@ -1341,6 +1518,7 @@
 
   document.addEventListener('keydown', (event) => {
     if(event.key === 'Escape'){
+      closeMobileMenu();
       aboutModal.classList.remove('is-open');
       aboutModal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
