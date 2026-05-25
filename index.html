@@ -1,1 +1,361 @@
+export default function DiSpiritoConsulting() {
+  const services = [
+    'Audit sito web e mobile app',
+    'Strategia funnel acquisition & conversion',
+    'Media strategy e piano campagne',
+    'Analisi target, audience e canali di acquisizione',
+    'Analytics, tracking e KPI',
+    'Adobe Analytics e tool enterprise',
+    'CRO, A/B test e customer journey',
+    'Sviluppo rapido siti web e landing page',
+    'Strategia digitale end-to-end',
+  ];
+
+  const process = [
+    {
+      number: '01',
+      title: 'Analisi',
+      desc: 'Studio del business, del funnel e dei principali punti critici.',
+    },
+    {
+      number: '02',
+      title: 'Strategia',
+      desc: 'Definizione di struttura, customer journey e obiettivi.',
+    },
+    {
+      number: '03',
+      title: 'Realizzazione',
+      desc: 'Sviluppo rapido di sito, landing page e sistemi digitali.',
+    },
+    {
+      number: '04',
+      title: 'Tracking',
+      desc: 'Implementazione analytics, KPI e sistemi di misurazione.',
+    },
+    {
+      number: '05',
+      title: 'Ottimizzazione',
+      desc: 'Miglioramento continuo di conversioni e performance.',
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#F6F1E8] text-[#111111] font-sans relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[-200px] right-[-120px] w-[500px] h-[500px] rounded-full bg-[#A63D2F]/10 blur-3xl"></div>
+        <div className="absolute top-[400px] left-[-150px] w-[420px] h-[420px] rounded-full bg-[#D6B98C]/20 blur-3xl"></div>
+        <div className="absolute bottom-[-200px] right-[20%] w-[500px] h-[500px] rounded-full bg-[#8C5A3C]/10 blur-3xl"></div>
+      </div>
+      <header className="sticky top-0 z-50 backdrop-blur-md bg-[#F6F1E8]/80 border-b border-black/5">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
+          <div>
+            <div className="text-lg md:text-xl font-semibold tracking-[0.18em] uppercase">
+              Di Spirito
+            </div>
+            <div className="text-[11px] text-neutral-500 tracking-[0.22em] uppercase mt-1">
+              Consulting
+            </div>
+          </div>
+
+          <a
+            href="#contatti"
+            className="px-5 py-2.5 rounded-full bg-[#111111] text-[#F7F7F4] text-sm hover:scale-105 transition"
+          >
+            Prenota una call
+          </a>
+        </div>
+      </header>
+
+      <main>
+        <section className="max-w-7xl mx-auto px-6 md:px-10 pt-24 md:pt-32 pb-24 md:pb-28">
+          <div className="max-w-5xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#8C5A3C]/15 px-4 py-2 text-sm text-[#7A6858] mb-10 bg-white/80 shadow-sm backdrop-blur-sm">
+              Digital Strategy • Analytics • CRO
+            </div>
+
+            <h1 className="text-5xl md:text-8xl tracking-[-0.06em] leading-[0.92] font-semibold">
+              Costruisco sistemi digitali orientati alla crescita.
+            </h1>
+
+            <p className="mt-10 text-xl md:text-2xl leading-relaxed text-neutral-700 max-w-3xl">
+              Strategia, funnel, analytics, conversione e sviluppo rapido di siti web per aziende, professionisti e PMI.
+            </p>
+
+            <div className="flex flex-wrap gap-4 mt-12">
+              <a
+                href="#contatti"
+                className="bg-[#2A211B] text-[#F6F1E8] px-8 py-4 rounded-full font-medium hover:scale-105 hover:bg-[#3A2A21] transition shadow-lg shadow-black/10"
+              >
+                Richiedi una consulenza
+              </a>
+
+              <a
+                href="#servizi"
+                className="border border-[#8C5A3C]/15 bg-white/60 backdrop-blur-sm px-8 py-4 rounded-full hover:bg-[#111111] hover:text-white transition shadow-sm"
+              >
+                Scopri i servizi
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-t border-black/5">
+          <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-24 grid md:grid-cols-2 gap-16">
+            <div>
+              <p className="uppercase tracking-[0.25em] text-sm text-neutral-500 mb-6">
+                Approccio
+              </p>
+
+              <h2 className="text-4xl md:text-6xl tracking-[-0.05em] leading-[0.95] font-semibold max-w-xl">
+                Dall’idea alla realizzazione.
+              </h2>
+            </div>
+
+            <div className="space-y-6 text-lg leading-relaxed text-neutral-700">
+              <p>
+                Ogni progetto viene seguito in tutte le sue fasi: strategia, sviluppo, tracking, funnel e ottimizzazione delle performance.
+              </p>
+
+              <p>
+                L’obiettivo non è solo creare una presenza digitale, ma costruire un sistema chiaro, misurabile e orientato ai risultati.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="servizi" className="border-t border-black/5">
+          <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-24">
+            <div className="mb-16">
+              <p className="uppercase tracking-[0.25em] text-sm text-neutral-500 mb-6">
+                Strategia, dati e conversione
+              </p>
+
+              <h2 className="text-4xl md:text-6xl tracking-[-0.05em] leading-[0.95] font-semibold max-w-5xl">
+                Scegli il supporto più adatto al tuo progetto.
+              </h2>
+
+              <p className="mt-8 text-xl leading-relaxed text-neutral-700 max-w-3xl">
+                Puoi richiedere singoli servizi specifici oppure costruire un pacchetto completo che includa strategia, sito web, funnel, campagne, tracking, analytics e ottimizzazione delle performance.
+              </p>
+            </div>
+
+            <div className="divide-y divide-black/5 border-y border-black/5">
+              {services.map((service, index) => (
+                <div
+                  key={index}
+                  className="py-8 md:py-10 flex items-center justify-between gap-8 group"
+                >
+                  <div className="flex items-center gap-8">
+                    <span className="text-[#9D8876] text-sm w-8">
+                      0{index + 1}
+                    </span>
+
+                    <h3 className="text-2xl md:text-4xl tracking-[-0.04em] font-medium group-hover:translate-x-2 transition">
+                      {service}
+                    </h3>
+                  </div>
+
+                  <span className="text-[#9D8876] group-hover:text-[#2A211B] transition text-xl">
+                    →
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-t border-black/5 bg-white/50">
+          <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-24 grid md:grid-cols-2 gap-16 items-start">
+            <div>
+              <p className="uppercase tracking-[0.25em] text-sm text-neutral-500 mb-6">
+                Media strategy
+              </p>
+
+              <h2 className="text-4xl md:text-6xl tracking-[-0.05em] leading-[0.95] font-semibold max-w-xl">
+                Campagne costruite sul target, non sul caso.
+              </h2>
+            </div>
+
+            <div className="space-y-6 text-lg leading-relaxed text-neutral-700">
+              <p>
+                Definisco una strategia media completa: obiettivi, target, audience, canali, messaggi, budget, fasi del funnel e KPI di misurazione.
+              </p>
+
+              <p>
+                Il piano può includere campagne awareness, consideration, retargeting, lead generation, conversione e loyalty, con una logica chiara tra creatività, traffico, dati e risultati.
+              </p>
+
+              <div className="grid grid-cols-2 gap-3 pt-4 text-sm text-neutral-600">
+                <span className="border border-black/10 rounded-full px-4 py-2">Target analysis</span>
+                <span className="border border-black/10 rounded-full px-4 py-2">Channel mix</span>
+                <span className="border border-black/10 rounded-full px-4 py-2">Campaign planning</span>
+                <span className="border border-black/10 rounded-full px-4 py-2">Budget allocation</span>
+                <span className="border border-black/10 rounded-full px-4 py-2">Retargeting</span>
+                <span className="border border-black/10 rounded-full px-4 py-2">KPI & reporting</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-t border-black/5">
+          <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-24">
+            <div className="mb-16">
+              <p className="uppercase tracking-[0.25em] text-sm text-neutral-500 mb-6">
+                Come lavoro
+              </p>
+
+              <h2 className="text-4xl md:text-6xl tracking-[-0.05em] leading-[0.95] font-semibold max-w-4xl">
+                Un approccio strategico dalla fase iniziale fino alla crescita del progetto.
+              </h2>
+            </div>
+
+            <div className="grid md:grid-cols-5 gap-6">
+              {process.map((step, index) => (
+                <div
+                  key={index}
+                  className="bg-white/70 backdrop-blur-sm border border-[#8C5A3C]/10 shadow-[0_10px_30px_rgba(0,0,0,0.04)] rounded-[28px] p-7 flex flex-col justify-between min-h-[260px]"
+                >
+                  <span className="text-neutral-400 text-sm tracking-[0.2em]">
+                    {step.number}
+                  </span>
+
+                  <div>
+                    <h3 className="text-2xl font-medium mb-4">
+                      {step.title}
+                    </h3>
+
+                    <p className="text-neutral-600 leading-relaxed text-sm">
+                      {step.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-t border-black/5 bg-white/40 backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto px-6 md:px-10 py-24 md:py-28 grid md:grid-cols-[0.9fr_1.1fr] gap-16 items-center">
+            <div>
+              <p className="uppercase tracking-[0.25em] text-sm text-neutral-500 mb-6">
+                Chi sono
+              </p>
+
+              <h2 className="text-5xl md:text-7xl tracking-[-0.06em] leading-[0.92] font-semibold mb-8">
+                Strategia,
+                dati e
+                conversione.
+              </h2>
+            </div>
+
+            <div className="space-y-6 text-lg leading-relaxed text-neutral-700">
+              <p>
+                Lavoro nel digital marketing con un focus su analytics, funnel, customer journey, conversione e performance digitali.
+              </p>
+
+              <p>
+                Negli anni ho sviluppato esperienza tra ambienti enterprise, analytics avanzata, ottimizzazione delle performance e progettazione di ecosistemi digitali orientati alla crescita.
+              </p>
+
+              <p>
+                Oggi supporto aziende, professionisti e PMI nella costruzione di progetti digitali più chiari, moderni e misurabili.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-t border-black/5">
+          <div className="max-w-7xl mx-auto px-6 md:px-10 py-24 md:py-32 grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <p className="uppercase tracking-[0.25em] text-sm text-neutral-500 mb-6">
+                Pacchetto completo
+              </p>
+
+              <h2 className="text-5xl md:text-7xl tracking-[-0.06em] leading-[0.92] font-semibold">
+                Strategia.
+                <br />
+                Realizzazione.
+                <br />
+                Crescita.
+              </h2>
+            </div>
+
+            <div className="space-y-6 text-lg leading-relaxed text-neutral-700">
+              <p>
+                Posso seguire l’intero progetto: dalla definizione dell’idea fino alla realizzazione operativa e al monitoraggio delle performance.
+              </p>
+
+              <p>
+                Siti web, funnel, tracking, analytics, customer journey e conversione vengono progettati come un unico ecosistema digitale.
+              </p>
+
+              <p>
+                Quando necessario, sviluppo siti web e landing page in tempi rapidi, con sistemi già integrati e pronti per la crescita futura.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="contatti" className="border-t border-black/5">
+          <div className="max-w-7xl mx-auto px-6 md:px-10 py-24 md:py-28 grid md:grid-cols-2 gap-16">
+            <div>
+              <p className="uppercase tracking-[0.25em] text-sm text-neutral-500 mb-6">
+                Contatti
+              </p>
+
+              <h2 className="text-5xl md:text-7xl tracking-[-0.06em] leading-[0.92] font-semibold mb-8">
+                Raccontami il tuo progetto.
+              </h2>
+
+              <p className="text-xl leading-relaxed text-neutral-700 max-w-xl">
+                Possiamo partire da un audit, una consulenza strategica o dalla realizzazione completa del tuo ecosistema digitale.
+              </p>
+            </div>
+
+            <form className="space-y-6">
+              <input
+                className="w-full bg-transparent border-b border-black/10 py-5 outline-none text-lg"
+                placeholder="Nome"
+              />
+
+              <input
+                className="w-full bg-transparent border-b border-black/10 py-5 outline-none text-lg"
+                placeholder="Email"
+              />
+
+              <select className="w-full bg-transparent border-b border-black/10 py-5 outline-none text-lg text-neutral-600">
+                <option>Audit sito / app</option>
+                <option>Strategia funnel</option>
+                <option>Analytics & tracking</option>
+                <option>Adobe Analytics</option>
+                <option>Sito web / landing page</option>
+                <option>Pacchetto completo</option>
+              </select>
+
+              <textarea
+                rows={5}
+                className="w-full bg-transparent border-b border-black/10 py-5 outline-none text-lg resize-none"
+                placeholder="Descrivi brevemente il progetto"
+              />
+
+              <button
+                type="button"
+                className="mt-4 bg-[#2A211B] text-[#F6F1E8] px-10 py-4 rounded-full font-medium hover:scale-105 hover:bg-[#3A2A21] transition shadow-lg shadow-black/10"
+              >
+                Invia richiesta
+              </button>
+            </form>
+          </div>
+        </section>
+      </main>
+
+      <footer className="border-t border-black/5">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-neutral-500">
+          <span>© 2026 Di Spirito Consulting</span>
+          <span>dispiritoconsulting.it</span>
+        </div>
+      </footer>
+    </div>
+  );
+}
 
