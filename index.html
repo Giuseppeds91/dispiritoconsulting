@@ -110,8 +110,206 @@
       font-weight:700;
     }
 
-    .menu a{transition:.25s}
-    .menu a:hover{color:var(--text)}
+    .menu a,
+    .menu-link{transition:.25s}
+
+    .menu-link{
+      border:0;
+      background:transparent;
+      color:var(--muted);
+      font:inherit;
+      font-size:14px;
+      font-weight:700;
+      cursor:pointer;
+      padding:0;
+    }
+
+    .menu a:hover,
+    .menu-link:hover{color:var(--text)}
+
+    .about-modal{
+      position:fixed;
+      inset:0;
+      z-index:100;
+      display:none;
+      padding:24px;
+      background:rgba(43,33,27,.34);
+      backdrop-filter:blur(18px);
+      overflow-y:auto;
+    }
+
+    .about-modal.is-open{display:block}
+
+    .about-dialog{
+      width:min(1120px,100%);
+      margin:40px auto;
+      border-radius:42px;
+      background:linear-gradient(145deg,rgba(251,248,242,.98),rgba(247,241,231,.96));
+      border:1px solid rgba(43,33,27,.12);
+      box-shadow:0 40px 120px rgba(43,33,27,.28);
+      overflow:hidden;
+    }
+
+    .about-modal-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding:28px 34px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .about-modal-head strong{
+      display:block;
+      font-size:15px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+    }
+
+    .about-close{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.58);
+      cursor:pointer;
+      font-size:22px;
+      color:var(--brown);
+    }
+
+    .about-content{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:0;
+    }
+
+    .about-photo{
+      min-height:620px;
+      background:
+        linear-gradient(145deg,rgba(43,33,27,.92),rgba(82,59,44,.88)),
+        radial-gradient(circle at 30% 20%,rgba(122,47,40,.34),transparent 34%);
+      color:var(--ivory);
+      padding:42px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .about-photo::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(247,241,231,.055) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(247,241,231,.055) 1px,transparent 1px);
+      background-size:42px 42px;
+      opacity:.55;
+    }
+
+    .photo-placeholder{
+      position:relative;
+      z-index:2;
+      min-height:390px;
+      border-radius:34px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.06);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:28px;
+      color:rgba(247,241,231,.72);
+      line-height:1.6;
+      font-weight:600;
+    }
+
+    .about-photo-caption{
+      position:relative;
+      z-index:2;
+    }
+
+    .about-photo-caption small{
+      display:block;
+      color:rgba(247,241,231,.58);
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      margin-bottom:12px;
+      font-weight:800;
+    }
+
+    .about-photo-caption h3{
+      font-size:34px;
+      line-height:1;
+      letter-spacing:-.045em;
+    }
+
+    .about-story{
+      padding:50px;
+    }
+
+    .about-story .label{margin-bottom:22px}
+
+    .about-story h2{
+      font-size:clamp(38px,4.2vw,58px);
+      margin-bottom:28px;
+    }
+
+    .about-story p{
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.75;
+      font-weight:520;
+      margin-bottom:18px;
+    }
+
+    .career-line{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:28px;
+    }
+
+    .career-line span{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.62);
+      border-radius:999px;
+      padding:10px 14px;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:800;
+    }
+
+    .about-trust{
+      margin-top:34px;
+      padding-top:28px;
+      border-top:1px solid var(--line);
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+
+    .about-trust div{
+      padding:16px;
+      border-radius:20px;
+      background:rgba(255,255,255,.56);
+      border:1px solid var(--line);
+    }
+
+    .about-trust strong{
+      display:block;
+      font-size:22px;
+      letter-spacing:-.04em;
+      margin-bottom:6px;
+    }
+
+    .about-trust span{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+      font-weight:700;
+    }
 
     .btn{
       display:inline-flex;
@@ -675,6 +873,10 @@
     .reveal.is-visible{opacity:1;transform:translateY(0)}
 
     @media(max-width:1050px){
+      .about-content{grid-template-columns:1fr}
+      .about-photo{min-height:auto}
+      .about-trust{grid-template-columns:1fr}
+      .about-story{padding:30px}
       .menu{display:none}
       .hero{padding:84px 0 72px}
       .hero-grid,.section-head,.approach-grid,.private-layout,.complete-grid,.advisor-panel,.contact-grid{grid-template-columns:1fr;gap:42px}
@@ -710,6 +912,7 @@
     </a>
 
     <nav class="menu">
+      <button class="menu-link" type="button" data-open-about>Chi sono</button>
       <a href="#approccio">Approccio</a>
       <a href="#consulenze">Consulenze</a>
       <a href="#come-lavoro">Come lavoro</a>
@@ -720,6 +923,78 @@
     <a class="btn btn-primary" href="#contatti">Prenota una call</a>
   </div>
 </header>
+
+<div class="about-modal" id="aboutModal" aria-hidden="true">
+  <div class="about-dialog" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+    <div class="about-modal-head">
+      <div>
+        <strong>Chi sono</strong>
+      </div>
+      <button class="about-close" type="button" data-close-about aria-label="Chiudi">×</button>
+    </div>
+
+    <div class="about-content">
+      <div class="about-photo">
+        <div class="photo-placeholder">
+          Qui inseriremo la tua foto professionale.<br>
+          La scegliamo insieme: deve trasmettere fiducia, seniority e approccio diretto.
+        </div>
+
+        <div class="about-photo-caption">
+          <small>Private Strategic Consulting</small>
+          <h3>Esperienza enterprise, applicata a business reali.</h3>
+        </div>
+      </div>
+
+      <div class="about-story">
+        <div class="label">La mia storia</div>
+        <h2 id="aboutTitle">Dati, marketing e business: il punto d’incontro.</h2>
+
+        <p>
+          Sono Giuseppe Di Spirito e lavoro nel digital marketing con un focus su analytics,
+          customer journey, conversione e performance digitali. Il mio percorso nasce dall’incontro
+          tra visione strategica e capacità operativa: capire cosa muove un business, misurarlo correttamente
+          e trasformarlo in un sistema digitale più efficace.
+        </p>
+
+        <p>
+          Negli anni ho lavorato in contesti strutturati come Banca Widiba, SKY, ING, Sisal,
+          Grandi Stazioni Retail e Wavemaker, confrontandomi con funnel complessi, piattaforme enterprise,
+          campagne digitali, sistemi di tracciamento, dashboard, CRO e ottimizzazione delle performance.
+        </p>
+
+        <p>
+          Questa esperienza mi ha insegnato una cosa: il digitale non funziona quando viene trattato come
+          una somma di attività separate. Funziona quando strategia, dati, media, sito, funnel e conversione
+          vengono letti insieme, con una direzione chiara.
+        </p>
+
+        <p>
+          Con Di Spirito Consulting porto questo approccio a imprenditori, professionisti e PMI che vogliono
+          crescere online senza perdersi in strutture dispersive. Il rapporto è diretto: analizzo, consiglio,
+          progetto e seguo l’evoluzione del percorso con attenzione selettiva.
+        </p>
+
+        <div class="career-line">
+          <span>Banca Widiba</span>
+          <span>SKY</span>
+          <span>ING</span>
+          <span>Sisal</span>
+          <span>Adobe Analytics</span>
+          <span>CRO</span>
+          <span>Funnel</span>
+          <span>Media Strategy</span>
+        </div>
+
+        <div class="about-trust">
+          <div><strong>Enterprise</strong><span>Esperienza su contesti digitali strutturati.</span></div>
+          <div><strong>Data</strong><span>Decisioni basate su tracking, KPI e performance.</span></div>
+          <div><strong>Direct</strong><span>Un rapporto personale, selettivo e concreto.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <main>
 
@@ -1036,6 +1311,42 @@
 </footer>
 
 <script>
+  const aboutModal = document.getElementById('aboutModal');
+  const openAboutButtons = document.querySelectorAll('[data-open-about]');
+  const closeAboutButtons = document.querySelectorAll('[data-close-about]');
+
+  openAboutButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      aboutModal.classList.add('is-open');
+      aboutModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  closeAboutButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      aboutModal.classList.remove('is-open');
+      aboutModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    });
+  });
+
+  aboutModal.addEventListener('click', (event) => {
+    if(event.target === aboutModal){
+      aboutModal.classList.remove('is-open');
+      aboutModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if(event.key === 'Escape'){
+      aboutModal.classList.remove('is-open');
+      aboutModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  });
+
   const reveals = document.querySelectorAll('.reveal');
 
   const observer = new IntersectionObserver((entries) => {
