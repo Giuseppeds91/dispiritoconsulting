@@ -1798,6 +1798,200 @@
       .mobile-panel a,.mobile-panel button{font-size:16px;padding:15px 6px}
     }
 
+  
+
+    /* === Revisione premium: profilo, dettagli pacchetti, modulo selezione, metodo wow === */
+    .profile-trigger{
+      margin-top:28px;
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      border:1px solid rgba(43,33,27,.12);
+      background:rgba(255,255,255,.58);
+      color:var(--text);
+      border-radius:999px;
+      padding:12px 16px 12px 12px;
+      cursor:pointer;
+      font-weight:850;
+      box-shadow:0 16px 42px rgba(43,33,27,.08);
+      transition:.25s ease;
+    }
+    .profile-trigger:hover{transform:translateY(-2px);background:rgba(255,255,255,.78)}
+    .profile-avatar-sm{
+      width:38px;height:38px;border-radius:50%;
+      background:linear-gradient(145deg,var(--brown),#6e4d39);
+      border:1px solid rgba(255,255,255,.55);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);
+      display:grid;place-items:center;color:var(--ivory);font-size:12px;letter-spacing:.1em;
+    }
+    .mini-about-panel{
+      display:none;
+      margin-top:24px;
+      border-radius:30px;
+      border:1px solid var(--line);
+      background:linear-gradient(145deg,rgba(255,255,255,.72),rgba(255,255,255,.40));
+      padding:24px;
+      box-shadow:0 22px 60px rgba(43,33,27,.09);
+    }
+    .mini-about-panel.is-open{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;animation:softIn .25s ease both}
+    @keyframes softIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .mini-about-photo{
+      width:86px;height:86px;border-radius:50%;
+      background:linear-gradient(145deg,rgba(43,33,27,.96),rgba(122,47,40,.75));
+      border:1px solid rgba(255,255,255,.7);
+      box-shadow:0 18px 44px rgba(43,33,27,.18);
+      display:grid;place-items:center;color:var(--ivory);font-weight:900;letter-spacing:.12em;
+    }
+    .mini-about-panel h3{font-size:26px;letter-spacing:-.04em;margin-bottom:8px}
+    .mini-about-panel p{color:var(--muted);font-weight:560;line-height:1.65}
+
+    .learn-more{
+      margin-top:18px;
+      align-self:flex-start;
+      border:0;
+      background:transparent;
+      color:var(--brown);
+      font-weight:900;
+      cursor:pointer;
+      padding:0 0 4px;
+      border-bottom:1px solid rgba(43,33,27,.28);
+      letter-spacing:-.01em;
+    }
+    .learn-more:hover{color:var(--bordeaux);border-bottom-color:var(--bordeaux)}
+    .detail-modal{
+      position:fixed;inset:0;z-index:120;
+      display:none;align-items:center;justify-content:center;
+      padding:20px;background:rgba(43,33,27,.30);backdrop-filter:blur(18px);
+    }
+    .detail-modal.is-open{display:flex}
+    .detail-dialog{
+      width:min(620px,100%);
+      border-radius:36px;
+      background:linear-gradient(145deg,rgba(251,248,242,.98),rgba(247,241,231,.96));
+      border:1px solid rgba(43,33,27,.12);
+      box-shadow:0 40px 120px rgba(43,33,27,.28);
+      padding:30px;
+      position:relative;
+    }
+    .detail-dialog .label{margin-bottom:14px}
+    .detail-dialog h3{font-size:clamp(30px,5vw,44px);letter-spacing:-.055em;line-height:1;margin-bottom:18px}
+    .detail-dialog p{color:var(--muted);font-size:17px;line-height:1.7;font-weight:560}
+    .detail-close{
+      position:absolute;right:18px;top:18px;width:42px;height:42px;border-radius:50%;
+      border:1px solid var(--line);background:rgba(255,255,255,.65);cursor:pointer;font-size:22px;color:var(--brown);
+    }
+
+    .selection-panel{align-items:center!important}
+    .selected-list{font-size:15px!important;line-height:1.45!important;color:var(--muted)!important;font-weight:700!important;margin-top:10px!important}
+    .selection-kicker{display:none!important}
+    .selection-panel strong{font-size:13px!important;letter-spacing:.18em;text-transform:uppercase;color:var(--bronze)}
+
+    .private .quote-card h2::after{
+      content:"";display:block;width:64px;height:1px;background:rgba(247,241,231,.36);margin-top:24px;
+    }
+    .private-note{
+      margin-top:18px;
+      color:rgba(247,241,231,.72);
+      font-size:15px;
+      line-height:1.65;
+      font-weight:650;
+    }
+
+    .method-lux{display:none!important}
+    .method-wow{
+      display:grid;
+      grid-template-columns:.95fr 1.05fr;
+      gap:34px;
+      align-items:center;
+      border-radius:46px;
+      padding:38px;
+      background:linear-gradient(145deg,rgba(255,255,255,.66),rgba(255,255,255,.28));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .method-wow::before{
+      content:"";position:absolute;inset:-40%;
+      background:radial-gradient(circle at 55% 45%,rgba(122,47,40,.10),transparent 26%),radial-gradient(circle at 20% 80%,rgba(155,118,83,.14),transparent 24%);
+      animation:wowDrift 9s ease-in-out infinite alternate;
+    }
+    @keyframes wowDrift{to{transform:translate3d(3%, -2%,0) scale(1.04)}}
+    .flow-orbit{
+      position:relative;z-index:2;min-height:500px;border-radius:36px;
+      background:linear-gradient(145deg,rgba(43,33,27,.96),rgba(63,45,34,.94));
+      overflow:hidden;border:1px solid rgba(255,255,255,.10);
+      box-shadow:0 30px 90px rgba(43,33,27,.20);
+    }
+    .flow-orbit::before{
+      content:"";position:absolute;inset:0;
+      background-image:linear-gradient(rgba(247,241,231,.045) 1px, transparent 1px),linear-gradient(90deg,rgba(247,241,231,.045) 1px, transparent 1px);
+      background-size:42px 42px;opacity:.75;
+    }
+    .flow-track{
+      position:absolute;left:50%;top:50%;border-radius:50%;border:1px solid rgba(231,215,189,.22);transform:translate(-50%,-50%);
+    }
+    .flow-track.t1{width:74%;height:74%;animation:spin 24s linear infinite}
+    .flow-track.t2{width:54%;height:54%;animation:spin 18s linear infinite reverse;border-color:rgba(255,255,255,.14)}
+    .flow-track.t3{width:34%;height:34%;animation:spin 14s linear infinite;border-color:rgba(155,118,83,.42)}
+    .flow-dot{position:absolute;left:50%;top:-6px;width:12px;height:12px;border-radius:50%;background:var(--sand);box-shadow:0 0 26px rgba(230,213,187,.85)}
+    .flow-center{
+      position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+      width:158px;height:158px;border-radius:50%;display:grid;place-items:center;text-align:center;
+      color:var(--ivory);background:radial-gradient(circle,rgba(122,47,40,.96),rgba(43,33,27,.86));
+      border:1px solid rgba(230,213,187,.24);box-shadow:0 0 70px rgba(122,47,40,.38);
+      font-size:24px;font-weight:900;letter-spacing:-.045em;line-height:1;
+    }
+    .flow-badge{
+      position:absolute;z-index:3;padding:10px 12px;border-radius:999px;background:rgba(247,241,231,.08);border:1px solid rgba(247,241,231,.14);
+      color:rgba(247,241,231,.78);font-size:12px;font-weight:900;letter-spacing:.10em;text-transform:uppercase;backdrop-filter:blur(10px);
+    }
+    .flow-badge.b1{top:34px;left:30px}.flow-badge.b2{top:106px;right:24px}.flow-badge.b3{bottom:104px;left:26px}.flow-badge.b4{bottom:34px;right:28px}
+    .method-copy{position:relative;z-index:2;display:grid;gap:14px}
+    .method-copy article{padding:18px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:auto 1fr;gap:15px}
+    .method-copy article:last-child{border-bottom:0}
+    .method-copy span{color:var(--bronze);font-weight:950;font-size:12px;letter-spacing:.18em;padding-top:5px}
+    .method-copy h3{font-size:25px;letter-spacing:-.04em;margin-bottom:6px}
+    .method-copy p{color:var(--muted);line-height:1.55;font-weight:560}
+
+    .form-selected-box{
+      border:1px solid rgba(43,33,27,.12);
+      background:rgba(255,255,255,.48);
+      border-radius:24px;
+      padding:18px;
+      margin:10px 0 18px;
+    }
+    .form-selected-head{display:flex;justify-content:space-between;gap:14px;color:var(--muted);font-size:13px;font-weight:850;margin-bottom:12px}
+    .form-chips{display:flex;flex-wrap:wrap;gap:8px;min-height:32px}
+    .form-chip{
+      display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(43,33,27,.12);background:rgba(255,255,255,.65);border-radius:999px;padding:8px 10px;font-size:13px;font-weight:850;color:var(--text);
+    }
+    .form-chip button{border:0;background:transparent;color:var(--muted);cursor:pointer;font-weight:900;font-size:15px;line-height:1}
+    .form-empty{color:var(--muted);font-size:14px;font-weight:650;line-height:1.5}
+    .service-add-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end}
+    .service-add-row .btn{padding:12px 18px;margin-bottom:0}
+    .hidden-selection{display:none!important}
+
+    @media(max-width:1050px){
+      .method-wow{grid-template-columns:1fr;padding:26px;border-radius:36px}
+      .flow-orbit{min-height:420px;border-radius:30px}
+    }
+    @media(max-width:560px){
+      .mini-about-panel.is-open{grid-template-columns:1fr;text-align:left;padding:20px;border-radius:24px}
+      .mini-about-photo{width:74px;height:74px}
+      .detail-dialog{padding:26px 20px;border-radius:30px}
+      .method-wow{padding:16px;border-radius:28px;gap:18px}
+      .flow-orbit{min-height:330px;border-radius:24px}
+      .flow-center{width:118px;height:118px;font-size:19px}
+      .flow-track.t1{width:82%;height:82%}.flow-track.t2{width:61%;height:61%}.flow-track.t3{width:40%;height:40%}
+      .flow-badge{font-size:10px;padding:8px 9px;letter-spacing:.08em}
+      .flow-badge.b1{top:18px;left:16px}.flow-badge.b2{top:72px;right:12px}.flow-badge.b3{bottom:76px;left:12px}.flow-badge.b4{bottom:18px;right:14px}
+      .method-copy article{grid-template-columns:1fr;gap:6px;padding:15px 0}
+      .method-copy h3{font-size:22px}
+      .service-add-row{grid-template-columns:1fr}
+      .service-add-row .btn{width:100%}
+    }
+
   </style>
 </head>
 
@@ -1903,6 +2097,16 @@
   </div>
 </div>
 
+
+<div class="detail-modal" id="detailModal" aria-hidden="true">
+  <div class="detail-dialog" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+    <button class="detail-close" type="button" data-close-detail aria-label="Chiudi">×</button>
+    <div class="label" id="detailLabel">Consulenza</div>
+    <h3 id="detailTitle">Titolo</h3>
+    <p id="detailText">Descrizione</p>
+  </div>
+</div>
+
 <main>
 
 <section class="hero">
@@ -1957,6 +2161,22 @@
             L’obiettivo è capire dove intervenire, cosa prioritizzare e come trasformare sito, funnel,
             campagne e analytics in un sistema più chiaro e misurabile.
           </p>
+
+          <button class="profile-trigger" type="button" data-toggle-mini-about>
+            <span class="profile-avatar-sm">GDS</span>
+            <span>Conosci meglio il consulente</span>
+          </button>
+
+          <div class="mini-about-panel" id="miniAboutPanel">
+            <div class="mini-about-photo">GDS</div>
+            <div>
+              <h3>Giuseppe Di Spirito</h3>
+              <p>
+                Unisco esperienza su ecosistemi digitali complessi, analytics, funnel e conversione a un approccio diretto e operativo.
+                Lavoro con imprenditori, professionisti e PMI per trasformare sito, dati e marketing in un sistema più chiaro, misurabile e utile al business.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1973,18 +2193,6 @@
       <p class="lead">
         Puoi partire da un bisogno verticale oppure costruire un ecosistema unico: idea, posizionamento,
         sito, funnel, media, tracking, dashboard e ottimizzazione.
-      </p>
-    </div>
-
-    <div class="ecosystem-note reveal">
-      <div>
-        <div class="label">Dall’idea alla crescita</div>
-        <h3>Una consulenza. Un progetto. Un ecosistema completo.</h3>
-      </div>
-      <p>
-        Il pacchetto completo è il percorso principale: tiene insieme strategia, realizzazione,
-        dati e conversione. Le consulenze singole restano selezionabili quando serve intervenire
-        su un punto preciso del sistema.
       </p>
     </div>
 
@@ -2015,6 +2223,7 @@
           <li>Sistemi integrati e tracciabili</li>
         </ul>
         <span class="select-pill">Seleziona</span>
+        <button class="learn-more" type="button" data-detail=""">Scopri meglio il percorso</button>
       </div>
 
       <div class="offer-card" data-service="Audit sito e funnel" tabindex="0" role="button" aria-pressed="false">
@@ -2029,6 +2238,7 @@
           <li>Priorità di intervento</li>
         </ul>
         <span class="select-pill">Seleziona</span>
+        <button class="learn-more" type="button" data-detail=""">Scopri meglio il percorso</button>
       </div>
 
       <div class="offer-card" data-service="Media strategy" tabindex="0" role="button" aria-pressed="false">
@@ -2043,6 +2253,7 @@
           <li>Retargeting e loyalty</li>
         </ul>
         <span class="select-pill">Seleziona</span>
+        <button class="learn-more" type="button" data-detail=""">Scopri meglio il percorso</button>
       </div>
 
       <div class="offer-card" data-service="Analytics & tracking" tabindex="0" role="button" aria-pressed="false">
@@ -2057,6 +2268,7 @@
           <li>Lettura chiara dei dati</li>
         </ul>
         <span class="select-pill">Seleziona</span>
+        <button class="learn-more" type="button" data-detail=""">Scopri meglio il percorso</button>
       </div>
 
       <div class="offer-card" data-service="CRO e ottimizzazione conversioni" tabindex="0" role="button" aria-pressed="false">
@@ -2071,6 +2283,7 @@
           <li>Ottimizzazione performance</li>
         </ul>
         <span class="select-pill">Seleziona</span>
+        <button class="learn-more" type="button" data-detail=""">Scopri meglio il percorso</button>
       </div>
     </div>
 
@@ -2078,7 +2291,7 @@
       <div>
         <strong>Scelta consulenza</strong>
         <div class="selected-list" id="selectedList">Nessuna consulenza selezionata.</div>
-        <div class="selection-kicker">La selezione verrà riportata in modo automatico nel modulo contatti in fondo alla pagina.</div>
+        
       </div>
     </div>
   </div>
@@ -2088,17 +2301,18 @@
   <div class="container private-layout">
     <div class="quote-card reveal">
       <div class="label" style="color:rgba(247,241,231,.62);">Private Consulting</div>
-      <h2>Non devi parlare con una struttura. Parli direttamente con me.</h2>
+      <h2>Una consulenza privata, non un servizio impersonale.</h2>
       <p class="lead">
-        Meno dispersione, più controllo, più velocità. Un unico interlocutore che tiene insieme visione,
-        dati, strategia e realizzazione.
+        Private significa accesso diretto, ascolto reale e attenzione selettiva: non passi da una struttura,
+        ma da una persona che entra nel progetto e tiene insieme visione, dati, strategia e realizzazione.
       </p>
+      <div class="private-note">Il valore non è solo “fare attività”, ma avere una direzione chiara, priorità corrette e un interlocutore che ragiona sul tuo business come sistema.</div>
     </div>
 
     <div class="private-points reveal">
       <div class="private-point">
-        <h3>Rapporto diretto</h3>
-        <p>Collabori con una persona che entra nel progetto e ne segue la direzione.</p>
+        <h3>Accesso diretto</h3>
+        <p>Ti confronti direttamente con me, senza passaggi inutili o comunicazioni filtrate.</p>
       </div>
       <div class="private-point">
         <h3>Focus sul business</h3>
@@ -2123,23 +2337,20 @@
         Non è una lista di attività: è un processo circolare. Ogni fase alimenta la successiva e torna sui dati per migliorare decisioni, conversioni e priorità.
       </p>
     </div>
-
-    <div class="method-lux reveal">
-      <div class="method-lux-visual" aria-label="Metodo dinamico di consulenza">
-        <div class="lux-ring lr1"></div>
-        <div class="lux-ring lr2"></div>
-        <div class="lux-ring lr3"></div>
-        <div class="lux-axis"></div>
-        <div class="lux-core"><strong>Growth<br>Loop</strong><span>5 fasi</span></div>
-        <div class="lux-node n1"><small>01</small><b>Analisi</b></div>
-        <div class="lux-node n2"><small>02</small><b>Strategia</b></div>
-        <div class="lux-node n3"><small>03</small><b>Realizzazione</b></div>
-        <div class="lux-node n4"><small>04</small><b>Misurazione</b></div>
-        <div class="lux-node n5"><small>05</small><b>Ottimizzazione</b></div>
+    <div class="method-wow reveal">
+      <div class="flow-orbit" aria-label="Sistema dinamico del metodo di lavoro">
+        <div class="flow-track t1"><span class="flow-dot"></span></div>
+        <div class="flow-track t2"><span class="flow-dot"></span></div>
+        <div class="flow-track t3"><span class="flow-dot"></span></div>
+        <div class="flow-center">Growth<br>Operating<br>System</div>
+        <span class="flow-badge b1">Analisi</span>
+        <span class="flow-badge b2">Strategia</span>
+        <span class="flow-badge b3">Misura</span>
+        <span class="flow-badge b4">Crescita</span>
       </div>
 
-      <div class="method-lux-list">
-        <article><span>01</span><div><h3>Analisi</h3><p>Leggo business, target, offerta, funnel e punti che frenano acquisizione o fiducia.</p></div></article>
+      <div class="method-copy">
+        <article><span>01</span><div><h3>Analisi</h3><p>Capisco business, target, offerta, funnel e punti che frenano acquisizione o fiducia.</p></div></article>
         <article><span>02</span><div><h3>Strategia</h3><p>Definisco priorità, messaggi, canali e obiettivi misurabili.</p></div></article>
         <article><span>03</span><div><h3>Realizzazione</h3><p>Costruisco sito, landing, contenuti, UX/UI, tracking o asset necessari.</p></div></article>
         <article><span>04</span><div><h3>Misurazione</h3><p>Imposto KPI, eventi, dashboard e una lettura semplice delle performance.</p></div></article>
@@ -2178,7 +2389,7 @@
       <div class="label">Contatti</div>
       <h2>Raccontami cosa vuoi migliorare.</h2>
       <p class="lead" style="margin-top:28px;">
-        Puoi richiedere una consulenza specifica, un audit o un percorso completo. Se hai selezionato una consulenza sopra, la ritroverai già nel modulo.
+        Puoi richiedere una consulenza specifica, un audit o un percorso completo. Le consulenze selezionate sopra saranno visibili qui, modificabili prima dell’invio.
       </p>
       <div class="form-response-note">
         Risposta in meno di 1h, compatibilmente con disponibilità e urgenza del progetto.
@@ -2209,18 +2420,32 @@
       </div>
 
       <label class="required-label">Consulenza richiesta</label>
-      <select id="serviceSelect" name="consulenza">
-        <option value="">Seleziona dal menu o scegli le card sopra</option>
-        <option>Pacchetto completo</option>
-        <option>Creazione sito / landing page</option>
-        <option>Audit sito e funnel</option>
-        <option>Media strategy</option>
-        <option>Analytics & tracking</option>
-        <option>CRO e ottimizzazione conversioni</option>
-      </select>
+      <div class="form-selected-box">
+        <div class="form-selected-head">
+          <span>Selezioni attive</span>
+          <span>Modificabili prima dell’invio</span>
+        </div>
+        <div class="form-chips" id="formSelectedChips">
+          <span class="form-empty">Nessuna consulenza selezionata. Puoi scegliere una o più card sopra, oppure aggiungerle dal menu qui sotto.</span>
+        </div>
+      </div>
+
+      <div class="service-add-row">
+        <select id="serviceSelect" name="consulenza_da_aggiungere">
+          <option value="">Aggiungi una consulenza</option>
+          <option>Pacchetto completo</option>
+          <option>Creazione sito / landing page</option>
+          <option>Audit sito e funnel</option>
+          <option>Media strategy</option>
+          <option>Analytics & tracking</option>
+          <option>CRO e ottimizzazione conversioni</option>
+        </select>
+        <button class="btn btn-secondary" type="button" id="addServiceBtn">Aggiungi</button>
+      </div>
+      <input class="hidden-selection" type="text" id="selectedServicesInput" name="consulenze_selezionate" value="">
 
       <label class="required-label">Messaggio</label>
-      <textarea id="messageField" name="messaggio" placeholder="Raccontami in poche righe cosa vuoi migliorare"></textarea>
+      <textarea id="messageField" name="messaggio" placeholder="Descrivi in modo libero il progetto, l’esigenza principale o l’obiettivo che vorresti raggiungere. Anche poche informazioni sono sufficienti per iniziare un confronto mirato."></textarea>
 
       <p class="availability">
         Collaboro con un numero limitato di progetti per garantire attenzione, velocità e qualità. I campi con * sono obbligatori.
@@ -2289,6 +2514,7 @@
     if(event.key === 'Escape'){
       closeMobileMenu();
       closeAbout();
+      closeDetail();
     }
   });
 
@@ -2302,44 +2528,104 @@
   }, { threshold: 0.12 });
   reveals.forEach(el => observer.observe(el));
 
+  const miniAboutToggle = document.querySelector('[data-toggle-mini-about]');
+  const miniAboutPanel = document.getElementById('miniAboutPanel');
+  if(miniAboutToggle && miniAboutPanel){
+    miniAboutToggle.addEventListener('click', () => {
+      miniAboutPanel.classList.toggle('is-open');
+    });
+  }
+
+  const detailModal = document.getElementById('detailModal');
+  const detailTitle = document.getElementById('detailTitle');
+  const detailText = document.getElementById('detailText');
+  const closeDetailButtons = document.querySelectorAll('[data-close-detail]');
+  const serviceDetails = {
+    'Creazione sito / landing page': {
+      title: 'Creazione sito o landing',
+      text: 'Un percorso pensato per costruire una presenza digitale più solida e credibile. Non si tratta solo di “fare un sito”, ma di definire messaggio, struttura, UX/UI, contenuti e punti di conversione, così che ogni sezione accompagni l’utente verso un’azione chiara. È ideale quando vuoi presentarti meglio, lanciare un servizio o trasformare il traffico in richieste più qualificate.'
+    },
+    'Audit sito e funnel': {
+      title: 'Audit sito e funnel',
+      text: 'Analizzo il percorso che un utente compie dal primo contatto fino alla richiesta finale. Guardo chiarezza del messaggio, fiducia, CTA, navigazione, frizioni e punti in cui si perde interesse. Il risultato è una lettura semplice delle priorità: cosa correggere subito, cosa migliorare dopo e dove il progetto può recuperare conversioni.'
+    },
+    'Media strategy': {
+      title: 'Media strategy',
+      text: 'Costruisco una direzione per le campagne digitali partendo da target, obiettivi, budget e fase del funnel. L’obiettivo è evitare campagne scollegate e creare un sistema più ordinato: contenuti giusti, pubblici corretti, messaggi coerenti e lettura chiara dei risultati.'
+    },
+    'Analytics & tracking': {
+      title: 'Analytics & tracking',
+      text: 'Metto ordine nella misurazione: eventi, KPI, dashboard e lettura dei dati. Serve a capire cosa sta funzionando davvero, quali canali portano valore e dove intervenire. È una consulenza utile quando hai traffico, campagne o un sito attivo ma non hai una visione chiara delle performance.'
+    },
+    'CRO e ottimizzazione conversioni': {
+      title: 'CRO e ottimizzazione',
+      text: 'Lavoro sul miglioramento delle conversioni: pagine, messaggi, CTA, percorso utente e priorità di test. L’obiettivo è aumentare il valore di ciò che già hai, rendendo il sito o la landing più efficaci, più chiari e più orientati all’azione.'
+    }
+  };
+  document.querySelectorAll('[data-detail]').forEach(button => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const data = serviceDetails[button.dataset.detail];
+      if(!data) return;
+      detailTitle.textContent = data.title;
+      detailText.textContent = data.text;
+      detailModal.classList.add('is-open');
+      detailModal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  function closeDetail(){
+    if(!detailModal) return;
+    detailModal.classList.remove('is-open');
+    detailModal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+  closeDetailButtons.forEach(button => button.addEventListener('click', closeDetail));
+  if(detailModal){
+    detailModal.addEventListener('click', event => {
+      if(event.target === detailModal) closeDetail();
+    });
+  }
+
   const offerCards = document.querySelectorAll('.offer-card[data-service]');
   const selectedList = document.getElementById('selectedList');
   const serviceSelect = document.getElementById('serviceSelect');
   const messageField = document.getElementById('messageField');
+  const formSelectedChips = document.getElementById('formSelectedChips');
+  const selectedServicesInput = document.getElementById('selectedServicesInput');
+  const addServiceBtn = document.getElementById('addServiceBtn');
   const serviceOptions = Array.from(offerCards).map(card => card.dataset.service);
   let selectedServices = [];
 
   function selectionText(){
-    if(selectedServices.length === 0){
-      return 'Nessuna consulenza selezionata.';
-    }
-    if(selectedServices.includes('Pacchetto completo')){
-      return 'Hai selezionato Pacchetto completo: nel modulo in fondo alla pagina troverai già questa preferenza, insieme al riepilogo del percorso end-to-end.';
-    }
-    return 'Hai selezionato: ' + selectedServices.join(' + ') + '. Troverai questa scelta già riportata nel modulo in fondo alla pagina.';
+    if(selectedServices.length === 0) return 'Nessuna consulenza selezionata.';
+    if(selectedServices.includes('Pacchetto completo')) return 'Pacchetto completo selezionato.';
+    return selectedServices.join(' + ');
   }
 
   function updateFormFromSelection(){
-    if(!serviceSelect || !messageField) return;
-
+    if(selectedServicesInput) selectedServicesInput.value = selectedServices.join(' + ');
+    if(!formSelectedChips) return;
+    formSelectedChips.innerHTML = '';
     if(selectedServices.length === 0){
-      serviceSelect.value = '';
-      if(messageField.value.startsWith('Sono interessato a:')) messageField.value = '';
+      const empty = document.createElement('span');
+      empty.className = 'form-empty';
+      empty.textContent = 'Nessuna consulenza selezionata. Puoi scegliere una o più card sopra, oppure aggiungerle dal menu qui sotto.';
+      formSelectedChips.appendChild(empty);
       return;
     }
-
-    if(selectedServices.includes('Pacchetto completo')){
-      serviceSelect.value = 'Pacchetto completo';
-    } else if(selectedServices.length === 1){
-      serviceSelect.value = selectedServices[0];
-    } else {
-      serviceSelect.value = '';
-    }
-
-    const text = 'Sono interessato a: ' + selectedServices.join(' + ') + '. Vorrei capire il percorso più adatto al mio progetto.';
-    if(!messageField.value || messageField.value.startsWith('Sono interessato a:')){
-      messageField.value = text;
-    }
+    selectedServices.forEach(service => {
+      const chip = document.createElement('span');
+      chip.className = 'form-chip';
+      chip.innerHTML = `<span>${service}</span><button type="button" aria-label="Rimuovi ${service}">×</button>`;
+      chip.querySelector('button').addEventListener('click', () => {
+        selectedServices = selectedServices.filter(item => item !== service);
+        if(service === 'Pacchetto completo') selectedServices = [];
+        updateSelection();
+      });
+      formSelectedChips.appendChild(chip);
+    });
   }
 
   function updateSelection(){
@@ -2349,11 +2635,10 @@
       card.setAttribute('aria-pressed', active ? 'true' : 'false');
       const pill = card.querySelector('.select-pill');
       if(pill){
-        if(card.dataset.complete === 'true') pill.textContent = active ? 'Tutto selezionato' : 'Seleziona tutto';
+        if(card.dataset.complete === 'true') pill.textContent = active ? 'Percorso selezionato' : 'Seleziona tutto';
         else pill.textContent = active ? 'Selezionato' : 'Seleziona';
       }
     });
-
     if(selectedList) selectedList.textContent = selectionText();
     updateFormFromSelection();
   }
@@ -2361,23 +2646,46 @@
   function toggleService(card){
     const service = card.dataset.service;
     const isComplete = card.dataset.complete === 'true';
-
     if(isComplete){
       selectedServices = selectedServices.includes('Pacchetto completo') ? [] : [...serviceOptions];
     } else {
       selectedServices = selectedServices.filter(item => item !== 'Pacchetto completo');
-      if(selectedServices.includes(service)){
-        selectedServices = selectedServices.filter(item => item !== service);
-      } else {
-        selectedServices.push(service);
-      }
-
+      if(selectedServices.includes(service)) selectedServices = selectedServices.filter(item => item !== service);
+      else selectedServices.push(service);
       const singles = serviceOptions.filter(item => item !== 'Pacchetto completo');
-      if(singles.every(item => selectedServices.includes(item))){
-        selectedServices = [...serviceOptions];
-      }
+      if(singles.every(item => selectedServices.includes(item))) selectedServices = [...serviceOptions];
     }
     updateSelection();
+  }
+
+  offerCards.forEach(card => {
+    card.addEventListener('click', event => {
+      if(event.target.closest('.learn-more')) return;
+      toggleService(card);
+    });
+    card.addEventListener('keydown', event => {
+      if(event.key === 'Enter' || event.key === ' '){
+        event.preventDefault();
+        toggleService(card);
+      }
+    });
+  });
+
+  if(addServiceBtn && serviceSelect){
+    addServiceBtn.addEventListener('click', () => {
+      const value = serviceSelect.value;
+      if(!value) return;
+      if(value === 'Pacchetto completo') selectedServices = [...serviceOptions];
+      else {
+        selectedServices = selectedServices.filter(item => item !== 'Pacchetto completo');
+        if(!selectedServices.includes(value)) selectedServices.push(value);
+      }
+      serviceSelect.value = '';
+      updateSelection();
+    });
+  }
+
+  updateSelection();
   }
 
   offerCards.forEach(card => {
