@@ -3,592 +3,1021 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Di Spirito Consulting</title>
+
+  <title>Di Spirito Consulting | Strategia digitale, dati e conversione</title>
+  <meta name="description" content="Di Spirito Consulting aiuta aziende, professionisti e PMI a costruire sistemi digitali orientati alla crescita: strategia, funnel, media, analytics, CRO e sviluppo rapido siti web." />
+
+  <meta property="og:title" content="Di Spirito Consulting" />
+  <meta property="og:description" content="Strategia digitale, dati e conversione. Sistemi digitali orientati alla crescita." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.dispiritoconsulting.it" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
+    :root {
+      --cream: #f7f1e7;
+      --cream-2: #fbf8f2;
+      --sand: #e7d7bd;
+      --bronze: #9b7653;
+      --brown: #2b211b;
+      --bordeaux: #7a2f28;
+      --text: #15120f;
+      --muted: #6e6258;
+      --line: rgba(43, 33, 27, 0.10);
+      --white: rgba(255,255,255,0.72);
+      --shadow: 0 24px 80px rgba(43, 33, 27, 0.10);
     }
 
-    html{
-      scroll-behavior:smooth;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    body{
-      font-family:'Inter',sans-serif;
-      background:#f6f1e8;
-      color:#111;
-      overflow-x:hidden;
+    html {
+      scroll-behavior: smooth;
     }
 
-    body::before{
-      content:'';
-      position:fixed;
-      inset:0;
+    body {
+      font-family: "Manrope", sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
       background:
-      radial-gradient(circle at top right, rgba(122,41,26,0.12), transparent 25%),
-      radial-gradient(circle at bottom left, rgba(166,92,53,0.10), transparent 25%);
-      pointer-events:none;
-      z-index:-1;
+        radial-gradient(circle at 88% 8%, rgba(122,47,40,.16), transparent 30%),
+        radial-gradient(circle at 10% 30%, rgba(155,118,83,.15), transparent 28%),
+        linear-gradient(180deg, var(--cream), var(--cream-2));
     }
 
-    .container{
-      width:100%;
-      max-width:1280px;
-      margin:auto;
-      padding:0 32px;
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: .28;
+      background-image:
+        linear-gradient(rgba(43,33,27,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(43,33,27,.05) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, #000, transparent 75%);
     }
 
-    header{
-      position:sticky;
-      top:0;
-      z-index:999;
-      backdrop-filter:blur(12px);
-      background:rgba(246,241,232,0.85);
-      border-bottom:1px solid rgba(0,0,0,0.06);
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .nav{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:24px 0;
+    .container {
+      width: min(1240px, calc(100% - 40px));
+      margin: 0 auto;
     }
 
-    .logo{
-      font-size:20px;
-      font-weight:600;
-      letter-spacing:0.22em;
-      text-transform:uppercase;
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(247, 241, 231, .78);
+      border-bottom: 1px solid var(--line);
     }
 
-    .logo span{
-      display:block;
-      font-size:11px;
-      color:#777;
-      margin-top:6px;
-      letter-spacing:0.28em;
+    .nav {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
     }
 
-    .cta{
-      background:#2b211b;
-      color:#f6f1e8;
-      padding:14px 24px;
-      border-radius:999px;
-      text-decoration:none;
-      font-size:14px;
-      transition:0.3s;
+    .brand {
+      line-height: 1;
     }
 
-    .cta:hover{
-      transform:translateY(-2px);
+    .brand strong {
+      display: block;
+      font-size: 18px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-weight: 800;
     }
 
-    .hero{
-      padding:120px 0 100px;
+    .brand span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
     }
 
-    .badge{
-      display:inline-flex;
-      padding:10px 18px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.7);
-      border:1px solid rgba(0,0,0,0.06);
-      font-size:14px;
-      color:#666;
-      margin-bottom:40px;
+    .menu {
+      display: flex;
+      gap: 28px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
     }
 
-    h1{
-      font-size:clamp(54px,9vw,110px);
-      line-height:0.92;
-      letter-spacing:-0.06em;
-      max-width:1000px;
+    .menu a {
+      transition: color .25s ease;
     }
 
-    .hero p{
-      margin-top:40px;
-      font-size:24px;
-      line-height:1.6;
-      max-width:850px;
-      color:#4b4b4b;
+    .menu a:hover {
+      color: var(--text);
     }
 
-    .hero-buttons{
-      display:flex;
-      gap:16px;
-      margin-top:50px;
-      flex-wrap:wrap;
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-size: 14px;
+      font-weight: 800;
+      transition: transform .25s ease, background .25s ease, color .25s ease;
+      cursor: pointer;
+      border: 0;
     }
 
-    .secondary-btn{
-      border:1px solid rgba(0,0,0,0.08);
-      background:rgba(255,255,255,0.6);
-      padding:14px 24px;
-      border-radius:999px;
-      text-decoration:none;
-      color:#111;
+    .btn-primary {
+      background: var(--brown);
+      color: var(--cream-2);
+      box-shadow: 0 14px 40px rgba(43, 33, 27, .15);
     }
 
-    section{
-      padding:110px 0;
-      border-top:1px solid rgba(0,0,0,0.06);
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: #3a2a21;
     }
 
-    .section-label{
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:0.25em;
-      color:#777;
-      margin-bottom:28px;
+    .btn-secondary {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.55);
+      color: var(--text);
     }
 
-    h2{
-      font-size:clamp(42px,6vw,72px);
-      line-height:0.95;
-      letter-spacing:-0.05em;
-      max-width:900px;
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      background: var(--brown);
+      color: var(--cream-2);
     }
 
-    .two-col{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:80px;
-      align-items:start;
+    .hero {
+      padding: 118px 0 96px;
     }
 
-    .text{
-      font-size:20px;
-      line-height:1.8;
-      color:#4f4f4f;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 70px;
+      align-items: center;
     }
 
-    .services{
-      margin-top:70px;
-      border-top:1px solid rgba(0,0,0,0.06);
+    .eyebrow {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(122,47,40,.14);
+      background: rgba(255,255,255,.55);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 34px;
     }
 
-    .service{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:32px 0;
-      border-bottom:1px solid rgba(0,0,0,0.06);
-      transition:0.3s;
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--bordeaux);
+      box-shadow: 0 0 0 6px rgba(122,47,40,.10);
     }
 
-    .service:hover{
-      transform:translateX(6px);
+    h1 {
+      font-size: clamp(56px, 7.8vw, 108px);
+      line-height: .9;
+      letter-spacing: -.075em;
+      font-weight: 800;
+      max-width: 940px;
     }
 
-    .service h3{
-      font-size:clamp(26px,3vw,44px);
-      letter-spacing:-0.04em;
-      font-weight:500;
+    .hero p {
+      margin-top: 34px;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: clamp(19px, 2vw, 25px);
+      line-height: 1.55;
+      font-weight: 500;
     }
 
-    .service span{
-      color:#9b7b68;
-      font-size:22px;
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 42px;
     }
 
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(5,1fr);
-      gap:20px;
-      margin-top:70px;
+    .visual {
+      position: relative;
+      min-height: 540px;
+      border-radius: 42px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.80), rgba(255,255,255,.28)),
+        radial-gradient(circle at 20% 10%, rgba(122,47,40,.16), transparent 38%);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      padding: 30px;
     }
 
-    .card{
-      background:rgba(255,255,255,0.72);
-      border:1px solid rgba(0,0,0,0.05);
-      border-radius:28px;
-      padding:28px;
-      min-height:240px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      backdrop-filter:blur(10px);
-      box-shadow:0 10px 30px rgba(0,0,0,0.04);
+    .visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(43,33,27,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(43,33,27,.06) 1px, transparent 1px);
+      background-size: 42px 42px;
+      opacity: .45;
     }
 
-    .card-number{
-      color:#a1836d;
-      font-size:13px;
-      letter-spacing:0.2em;
+    .dashboard {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 22px;
     }
 
-    .card h4{
-      font-size:28px;
-      margin-bottom:16px;
+    .mini-card {
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(43,33,27,.08);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 18px 50px rgba(43,33,27,.08);
+      backdrop-filter: blur(10px);
     }
 
-    .card p{
-      color:#666;
-      line-height:1.7;
-      font-size:15px;
+    .mini-card:nth-child(2) {
+      margin-left: 70px;
     }
 
-    .contact-box{
-      background:rgba(255,255,255,0.6);
-      border:1px solid rgba(0,0,0,0.05);
-      border-radius:36px;
-      padding:50px;
-      margin-top:60px;
-      backdrop-filter:blur(12px);
+    .mini-card:nth-child(3) {
+      margin-right: 55px;
     }
 
-    form{
-      display:flex;
-      flex-direction:column;
-      gap:22px;
-      margin-top:40px;
+    .mini-label {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      margin-bottom: 14px;
     }
 
-    input,
-    textarea,
-    select{
-      border:none;
-      border-bottom:1px solid rgba(0,0,0,0.12);
-      background:transparent;
-      padding:18px 0;
-      font-size:18px;
-      font-family:'Inter',sans-serif;
-      outline:none;
+    .mini-title {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -.04em;
     }
 
-    button{
-      margin-top:18px;
-      background:#2b211b;
-      color:#f6f1e8;
-      border:none;
-      padding:18px 30px;
-      border-radius:999px;
-      width:fit-content;
-      font-size:16px;
-      cursor:pointer;
+    .bar {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(43,33,27,.09);
+      margin-top: 16px;
+      overflow: hidden;
     }
 
-    footer{
-      padding:40px 0;
-      border-top:1px solid rgba(0,0,0,0.06);
-      color:#777;
-      font-size:14px;
+    .bar span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--bordeaux), var(--bronze));
+      width: var(--w);
     }
 
-    @media(max-width:1000px){
+    section {
+      padding: 105px 0;
+      border-top: 1px solid var(--line);
+    }
 
-      .two-col{
-        grid-template-columns:1fr;
+    .section-head {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 70px;
+      align-items: start;
+      margin-bottom: 62px;
+    }
+
+    .label {
+      text-transform: uppercase;
+      letter-spacing: .26em;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: clamp(42px, 5.6vw, 76px);
+      line-height: .95;
+      letter-spacing: -.06em;
+      font-weight: 800;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.65;
+      font-weight: 500;
+    }
+
+    .about-box {
+      border-radius: 38px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid var(--line);
+      padding: 48px;
+      box-shadow: var(--shadow);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .about-text {
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.75;
+    }
+
+    .about-text p + p {
+      margin-top: 22px;
+    }
+
+    .trust-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .trust-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(247,241,231,.72);
+      border: 1px solid rgba(43,33,27,.07);
+    }
+
+    .check {
+      flex: 0 0 auto;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(122,47,40,.10);
+      color: var(--bordeaux);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .services-intro {
+      max-width: 900px;
+      margin-bottom: 58px;
+    }
+
+    .service-list {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 28px;
+      align-items: center;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+      transition: transform .25s ease, color .25s ease;
+    }
+
+    .service-row:last-child {
+      border-bottom: 0;
+    }
+
+    .service-row:hover {
+      transform: translateX(8px);
+    }
+
+    .service-row small {
+      color: var(--bronze);
+      font-weight: 800;
+      letter-spacing: .14em;
+    }
+
+    .service-row h3 {
+      font-size: clamp(25px, 3.4vw, 45px);
+      line-height: 1;
+      letter-spacing: -.045em;
+      font-weight: 750;
+    }
+
+    .arrow {
+      color: var(--bronze);
+      font-size: 28px;
+    }
+
+    .media {
+      background: rgba(255,255,255,.42);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .chip {
+      border: 1px solid rgba(43,33,27,.10);
+      background: rgba(255,255,255,.56);
+      color: var(--muted);
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+    }
+
+    .process-card {
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-radius: 30px;
+      padding: 26px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid var(--line);
+      box-shadow: 0 14px 40px rgba(43,33,27,.06);
+    }
+
+    .process-card small {
+      color: var(--bronze);
+      letter-spacing: .18em;
+      font-weight: 900;
+    }
+
+    .process-card h3 {
+      font-size: 27px;
+      letter-spacing: -.035em;
+      margin-bottom: 12px;
+    }
+
+    .process-card p {
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .complete {
+      border-radius: 44px;
+      background:
+        linear-gradient(135deg, rgba(43,33,27,.96), rgba(72,52,39,.92)),
+        radial-gradient(circle at 80% 20%, rgba(122,47,40,.35), transparent 30%);
+      color: var(--cream-2);
+      padding: 68px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .complete::after {
+      content: "";
+      position: absolute;
+      right: -120px;
+      top: -120px;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: rgba(231,215,189,.10);
+      filter: blur(12px);
+    }
+
+    .complete-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .complete h2 {
+      color: var(--cream-2);
+    }
+
+    .complete p {
+      color: rgba(247,241,231,.74);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .why-card {
+      padding: 28px;
+      border-radius: 30px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid var(--line);
+    }
+
+    .why-card h3 {
+      font-size: 23px;
+      letter-spacing: -.03em;
+      margin-bottom: 14px;
+    }
+
+    .why-card p {
+      color: var(--muted);
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    form {
+      border-radius: 38px;
+      padding: 42px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      border: 0;
+      border-bottom: 1px solid rgba(43,33,27,.18);
+      background: transparent;
+      padding: 18px 0;
+      font: inherit;
+      font-size: 17px;
+      outline: none;
+      color: var(--text);
+      border-radius: 0;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-bottom-color: var(--bordeaux);
+    }
+
+    .submit {
+      margin-top: 28px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 34px 0;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .menu {
+        display: none;
       }
 
-      .cards{
-        grid-template-columns:1fr;
+      .hero {
+        padding: 84px 0 72px;
       }
 
-      .hero{
-        padding:90px 0 70px;
+      .hero-grid,
+      .section-head,
+      .about-grid,
+      .complete-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 42px;
       }
 
-      .hero p{
-        font-size:20px;
+      .visual {
+        min-height: 420px;
       }
 
-      .service{
-        gap:20px;
+      .process-grid,
+      .why-grid {
+        grid-template-columns: 1fr;
       }
 
-      .service h3{
-        font-size:30px;
+      .service-row {
+        grid-template-columns: 44px 1fr auto;
+        gap: 14px;
       }
 
+      .complete {
+        padding: 42px 26px;
+        border-radius: 32px;
+      }
+
+      .about-box,
+      form {
+        padding: 28px;
+        border-radius: 30px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
     }
 
+    @media (max-width: 560px) {
+      .container {
+        width: min(100% - 28px, 1240px);
+      }
+
+      .nav {
+        height: 72px;
+      }
+
+      .brand strong {
+        font-size: 15px;
+      }
+
+      .brand span {
+        font-size: 9px;
+      }
+
+      header .btn {
+        padding: 11px 14px;
+        font-size: 12px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .visual {
+        display: none;
+      }
+
+      .service-row h3 {
+        font-size: 25px;
+      }
+
+      section {
+        padding: 76px 0;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-<header>
-  <div class="container nav">
-    <div class="logo">
-      Di Spirito
-      <span>Consulting</span>
-    </div>
-
-    <a href="#contatti" class="cta">
-      Prenota una call
-    </a>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="container">
-
-    <div class="badge">
-      Digital Strategy • Analytics • CRO
-    </div>
-
-    <h1>
-      Costruisco sistemi digitali orientati alla crescita.
-    </h1>
-
-    <p>
-      Strategia, funnel, analytics, conversione e sviluppo rapido di siti web per aziende, professionisti e PMI.
-    </p>
-
-    <div class="hero-buttons">
-      <a href="#contatti" class="cta">
-        Richiedi una consulenza
+  <header>
+    <div class="container nav">
+      <a href="#" class="brand">
+        <strong>Di Spirito</strong>
+        <span>Consulting</span>
       </a>
 
-      <a href="#servizi" class="secondary-btn">
-        Scopri i servizi
-      </a>
+      <nav class="menu">
+        <a href="#chi-sono">Chi sono</a>
+        <a href="#servizi">Servizi</a>
+        <a href="#come-lavoro">Come lavoro</a>
+        <a href="#contatti">Contatti</a>
+      </nav>
+
+      <a class="btn btn-primary" href="#contatti">Prenota una call</a>
     </div>
+  </header>
 
-  </div>
-</section>
+  <main>
 
-<section>
-  <div class="container two-col">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow"><span class="dot"></span> Strategia digitale, dati e conversione</div>
 
-    <div>
-      <div class="section-label">
-        Chi sono
-      </div>
-
-      <h2>
-        Strategia, dati e conversione.
-      </h2>
-    </div>
-
-    <div class="text">
-      <p>
-        Lavoro nel digital marketing con un focus su analytics, funnel, customer journey, conversione e performance digitali.
-      </p>
-
-      <br>
-
-      <p>
-        Negli anni ho sviluppato esperienza tra ambienti enterprise, analytics avanzata, ottimizzazione delle performance e progettazione di ecosistemi digitali orientati alla crescita.
-      </p>
-
-      <br>
-
-      <p>
-        Oggi supporto aziende, professionisti e PMI nella costruzione di progetti digitali più chiari, moderni e misurabili.
-      </p>
-    </div>
-
-  </div>
-</section>
-
-<section id="servizi">
-  <div class="container">
-
-    <div class="section-label">
-      Strategia, dati e conversione
-    </div>
-
-    <h2>
-      Scegli il supporto più adatto al tuo progetto.
-    </h2>
-
-    <div class="text" style="margin-top:35px; max-width:900px;">
-      Puoi richiedere singoli servizi specifici oppure costruire un pacchetto completo che includa strategia, sito web, funnel, campagne, tracking, analytics e ottimizzazione delle performance.
-    </div>
-
-    <div class="services">
-
-      <div class="service">
-        <h3>Audit sito web e mobile app</h3>
-        <span>→</span>
-      </div>
-
-      <div class="service">
-        <h3>Strategia funnel acquisition & conversion</h3>
-        <span>→</span>
-      </div>
-
-      <div class="service">
-        <h3>Media strategy e piano campagne</h3>
-        <span>→</span>
-      </div>
-
-      <div class="service">
-        <h3>Target analysis e canali di acquisizione</h3>
-        <span>→</span>
-      </div>
-
-      <div class="service">
-        <h3>Analytics, tracking e KPI</h3>
-        <span>→</span>
-      </div>
-
-      <div class="service">
-        <h3>Adobe Analytics e tool enterprise</h3>
-        <span>→</span>
-      </div>
-
-      <div class="service">
-        <h3>CRO, A/B test e customer journey</h3>
-        <span>→</span>
-      </div>
-
-      <div class="service">
-        <h3>Sviluppo rapido siti web e landing page</h3>
-        <span>→</span>
-      </div>
-
-      <div class="service">
-        <h3>Strategia digitale end-to-end</h3>
-        <span>→</span>
-      </div>
-
-      <div class="service">
-        <h3>Pacchetto completo</h3>
-        <span>→</span>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<section>
-  <div class="container">
-
-    <div class="section-label">
-      Come lavoro
-    </div>
-
-    <h2>
-      Un approccio semplice, concreto e orientato alla performance.
-    </h2>
-
-    <div class="cards">
-
-      <div class="card">
-        <div class="card-number">01</div>
-
-        <div>
-          <h4>Analisi</h4>
+          <h1>Costruisco sistemi digitali orientati alla crescita.</h1>
 
           <p>
-            Studio del business, del funnel e dei principali punti critici.
+            Strategia, funnel, media, analytics, conversione e sviluppo rapido di siti web
+            per aziende, professionisti e PMI.
           </p>
+
+          <div class="hero-actions">
+            <a href="#contatti" class="btn btn-primary">Richiedi una consulenza</a>
+            <a href="#servizi" class="btn btn-secondary">Scopri i servizi</a>
+          </div>
+        </div>
+
+        <div class="visual reveal">
+          <div class="dashboard">
+            <div class="mini-card">
+              <div class="mini-label">Funnel performance</div>
+              <div class="mini-title">Acquisition → Conversion</div>
+              <div class="bar"><span style="--w: 78%;"></span></div>
+            </div>
+
+            <div class="mini-card">
+              <div class="mini-label">Analytics system</div>
+              <div class="mini-title">KPI, tracking, dashboard</div>
+              <div class="bar"><span style="--w: 64%;"></span></div>
+            </div>
+
+            <div class="mini-card">
+              <div class="mini-label">Digital build</div>
+              <div class="mini-title">Landing page & site</div>
+              <div class="bar"><span style="--w: 86%;"></span></div>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="card">
-        <div class="card-number">02</div>
+    <section id="chi-sono">
+      <div class="container">
+        <div class="about-box reveal">
+          <div class="about-grid">
+            <div>
+              <div class="label">Chi sono</div>
+              <h2>Un supporto diretto, strategico e operativo.</h2>
+            </div>
 
-        <div>
-          <h4>Strategia</h4>
-
-          <p>
-            Definizione di struttura, customer journey e obiettivi.
-          </p>
+            <div class="about-text">
+              <p>
+                Lavoro nel digital marketing con un focus su analytics, funnel, customer journey,
+                conversione e performance digitali.
+              </p>
+              <p>
+                Porto esperienza da contesti enterprise e la applico a PMI, professionisti e progetti
+                digitali che vogliono crescere con più chiarezza, metodo e misurazione.
+              </p>
+              <p>
+                Posso affiancarti nella fase strategica, nella realizzazione operativa e
+                nell’ottimizzazione continua delle performance.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="card">
-        <div class="card-number">03</div>
-
-        <div>
-          <h4>Realizzazione</h4>
-
-          <p>
-            Sviluppo rapido di sito, landing page e sistemi digitali.
+    <section id="servizi">
+      <div class="container">
+        <div class="services-intro reveal">
+          <div class="label">Strategia, dati e conversione</div>
+          <h2>Scegli il supporto più adatto al tuo progetto.</h2>
+          <p class="lead" style="margin-top: 30px;">
+            Puoi richiedere singoli servizi specifici oppure costruire un pacchetto completo
+            che includa strategia, sito web, funnel, campagne, tracking, analytics e ottimizzazione
+            delle performance.
           </p>
         </div>
-      </div>
 
-      <div class="card">
-        <div class="card-number">04</div>
-
-        <div>
-          <h4>Tracking</h4>
-
-          <p>
-            Implementazione analytics, KPI e sistemi di misurazione.
-          </p>
+        <div class="service-list reveal">
+          <div class="service-row"><small>01</small><h3>Audit sito web e mobile app</h3><span class="arrow">→</span></div>
+          <div class="service-row"><small>02</small><h3>Strategia funnel acquisition & conversion</h3><span class="arrow">→</span></div>
+          <div class="service-row"><small>03</small><h3>Media strategy e piano campagne</h3><span class="arrow">→</span></div>
+          <div class="service-row"><small>04</small><h3>Analisi target, audience e canali</h3><span class="arrow">→</span></div>
+          <div class="service-row"><small>05</small><h3>Analytics, tracking e KPI</h3><span class="arrow">→</span></div>
+          <div class="service-row"><small>06</small><h3>Adobe Analytics e tool enterprise</h3><span class="arrow">→</span></div>
+          <div class="service-row"><small>07</small><h3>CRO, A/B test e customer journey</h3><span class="arrow">→</span></div>
+          <div class="service-row"><small>08</small><h3>Sviluppo rapido siti web e landing page</h3><span class="arrow">→</span></div>
+          <div class="service-row"><small>09</small><h3>Strategia digitale end-to-end</h3><span class="arrow">→</span></div>
+          <div class="service-row"><small>10</small><h3>Pacchetto completo</h3><span class="arrow">→</span></div>
         </div>
       </div>
+    </section>
 
-      <div class="card">
-        <div class="card-number">05</div>
+    <section class="media">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="label">Media strategy</div>
+            <h2>Campagne costruite sul target, non sul caso.</h2>
+          </div>
 
-        <div>
-          <h4>Ottimizzazione</h4>
+          <div>
+            <p class="lead">
+              Posso costruire un piano media completo: obiettivi, target, audience, canali,
+              budget allocation, fasi del funnel e KPI di misurazione.
+            </p>
 
-          <p>
-            Miglioramento continuo di conversioni e performance.
-          </p>
+            <div class="chips">
+              <span class="chip">Awareness</span>
+              <span class="chip">Consideration</span>
+              <span class="chip">Reputation</span>
+              <span class="chip">Performance</span>
+              <span class="chip">Retargeting</span>
+              <span class="chip">Conversione</span>
+              <span class="chip">Loyalty</span>
+              <span class="chip">Reporting</span>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
+    <section id="come-lavoro">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="label">Come lavoro</div>
+            <h2>Un processo chiaro dalla visione alla performance.</h2>
+          </div>
+          <p class="lead">
+            Ogni fase serve a ridurre dispersione, aumentare controllo e costruire un sistema digitale
+            più efficace, misurabile e migliorabile nel tempo.
+          </p>
+        </div>
+
+        <div class="process-grid reveal">
+          <div class="process-card"><small>01</small><div><h3>Analisi</h3><p>Studio del business, del funnel e dei punti critici.</p></div></div>
+          <div class="process-card"><small>02</small><div><h3>Strategia</h3><p>Definizione di obiettivi, customer journey e priorità.</p></div></div>
+          <div class="process-card"><small>03</small><div><h3>Realizzazione</h3><p>Sviluppo rapido di sito, landing page e sistemi digitali.</p></div></div>
+          <div class="process-card"><small>04</small><div><h3>Tracking</h3><p>Implementazione analytics, KPI, eventi e dashboard.</p></div></div>
+          <div class="process-card"><small>05</small><div><h3>Ottimizzazione</h3><p>CRO, test e miglioramento continuo delle performance.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="complete reveal">
+          <div class="complete-grid">
+            <div>
+              <div class="label" style="color: rgba(247,241,231,.62);">Dall’idea alla realizzazione</div>
+              <h2>Strategia. Sviluppo. Crescita.</h2>
+            </div>
+
+            <div>
+              <p class="lead">
+                Posso seguire tutto il percorso: idea, posizionamento, strategia, sviluppo sito o landing,
+                sistemi integrati, tracking, campagne, dashboard e ottimizzazione.
+              </p>
+              <br>
+              <p class="lead">
+                L’obiettivo è trasformare un’intuizione in un ecosistema digitale concreto,
+                misurabile e pronto a crescere.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="label">Perché lavorare con me</div>
+            <h2>Competenza tecnica, visione di business e rapidità operativa.</h2>
+          </div>
+          <p class="lead">
+            Non vendo complessità. Ti aiuto a capire cosa serve davvero, cosa misurare e come trasformare
+            il digitale in un asset più utile per il tuo business.
+          </p>
+        </div>
+
+        <div class="why-grid reveal">
+          <div class="why-card"><h3>Approccio data-driven</h3><p>Decisioni basate su dati, KPI, tracking e lettura reale delle performance.</p></div>
+          <div class="why-card"><h3>Funnel completo</h3><p>Visione su awareness, consideration, conversione, loyalty e media strategy.</p></div>
+          <div class="why-card"><h3>Tool enterprise</h3><p>Esperienza su strumenti analytics avanzati, report suite e sistemi di misurazione.</p></div>
+          <div class="why-card"><h3>Siti in tempi rapidi</h3><p>Landing page e siti moderni, responsive e progettati per convertire.</p></div>
+          <div class="why-card"><h3>CRO e performance</h3><p>Attenzione costante a UX, conversion rate, test e customer journey.</p></div>
+          <div class="why-card"><h3>Supporto diretto</h3><p>Un rapporto personale, concreto e senza struttura finta da agenzia.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contatti">
+      <div class="container contact-grid">
+        <div class="reveal">
+          <div class="label">Contatti</div>
+          <h2>Raccontami il tuo progetto.</h2>
+          <p class="lead" style="margin-top: 28px;">
+            Possiamo partire da un audit, una consulenza strategica, un piano media o dalla realizzazione
+            completa del tuo ecosistema digitale.
+          </p>
+        </div>
+
+        <form class="reveal">
+          <div class="form-row">
+            <input type="text" placeholder="Nome" required>
+            <input type="email" placeholder="Email" required>
+          </div>
+
+          <select required>
+            <option value="">Servizio richiesto</option>
+            <option>Audit sito/app</option>
+            <option>Strategia funnel</option>
+            <option>Media strategy</option>
+            <option>Analytics & tracking</option>
+            <option>Adobe Analytics</option>
+            <option>Sito web / landing page</option>
+            <option>Pacchetto completo</option>
+          </select>
+
+          <textarea placeholder="Messaggio"></textarea>
+
+          <button class="btn btn-primary submit" type="submit">Invia richiesta</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2026 Di Spirito Consulting</span>
+      <span>dispiritoconsulting.it</span>
     </div>
+  </footer>
 
-  </div>
-</section>
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
 
-<section id="contatti">
-  <div class="container">
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.12 });
 
-    <div class="section-label">
-      Contatti
-    </div>
+    reveals.forEach(el => observer.observe(el));
 
-    <h2>
-      Raccontami il tuo progetto.
-    </h2>
-
-    <div class="contact-box">
-
-      <div class="text" style="max-width:700px;">
-        Possiamo partire da un audit, una consulenza strategica o dalla realizzazione completa del tuo ecosistema digitale.
-      </div>
-
-      <form>
-
-        <input type="text" placeholder="Nome">
-
-        <input type="email" placeholder="Email">
-
-        <select>
-          <option>Audit sito / app</option>
-          <option>Strategia funnel</option>
-          <option>Analytics & tracking</option>
-          <option>Adobe Analytics</option>
-          <option>Sito web / landing page</option>
-          <option>Pacchetto completo</option>
-        </select>
-
-        <textarea rows="5" placeholder="Descrivi brevemente il progetto"></textarea>
-
-        <button type="submit">
-          Invia richiesta
-        </button>
-
-      </form>
-
-    </div>
-
-  </div>
-</section>
-
-<footer>
-  <div class="container">
-    © 2026 Di Spirito Consulting — dispiritoconsulting.it
-  </div>
-</footer>
+    document.querySelector("form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Richiesta pronta. Per ora il form è statico: possiamo collegarlo a email, Formspree o Google Forms.");
+    });
+  </script>
 
 </body>
 </html>
