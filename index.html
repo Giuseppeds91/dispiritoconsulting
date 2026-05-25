@@ -2121,8 +2121,6 @@
   </div>
   <div class="container hero-grid">
     <div class="reveal">
-      <div class="eyebrow"><span class="dot"></span> Private Strategic Digital Consulting</div>
-
       <h1>Affianco business e professionisti nella crescita digitale.</h1>
 
       <p>
@@ -2465,16 +2463,19 @@
   </div>
 </footer>
 
+
 <script>
   const body = document.body;
-  const mobileToggle = document.querySelector('.mobile-toggle');
-  const mobileMenuItems = document.querySelectorAll('.mobile-panel a, .mobile-panel button');
-  const mobileBackdrop = document.querySelector('[data-close-menu]');
 
   function closeMobileMenu(){
     body.classList.remove('menu-open');
-    if(mobileToggle) mobileToggle.setAttribute('aria-expanded','false');
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    if(mobileToggle) mobileToggle.setAttribute('aria-expanded', 'false');
   }
+
+  const mobileToggle = document.querySelector('.mobile-toggle');
+  const mobileBackdrop = document.querySelector('.mobile-backdrop');
+  const mobileItems = document.querySelectorAll('.mobile-panel a, .mobile-panel button');
 
   if(mobileToggle){
     mobileToggle.addEventListener('click', () => {
@@ -2483,8 +2484,13 @@
     });
   }
 
-  mobileMenuItems.forEach(item => item.addEventListener('click', closeMobileMenu));
-  if(mobileBackdrop) mobileBackdrop.addEventListener('click', closeMobileMenu);
+  if(mobileBackdrop){
+    mobileBackdrop.addEventListener('click', closeMobileMenu);
+  }
+
+  mobileItems.forEach(item => {
+    item.addEventListener('click', () => closeMobileMenu());
+  });
 
   const aboutModal = document.getElementById('aboutModal');
   const openAboutButtons = document.querySelectorAll('[data-open-about]');
@@ -2492,25 +2498,71 @@
 
   function openAbout(){
     closeMobileMenu();
+    if(!aboutModal) return;
     aboutModal.classList.add('is-open');
     aboutModal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+    body.style.overflow = 'hidden';
   }
 
   function closeAbout(){
+    if(!aboutModal) return;
     aboutModal.classList.remove('is-open');
     aboutModal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+    body.style.overflow = '';
   }
 
   openAboutButtons.forEach(button => button.addEventListener('click', openAbout));
   closeAboutButtons.forEach(button => button.addEventListener('click', closeAbout));
 
-  aboutModal.addEventListener('click', (event) => {
-    if(event.target === aboutModal) closeAbout();
+  if(aboutModal){
+    aboutModal.addEventListener('click', event => {
+      if(event.target === aboutModal) closeAbout();
+    });
+  }
+
+  const miniAboutBtn = document.querySelector('[data-toggle-mini-about]');
+  const miniAboutPanel = document.getElementById('miniAboutPanel');
+  if(miniAboutBtn && miniAboutPanel){
+    miniAboutBtn.addEventListener('click', () => {
+      miniAboutPanel.classList.toggle('is-open');
+    });
+  }
+
+  const detailModal = document.getElementById('detailModal');
+  const detailTitle = document.getElementById('detailTitle');
+  const detailText = document.getElementById('detailText');
+  const detailKicker = document.getElementById('detailKicker');
+  const detailCloseButtons = document.querySelectorAll('[data-close-detail]');
+  const detailButtons = document.querySelectorAll('[data-detail-title]');
+
+  detailButtons.forEach(button => {
+    button.addEventListener('click', event => {
+      event.stopPropagation();
+      if(!detailModal || !detailTitle || !detailText) return;
+      if(detailKicker) detailKicker.textContent = button.dataset.detailKicker || 'Dettaglio consulenza';
+      detailTitle.textContent = button.dataset.detailTitle || '';
+      detailText.textContent = button.dataset.detailText || '';
+      detailModal.classList.add('is-open');
+      detailModal.setAttribute('aria-hidden', 'false');
+      body.style.overflow = 'hidden';
+    });
   });
 
-  document.addEventListener('keydown', (event) => {
+  function closeDetail(){
+    if(!detailModal) return;
+    detailModal.classList.remove('is-open');
+    detailModal.setAttribute('aria-hidden', 'true');
+    body.style.overflow = '';
+  }
+
+  detailCloseButtons.forEach(button => button.addEventListener('click', closeDetail));
+  if(detailModal){
+    detailModal.addEventListener('click', event => {
+      if(event.target === detailModal) closeDetail();
+    });
+  }
+
+  document.addEventListener('keydown', event => {
     if(event.key === 'Escape'){
       closeMobileMenu();
       closeAbout();
@@ -2519,146 +2571,95 @@
   });
 
   const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add('is-visible');
-      }
-    });
-  }, { threshold: 0.12 });
-  reveals.forEach(el => observer.observe(el));
-
-  const miniAboutToggle = document.querySelector('[data-toggle-mini-about]');
-  const miniAboutPanel = document.getElementById('miniAboutPanel');
-  if(miniAboutToggle && miniAboutPanel){
-    miniAboutToggle.addEventListener('click', () => {
-      miniAboutPanel.classList.toggle('is-open');
-    });
+  if('IntersectionObserver' in window){
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => observer.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('is-visible'));
   }
-
-  const detailModal = document.getElementById('detailModal');
-  const detailTitle = document.getElementById('detailTitle');
-  const detailText = document.getElementById('detailText');
-  const closeDetailButtons = document.querySelectorAll('[data-close-detail]');
-  const serviceDetails = {
-    'Creazione sito / landing page': {
-      title: 'Creazione sito o landing',
-      text: 'Un percorso pensato per costruire una presenza digitale più solida e credibile. Non si tratta solo di “fare un sito”, ma di definire messaggio, struttura, UX/UI, contenuti e punti di conversione, così che ogni sezione accompagni l’utente verso un’azione chiara. È ideale quando vuoi presentarti meglio, lanciare un servizio o trasformare il traffico in richieste più qualificate.'
-    },
-    'Audit sito e funnel': {
-      title: 'Audit sito e funnel',
-      text: 'Analizzo il percorso che un utente compie dal primo contatto fino alla richiesta finale. Guardo chiarezza del messaggio, fiducia, CTA, navigazione, frizioni e punti in cui si perde interesse. Il risultato è una lettura semplice delle priorità: cosa correggere subito, cosa migliorare dopo e dove il progetto può recuperare conversioni.'
-    },
-    'Media strategy': {
-      title: 'Media strategy',
-      text: 'Costruisco una direzione per le campagne digitali partendo da target, obiettivi, budget e fase del funnel. L’obiettivo è evitare campagne scollegate e creare un sistema più ordinato: contenuti giusti, pubblici corretti, messaggi coerenti e lettura chiara dei risultati.'
-    },
-    'Analytics & tracking': {
-      title: 'Analytics & tracking',
-      text: 'Metto ordine nella misurazione: eventi, KPI, dashboard e lettura dei dati. Serve a capire cosa sta funzionando davvero, quali canali portano valore e dove intervenire. È una consulenza utile quando hai traffico, campagne o un sito attivo ma non hai una visione chiara delle performance.'
-    },
-    'CRO e ottimizzazione conversioni': {
-      title: 'CRO e ottimizzazione',
-      text: 'Lavoro sul miglioramento delle conversioni: pagine, messaggi, CTA, percorso utente e priorità di test. L’obiettivo è aumentare il valore di ciò che già hai, rendendo il sito o la landing più efficaci, più chiari e più orientati all’azione.'
-    }
-  };
-  document.querySelectorAll('[data-detail]').forEach(button => {
-    button.addEventListener('click', (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      const data = serviceDetails[button.dataset.detail];
-      if(!data) return;
-      detailTitle.textContent = data.title;
-      detailText.textContent = data.text;
-      detailModal.classList.add('is-open');
-      detailModal.setAttribute('aria-hidden','false');
-      document.body.style.overflow = 'hidden';
-    });
-  });
-  function closeDetail(){
-    if(!detailModal) return;
-    detailModal.classList.remove('is-open');
-    detailModal.setAttribute('aria-hidden','true');
-    document.body.style.overflow = '';
-  }
-  closeDetailButtons.forEach(button => button.addEventListener('click', closeDetail));
-  if(detailModal){
-    detailModal.addEventListener('click', event => {
-      if(event.target === detailModal) closeDetail();
-    });
-  }
+  setTimeout(() => reveals.forEach(el => el.classList.add('is-visible')), 700);
 
   const offerCards = document.querySelectorAll('.offer-card[data-service]');
   const selectedList = document.getElementById('selectedList');
-  const serviceSelect = document.getElementById('serviceSelect');
-  const messageField = document.getElementById('messageField');
+  const selectedCount = document.getElementById('selectedCount');
   const formSelectedChips = document.getElementById('formSelectedChips');
-  const selectedServicesInput = document.getElementById('selectedServicesInput');
+  const formEmpty = document.getElementById('formEmpty');
+  const hiddenSelection = document.getElementById('hiddenSelection');
+  const serviceSelect = document.getElementById('serviceSelect');
   const addServiceBtn = document.getElementById('addServiceBtn');
-  const serviceOptions = Array.from(offerCards).map(card => card.dataset.service);
+
+  const serviceOptions = Array.from(offerCards).map(card => card.dataset.service).filter(Boolean);
   let selectedServices = [];
-
-  function selectionText(){
-    if(selectedServices.length === 0) return 'Nessuna consulenza selezionata.';
-    if(selectedServices.includes('Pacchetto completo')) return 'Pacchetto completo selezionato.';
-    return selectedServices.join(' + ');
-  }
-
-  function updateFormFromSelection(){
-    if(selectedServicesInput) selectedServicesInput.value = selectedServices.join(' + ');
-    if(!formSelectedChips) return;
-    formSelectedChips.innerHTML = '';
-    if(selectedServices.length === 0){
-      const empty = document.createElement('span');
-      empty.className = 'form-empty';
-      empty.textContent = 'Nessuna consulenza selezionata. Puoi scegliere una o più card sopra, oppure aggiungerle dal menu qui sotto.';
-      formSelectedChips.appendChild(empty);
-      return;
-    }
-    selectedServices.forEach(service => {
-      const chip = document.createElement('span');
-      chip.className = 'form-chip';
-      chip.innerHTML = `<span>${service}</span><button type="button" aria-label="Rimuovi ${service}">×</button>`;
-      chip.querySelector('button').addEventListener('click', () => {
-        selectedServices = selectedServices.filter(item => item !== service);
-        if(service === 'Pacchetto completo') selectedServices = [];
-        updateSelection();
-      });
-      formSelectedChips.appendChild(chip);
-    });
-  }
 
   function updateSelection(){
     offerCards.forEach(card => {
-      const active = selectedServices.includes(card.dataset.service);
-      card.classList.toggle('is-selected', active);
-      card.setAttribute('aria-pressed', active ? 'true' : 'false');
+      const service = card.dataset.service;
+      card.classList.toggle('is-selected', selectedServices.includes(service));
       const pill = card.querySelector('.select-pill');
-      if(pill){
-        if(card.dataset.complete === 'true') pill.textContent = active ? 'Percorso selezionato' : 'Seleziona tutto';
-        else pill.textContent = active ? 'Selezionato' : 'Seleziona';
-      }
+      if(pill) pill.textContent = selectedServices.includes(service) ? 'Selezionato' : 'Seleziona';
     });
-    if(selectedList) selectedList.textContent = selectionText();
-    updateFormFromSelection();
+
+    const visibleServices = selectedServices.filter(Boolean);
+    if(selectedList){
+      selectedList.textContent = visibleServices.length ? visibleServices.join(' · ') : 'Nessuna consulenza selezionata.';
+    }
+    if(selectedCount){
+      selectedCount.textContent = visibleServices.length ? `${visibleServices.length} selezionata${visibleServices.length > 1 ? 'e' : ''}` : 'Da selezionare';
+    }
+    if(hiddenSelection){
+      hiddenSelection.value = visibleServices.join(', ');
+    }
+
+    if(formSelectedChips){
+      formSelectedChips.innerHTML = '';
+      if(visibleServices.length){
+        if(formEmpty) formEmpty.style.display = 'none';
+        visibleServices.forEach(service => {
+          const chip = document.createElement('span');
+          chip.className = 'form-chip';
+          chip.innerHTML = `<span>${service}</span><button type="button" aria-label="Rimuovi ${service}">×</button>`;
+          chip.querySelector('button').addEventListener('click', () => {
+            selectedServices = selectedServices.filter(item => item !== service && item !== 'Pacchetto completo');
+            updateSelection();
+          });
+          formSelectedChips.appendChild(chip);
+        });
+      } else if(formEmpty){
+        formEmpty.style.display = 'block';
+      }
+    }
   }
 
   function toggleService(card){
     const service = card.dataset.service;
     const isComplete = card.dataset.complete === 'true';
+
     if(isComplete){
       selectedServices = selectedServices.includes('Pacchetto completo') ? [] : [...serviceOptions];
     } else {
       selectedServices = selectedServices.filter(item => item !== 'Pacchetto completo');
-      if(selectedServices.includes(service)) selectedServices = selectedServices.filter(item => item !== service);
-      else selectedServices.push(service);
+      if(selectedServices.includes(service)){
+        selectedServices = selectedServices.filter(item => item !== service);
+      } else {
+        selectedServices.push(service);
+      }
       const singles = serviceOptions.filter(item => item !== 'Pacchetto completo');
-      if(singles.every(item => selectedServices.includes(item))) selectedServices = [...serviceOptions];
+      if(singles.length && singles.every(item => selectedServices.includes(item))){
+        selectedServices = [...serviceOptions];
+      }
     }
     updateSelection();
   }
 
   offerCards.forEach(card => {
+    card.setAttribute('tabindex', '0');
     card.addEventListener('click', event => {
       if(event.target.closest('.learn-more')) return;
       toggleService(card);
@@ -2675,8 +2676,9 @@
     addServiceBtn.addEventListener('click', () => {
       const value = serviceSelect.value;
       if(!value) return;
-      if(value === 'Pacchetto completo') selectedServices = [...serviceOptions];
-      else {
+      if(value === 'Pacchetto completo'){
+        selectedServices = [...serviceOptions];
+      } else {
         selectedServices = selectedServices.filter(item => item !== 'Pacchetto completo');
         if(!selectedServices.includes(value)) selectedServices.push(value);
       }
@@ -2686,21 +2688,8 @@
   }
 
   updateSelection();
-  }
 
-  offerCards.forEach(card => {
-    card.addEventListener('click', () => toggleService(card));
-    card.addEventListener('keydown', event => {
-      if(event.key === 'Enter' || event.key === ' '){
-        event.preventDefault();
-        toggleService(card);
-      }
-    });
-  });
-
-  updateSelection();
-
-  const form = document.getElementById('contactForm');
+  const form = document.getElementById('contactForm') || document.querySelector('form');
   if(form){
     form.addEventListener('submit', function(e){
       e.preventDefault();
@@ -2708,6 +2697,7 @@
     });
   }
 </script>
+
 
 </body>
 </html>
