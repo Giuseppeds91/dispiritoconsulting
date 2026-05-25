@@ -127,135 +127,6 @@
     .menu a:hover,
     .menu-link:hover{color:var(--text)}
 
-
-    /* Mobile menu */
-    .mobile-toggle{
-      display:none;
-      width:46px;
-      height:46px;
-      border-radius:50%;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.58);
-      color:var(--brown);
-      cursor:pointer;
-      align-items:center;
-      justify-content:center;
-      position:relative;
-      flex-shrink:0;
-    }
-
-    .mobile-toggle span,
-    .mobile-toggle span::before,
-    .mobile-toggle span::after{
-      content:"";
-      display:block;
-      width:19px;
-      height:2px;
-      border-radius:99px;
-      background:var(--brown);
-      transition:.25s ease;
-      position:relative;
-    }
-
-    .mobile-toggle span::before{
-      position:absolute;
-      top:-7px;
-      left:0;
-    }
-
-    .mobile-toggle span::after{
-      position:absolute;
-      top:7px;
-      left:0;
-    }
-
-    body.menu-open .mobile-toggle span{
-      background:transparent;
-    }
-
-    body.menu-open .mobile-toggle span::before{
-      top:0;
-      transform:rotate(45deg);
-    }
-
-    body.menu-open .mobile-toggle span::after{
-      top:0;
-      transform:rotate(-45deg);
-    }
-
-    .mobile-panel{
-      display:none;
-      position:fixed;
-      top:84px;
-      left:14px;
-      right:14px;
-      z-index:80;
-      border-radius:30px;
-      border:1px solid var(--line);
-      background:rgba(251,248,242,.94);
-      backdrop-filter:blur(20px);
-      box-shadow:0 30px 90px rgba(43,33,27,.22);
-      padding:16px;
-      transform:translateY(-10px);
-      opacity:0;
-      pointer-events:none;
-      transition:.25s ease;
-    }
-
-    body.menu-open .mobile-panel{
-      transform:translateY(0);
-      opacity:1;
-      pointer-events:auto;
-    }
-
-    .mobile-panel a,
-    .mobile-panel button{
-      width:100%;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      border:0;
-      background:transparent;
-      padding:16px 6px;
-      border-bottom:1px solid var(--line);
-      color:var(--text);
-      font:inherit;
-      font-size:16px;
-      font-weight:800;
-      cursor:pointer;
-      text-align:left;
-    }
-
-    .mobile-panel a:last-child{
-      border-bottom:0;
-    }
-
-    .mobile-panel .btn{
-      margin-top:10px;
-      justify-content:center;
-      border-radius:999px;
-      color:var(--ivory);
-      background:var(--brown);
-      border-bottom:0;
-    }
-
-    .mobile-backdrop{
-      display:none;
-      position:fixed;
-      inset:0;
-      z-index:70;
-      background:rgba(43,33,27,.18);
-      backdrop-filter:blur(6px);
-      opacity:0;
-      pointer-events:none;
-      transition:.25s ease;
-    }
-
-    body.menu-open .mobile-backdrop{
-      opacity:1;
-      pointer-events:auto;
-    }
-
     .about-modal{
       position:fixed;
       inset:0;
@@ -617,6 +488,236 @@
       background:linear-gradient(90deg,var(--bordeaux),var(--bronze));
       width:var(--w);
     }
+
+    .premium-orbit{
+      position:relative;
+      z-index:2;
+      height:100%;
+      min-height:450px;
+      display:grid;
+      place-items:center;
+    }
+
+    .orbit-stage{
+      position:relative;
+      width:min(100%,430px);
+      aspect-ratio:1;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      isolation:isolate;
+    }
+
+    .orbit-stage::before{
+      content:"";
+      position:absolute;
+      inset:9%;
+      border-radius:50%;
+      background:
+        radial-gradient(circle at 50% 50%,rgba(122,47,40,.18),transparent 28%),
+        radial-gradient(circle at 50% 50%,rgba(155,118,83,.18),transparent 43%),
+        rgba(255,255,255,.20);
+      filter:blur(.2px);
+      box-shadow:inset 0 0 70px rgba(43,33,27,.08);
+    }
+
+    .orbit-ring{
+      position:absolute;
+      border-radius:50%;
+      border:1px solid rgba(43,33,27,.12);
+      box-shadow:0 0 0 1px rgba(255,255,255,.22), inset 0 0 34px rgba(255,255,255,.18);
+      animation:orbitSpin 24s linear infinite;
+    }
+
+    .orbit-ring.r1{inset:4%;animation-duration:28s}
+    .orbit-ring.r2{inset:17%;animation-duration:19s;animation-direction:reverse;border-color:rgba(122,47,40,.18)}
+    .orbit-ring.r3{inset:30%;animation-duration:14s;border-color:rgba(155,118,83,.20)}
+
+    .orbit-ring::after{
+      content:"";
+      position:absolute;
+      top:8%;
+      left:50%;
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--bordeaux),var(--bronze));
+      box-shadow:0 0 0 8px rgba(122,47,40,.08),0 0 30px rgba(122,47,40,.22);
+    }
+
+    .orbit-core{
+      width:158px;
+      height:158px;
+      border-radius:50%;
+      position:relative;
+      z-index:3;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.86),rgba(255,255,255,.36)),
+        radial-gradient(circle at 30% 20%,rgba(122,47,40,.16),transparent 45%);
+      border:1px solid rgba(43,33,27,.12);
+      box-shadow:0 28px 80px rgba(43,33,27,.16);
+    }
+
+    .orbit-core strong{
+      font-size:28px;
+      line-height:.95;
+      letter-spacing:-.055em;
+    }
+
+    .orbit-core span{
+      margin-top:8px;
+      color:var(--muted);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+
+    .orbit-chip{
+      position:absolute;
+      z-index:4;
+      padding:11px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.70);
+      border:1px solid rgba(43,33,27,.10);
+      box-shadow:0 16px 40px rgba(43,33,27,.09);
+      color:var(--muted);
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      backdrop-filter:blur(10px);
+    }
+
+    .orbit-chip.c1{top:8%;left:8%}
+    .orbit-chip.c2{top:18%;right:1%}
+    .orbit-chip.c3{bottom:14%;left:0}
+    .orbit-chip.c4{right:8%;bottom:8%}
+
+    @keyframes orbitSpin{to{transform:rotate(360deg)}}
+
+    .offer-card{
+      position:relative;
+      cursor:pointer;
+    }
+
+    .offer-card.is-selected{
+      border-color:rgba(122,47,40,.34);
+      background:rgba(255,255,255,.82);
+      box-shadow:0 30px 80px rgba(122,47,40,.13);
+      transform:translateY(-4px);
+    }
+
+    .offer-card.is-complete{
+      background:
+        linear-gradient(145deg,rgba(43,33,27,.96),rgba(72,52,39,.92)),
+        radial-gradient(circle at 80% 10%,rgba(122,47,40,.32),transparent 34%);
+      color:var(--ivory);
+    }
+
+    .offer-card.is-complete small,
+    .offer-card.is-complete p,
+    .offer-card.is-complete li{color:rgba(247,241,231,.72)}
+
+    .offer-card.is-complete h3{color:var(--ivory)}
+    .offer-card.is-complete li::before{color:var(--sand)}
+
+    .select-pill{
+      margin-top:22px;
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      width:max-content;
+      border-radius:999px;
+      padding:11px 14px;
+      background:rgba(255,255,255,.68);
+      border:1px solid rgba(43,33,27,.10);
+      color:var(--muted);
+      font-size:13px;
+      font-weight:900;
+      transition:.25s;
+    }
+
+    .is-complete .select-pill{
+      background:rgba(255,255,255,.10);
+      color:rgba(247,241,231,.82);
+      border-color:rgba(255,255,255,.14);
+    }
+
+    .select-pill::before{
+      content:"";
+      width:16px;
+      height:16px;
+      border-radius:50%;
+      border:1px solid rgba(43,33,27,.22);
+      background:rgba(255,255,255,.35);
+    }
+
+    .offer-card.is-selected .select-pill::before{
+      background:var(--bordeaux);
+      border-color:var(--bordeaux);
+      box-shadow:inset 0 0 0 4px rgba(255,255,255,.72);
+    }
+
+    .selection-panel{
+      margin-top:22px;
+      border-radius:34px;
+      padding:26px;
+      background:rgba(255,255,255,.66);
+      border:1px solid rgba(43,33,27,.10);
+      box-shadow:0 18px 55px rgba(43,33,27,.07);
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:22px;
+      align-items:center;
+    }
+
+    .selection-panel strong{
+      display:block;
+      font-size:22px;
+      letter-spacing:-.04em;
+      margin-bottom:8px;
+    }
+
+    .selected-list{
+      color:var(--muted);
+      font-weight:750;
+      line-height:1.55;
+    }
+
+    .selection-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .mini-contact{
+      margin-top:18px;
+      border-top:1px solid var(--line);
+      padding-top:18px;
+      display:none;
+      grid-template-columns:1fr 1fr auto;
+      gap:14px;
+      align-items:end;
+    }
+
+    .mini-contact.is-open{display:grid}
+
+    .mini-contact input{
+      padding:12px 0;
+      font-size:15px;
+    }
+
+    .mini-contact .btn{
+      padding:12px 18px;
+    }
+
 
     section{
       padding:96px 0;
@@ -1007,9 +1108,6 @@
       .about-trust{grid-template-columns:1fr}
       .about-story{padding:30px}
       .menu{display:none}
-      .mobile-toggle{display:flex}
-      .mobile-panel,.mobile-backdrop{display:block}
-      .nav > .btn-primary{display:none}
       .hero{padding:84px 0 72px}
       .hero-grid,.section-head,.approach-grid,.private-layout,.complete-grid,.advisor-panel,.contact-grid{grid-template-columns:1fr;gap:42px}
       .visual{min-height:420px}
@@ -1026,7 +1124,14 @@
       header .btn{padding:11px 14px;font-size:12px}
       .hero-actions{flex-direction:column}
       .hero-actions .btn{width:100%}
-      .visual{display:none}
+      .visual{min-height:360px;padding:18px}
+      .premium-orbit{min-height:320px}
+      .orbit-chip{font-size:10px;padding:9px 10px}
+      .orbit-core{width:132px;height:132px}
+      .orbit-core strong{font-size:23px}
+      .selection-panel{grid-template-columns:1fr;padding:22px;border-radius:28px}
+      .selection-actions{justify-content:flex-start}
+      .mini-contact{grid-template-columns:1fr}
       section{padding:76px 0}
       .form-row{grid-template-columns:1fr;gap:0}
       .map-card:nth-child(2),.map-card:nth-child(3){margin:0}
@@ -1052,25 +1157,9 @@
       <a href="#contatti">Contatti</a>
     </nav>
 
-    <button class="mobile-toggle" type="button" aria-label="Apri menu" aria-expanded="false">
-      <span></span>
-    </button>
-
     <a class="btn btn-primary" href="#contatti">Prenota una call</a>
   </div>
 </header>
-
-<div class="mobile-backdrop" data-close-menu></div>
-
-<nav class="mobile-panel" aria-label="Menu mobile">
-  <button type="button" data-open-about>Chi sono <span>↘</span></button>
-  <a href="#approccio">Approccio <span>↘</span></a>
-  <a href="#consulenze">Consulenze <span>↘</span></a>
-  <a href="#come-lavoro">Come lavoro <span>↘</span></a>
-  <a href="#advisor">Advisor <span>↘</span></a>
-  <a href="#contatti">Contatti <span>↘</span></a>
-  <a class="btn btn-primary" href="#contatti">Prenota una call</a>
-</nav>
 
 <div class="about-modal" id="aboutModal" aria-hidden="true">
   <div class="about-dialog" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
@@ -1106,9 +1195,9 @@
         </p>
 
         <p>
-          Negli anni ho lavorato in contesti strutturati come Banca Widiba, SKY, ING, Sisal,
-          Grandi Stazioni Retail e Wavemaker, confrontandomi con funnel complessi, piattaforme enterprise,
-          campagne digitali, sistemi di tracciamento, dashboard, CRO e ottimizzazione delle performance.
+          Negli anni ho lavorato in contesti strutturati e molto competitivi, confrontandomi con funnel complessi,
+          piattaforme enterprise, campagne digitali, sistemi di tracciamento, dashboard, CRO e ottimizzazione
+          delle performance.
         </p>
 
         <p>
@@ -1124,20 +1213,14 @@
         </p>
 
         <div class="career-line">
-          <span>Banca Widiba</span>
-          <span>SKY</span>
-          <span>ING</span>
-          <span>Sisal</span>
-          <span>Adobe Analytics</span>
+          <span>Enterprise</span>
+          <span>Banking</span>
+          <span>Media</span>
+          <span>Retail</span>
+          <span>Gaming</span>
+          <span>Analytics</span>
           <span>CRO</span>
-          <span>Funnel</span>
           <span>Media Strategy</span>
-        </div>
-
-        <div class="about-trust">
-          <div><strong>Enterprise</strong><span>Esperienza su contesti digitali strutturati.</span></div>
-          <div><strong>Data</strong><span>Decisioni basate su tracking, KPI e performance.</span></div>
-          <div><strong>Direct</strong><span>Un rapporto personale, selettivo e concreto.</span></div>
         </div>
       </div>
     </div>
@@ -1169,23 +1252,21 @@
     </div>
 
     <div class="visual reveal">
-      <div class="advisor-map">
-        <div class="map-card">
-          <div class="map-label">Business direction</div>
-          <div class="map-title">Strategia → crescita</div>
-          <div class="bar"><span style="--w:82%;"></span></div>
-        </div>
+      <div class="premium-orbit" aria-label="Sistema strategico digitale">
+        <div class="orbit-stage">
+          <div class="orbit-ring r1"></div>
+          <div class="orbit-ring r2"></div>
+          <div class="orbit-ring r3"></div>
 
-        <div class="map-card">
-          <div class="map-label">Digital system</div>
-          <div class="map-title">Sito → funnel</div>
-          <div class="bar"><span style="--w:72%;"></span></div>
-        </div>
+          <div class="orbit-core">
+            <strong>Digital<br>Growth</strong>
+            <span>System</span>
+          </div>
 
-        <div class="map-card">
-          <div class="map-label">Performance</div>
-          <div class="map-title">Dati → decisioni</div>
-          <div class="bar"><span style="--w:76%;"></span></div>
+          <div class="orbit-chip c1">Strategia</div>
+          <div class="orbit-chip c2">Funnel</div>
+          <div class="orbit-chip c3">Analytics</div>
+          <div class="orbit-chip c4">Conversione</div>
         </div>
       </div>
     </div>
@@ -1230,9 +1311,23 @@
     </div>
 
     <div class="offer-grid reveal">
-      <div class="offer-card">
+      <div class="offer-card is-complete" data-service="Pacchetto completo" data-complete="true" tabindex="0" role="button" aria-pressed="false">
         <div>
           <small>01</small>
+          <h3>Pacchetto completo</h3>
+          <p>Un percorso integrato per costruire o migliorare l’intero ecosistema digitale del progetto.</p>
+        </div>
+        <ul>
+          <li>Strategia, sito, funnel e tracking</li>
+          <li>Media strategy, analytics e CRO</li>
+          <li>Una direzione unica, senza pezzi scollegati</li>
+        </ul>
+        <span class="select-pill">Seleziona tutto</span>
+      </div>
+
+      <div class="offer-card" data-service="Creazione sito / landing page" tabindex="0" role="button" aria-pressed="false">
+        <div>
+          <small>02</small>
           <h3>Creazione sito o landing</h3>
           <p>Sviluppo rapido di siti web e landing page con struttura pensata per conversione, tracking e crescita.</p>
         </div>
@@ -1241,11 +1336,12 @@
           <li>Struttura conversion-oriented</li>
           <li>Sistemi integrati e tracciabili</li>
         </ul>
+        <span class="select-pill">Seleziona</span>
       </div>
 
-      <div class="offer-card">
+      <div class="offer-card" data-service="Audit sito e funnel" tabindex="0" role="button" aria-pressed="false">
         <div>
-          <small>02</small>
+          <small>03</small>
           <h3>Audit sito e funnel</h3>
           <p>Analisi di sito, app, customer journey e punti critici che possono bloccare acquisizione e conversione.</p>
         </div>
@@ -1254,11 +1350,12 @@
           <li>CTA e conversioni</li>
           <li>Priorità di intervento</li>
         </ul>
+        <span class="select-pill">Seleziona</span>
       </div>
 
-      <div class="offer-card">
+      <div class="offer-card" data-service="Media strategy" tabindex="0" role="button" aria-pressed="false">
         <div>
-          <small>03</small>
+          <small>04</small>
           <h3>Media strategy</h3>
           <p>Costruzione di un piano campagne basato su target, audience, canali, budget e obiettivi di business.</p>
         </div>
@@ -1267,24 +1364,26 @@
           <li>Performance e conversione</li>
           <li>Retargeting e loyalty</li>
         </ul>
+        <span class="select-pill">Seleziona</span>
       </div>
 
-      <div class="offer-card">
+      <div class="offer-card" data-service="Analytics & tracking" tabindex="0" role="button" aria-pressed="false">
         <div>
-          <small>04</small>
+          <small>05</small>
           <h3>Analytics & tracking</h3>
           <p>Setup o revisione dei sistemi di misurazione per leggere meglio KPI, eventi, funnel e performance.</p>
         </div>
         <ul>
           <li>GA4 e tracking eventi</li>
           <li>Dashboard e KPI</li>
-          <li>Adobe Analytics e report suite</li>
+          <li>Lettura chiara dei dati</li>
         </ul>
+        <span class="select-pill">Seleziona</span>
       </div>
 
-      <div class="offer-card">
+      <div class="offer-card" data-service="CRO e ottimizzazione conversioni" tabindex="0" role="button" aria-pressed="false">
         <div>
-          <small>05</small>
+          <small>06</small>
           <h3>CRO e ottimizzazione</h3>
           <p>Analisi e miglioramento di conversion rate, pagine, funnel, esperienze utente e customer journey.</p>
         </div>
@@ -1293,19 +1392,25 @@
           <li>Analisi comportamento utenti</li>
           <li>Ottimizzazione performance</li>
         </ul>
+        <span class="select-pill">Seleziona</span>
+      </div>
+    </div>
+
+    <div class="selection-panel reveal" id="selectionPanel">
+      <div>
+        <strong>La tua selezione</strong>
+        <div class="selected-list" id="selectedList">Seleziona una o più consulenze: il riepilogo resta qui, vicino ai contenuti.</div>
+
+        <div class="mini-contact" id="miniContact">
+          <input type="text" id="miniName" placeholder="Nome">
+          <input type="email" id="miniEmail" placeholder="Email">
+          <button class="btn btn-primary" type="button" id="miniPrepare">Prepara richiesta</button>
+        </div>
       </div>
 
-      <div class="offer-card">
-        <div>
-          <small>06</small>
-          <h3>Pacchetto completo</h3>
-          <p>Un percorso integrato per costruire o migliorare l’intero ecosistema digitale del progetto.</p>
-        </div>
-        <ul>
-          <li>Strategia</li>
-          <li>Sito, funnel e tracking</li>
-          <li>Media, dati e conversione</li>
-        </ul>
+      <div class="selection-actions">
+        <button class="btn btn-secondary" type="button" id="openMiniContact">Lascia contatto qui</button>
+        <button class="btn btn-secondary" type="button" id="clearSelection">Reset</button>
       </div>
     </div>
   </div>
@@ -1419,7 +1524,7 @@
       </p>
     </div>
 
-    <form class="reveal">
+    <form class="reveal" id="contactForm">
       <div class="form-row">
         <input type="text" placeholder="Nome" required>
         <input type="email" placeholder="Email" required>
@@ -1427,7 +1532,7 @@
 
       <input type="text" placeholder="Azienda / progetto">
 
-      <select required>
+      <select required id="serviceSelect" name="consulenza">
         <option value="">Consulenza richiesta</option>
         <option>Creazione sito / landing page</option>
         <option>Audit sito e funnel</option>
@@ -1438,7 +1543,7 @@
         <option>Pacchetto completo</option>
       </select>
 
-      <textarea placeholder="Messaggio"></textarea>
+      <textarea id="messageField" placeholder="Messaggio"></textarea>
 
       <p class="availability">
         Collaboro con un numero limitato di progetti per garantire attenzione, velocità e qualità.
@@ -1459,35 +1564,6 @@
 </footer>
 
 <script>
-
-  const mobileToggle = document.querySelector('.mobile-toggle');
-  const mobileMenuLinks = document.querySelectorAll('.mobile-panel a, .mobile-panel button');
-  const mobileBackdrop = document.querySelector('[data-close-menu]');
-
-  function closeMobileMenu(){
-    document.body.classList.remove('menu-open');
-    if(mobileToggle){
-      mobileToggle.setAttribute('aria-expanded', 'false');
-    }
-  }
-
-  if(mobileToggle){
-    mobileToggle.addEventListener('click', () => {
-      const isOpen = document.body.classList.toggle('menu-open');
-      mobileToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-  }
-
-  mobileMenuLinks.forEach(item => {
-    item.addEventListener('click', () => {
-      closeMobileMenu();
-    });
-  });
-
-  if(mobileBackdrop){
-    mobileBackdrop.addEventListener('click', closeMobileMenu);
-  }
-
   const aboutModal = document.getElementById('aboutModal');
   const openAboutButtons = document.querySelectorAll('[data-open-about]');
   const closeAboutButtons = document.querySelectorAll('[data-close-about]');
@@ -1518,7 +1594,6 @@
 
   document.addEventListener('keydown', (event) => {
     if(event.key === 'Escape'){
-      closeMobileMenu();
       aboutModal.classList.remove('is-open');
       aboutModal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
@@ -1536,6 +1611,132 @@
   }, { threshold: 0.12 });
 
   reveals.forEach(el => observer.observe(el));
+
+
+  const offerCards = document.querySelectorAll('.offer-card[data-service]');
+  const selectedList = document.getElementById('selectedList');
+  const clearSelection = document.getElementById('clearSelection');
+  const openMiniContact = document.getElementById('openMiniContact');
+  const miniContact = document.getElementById('miniContact');
+  const miniPrepare = document.getElementById('miniPrepare');
+  const miniName = document.getElementById('miniName');
+  const miniEmail = document.getElementById('miniEmail');
+  const serviceSelect = document.getElementById('serviceSelect');
+  const messageField = document.getElementById('messageField');
+
+  const serviceOptions = Array.from(offerCards).map(card => card.dataset.service);
+  let selectedServices = [];
+
+  function updateSelection(){
+    offerCards.forEach(card => {
+      const active = selectedServices.includes(card.dataset.service);
+      card.classList.toggle('is-selected', active);
+      card.setAttribute('aria-pressed', active ? 'true' : 'false');
+      const pill = card.querySelector('.select-pill');
+      if(pill){
+        if(card.dataset.complete === 'true'){
+          pill.textContent = active ? 'Tutto selezionato' : 'Seleziona tutto';
+        } else {
+          pill.textContent = active ? 'Selezionato' : 'Seleziona';
+        }
+      }
+    });
+
+    if(selectedServices.length === 0){
+      selectedList.textContent = 'Seleziona una o più consulenze: il riepilogo resta qui, vicino ai contenuti.';
+      if(serviceSelect) serviceSelect.value = '';
+      return;
+    }
+
+    selectedList.textContent = selectedServices.join(' + ');
+
+    if(serviceSelect){
+      if(selectedServices.includes('Pacchetto completo')){
+        serviceSelect.value = 'Pacchetto completo';
+      } else if(selectedServices.length === 1){
+        serviceSelect.value = selectedServices[0];
+      } else {
+        serviceSelect.value = '';
+      }
+    }
+
+    if(messageField){
+      const baseText = 'Sono interessato a: ' + selectedServices.join(' + ') + '. ';
+      if(!messageField.value || messageField.value.startsWith('Sono interessato a:')){
+        messageField.value = baseText;
+      }
+    }
+  }
+
+  function toggleService(card){
+    const service = card.dataset.service;
+    const isComplete = card.dataset.complete === 'true';
+
+    if(isComplete){
+      if(selectedServices.includes('Pacchetto completo')){
+        selectedServices = [];
+      } else {
+        selectedServices = [...serviceOptions];
+      }
+    } else {
+      selectedServices = selectedServices.filter(item => item !== 'Pacchetto completo');
+
+      if(selectedServices.includes(service)){
+        selectedServices = selectedServices.filter(item => item !== service);
+      } else {
+        selectedServices.push(service);
+      }
+
+      const nonComplete = serviceOptions.filter(item => item !== 'Pacchetto completo');
+      const allSinglesSelected = nonComplete.every(item => selectedServices.includes(item));
+      if(allSinglesSelected){
+        selectedServices = [...serviceOptions];
+      }
+    }
+
+    updateSelection();
+  }
+
+  offerCards.forEach(card => {
+    card.addEventListener('click', () => toggleService(card));
+    card.addEventListener('keydown', event => {
+      if(event.key === 'Enter' || event.key === ' '){
+        event.preventDefault();
+        toggleService(card);
+      }
+    });
+  });
+
+  clearSelection.addEventListener('click', () => {
+    selectedServices = [];
+    if(messageField) messageField.value = '';
+    updateSelection();
+  });
+
+  openMiniContact.addEventListener('click', () => {
+    miniContact.classList.toggle('is-open');
+  });
+
+  miniPrepare.addEventListener('click', () => {
+    if(selectedServices.length === 0){
+      selectedList.textContent = 'Seleziona prima almeno una consulenza.';
+      return;
+    }
+
+    const nameField = document.querySelector('#contactForm input[placeholder="Nome"]');
+    const emailField = document.querySelector('#contactForm input[type="email"]');
+
+    if(nameField && miniName.value) nameField.value = miniName.value;
+    if(emailField && miniEmail.value) emailField.value = miniEmail.value;
+
+    if(messageField){
+      messageField.value = 'Sono interessato a: ' + selectedServices.join(' + ') + '. Vorrei capire il percorso più adatto al mio progetto.';
+    }
+
+    selectedList.textContent = 'Perfetto: ho preparato la richiesta con ' + selectedServices.join(' + ') + '. Puoi completare il form anche più sotto, senza perdere la selezione.';
+  });
+
+  updateSelection();
 
   const form = document.querySelector("form");
   form.addEventListener("submit", function(e){
