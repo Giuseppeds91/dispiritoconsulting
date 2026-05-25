@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Di Spirito Consulting | Strategia digitale, dati e conversione</title>
-  <meta name="description" content="Di Spirito Consulting aiuta aziende, professionisti e PMI a costruire sistemi digitali orientati alla crescita: strategia, funnel, media, analytics, CRO e sviluppo rapido siti web." />
+  <title>Di Spirito Consulting | Private Strategic Digital Consulting</title>
+  <meta name="description" content="Consulenza strategica privata per imprenditori, professionisti e PMI che vogliono crescere nel digitale con strategia, dati, funnel, media e conversione." />
 
   <meta property="og:title" content="Di Spirito Consulting" />
-  <meta property="og:description" content="Strategia digitale, dati e conversione. Sistemi digitali orientati alla crescita." />
+  <meta property="og:description" content="Private Strategic Digital Consulting. Rapporto diretto, strategia, dati e crescita digitale." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.dispiritoconsulting.it" />
 
@@ -17,1007 +17,1130 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --cream: #f7f1e7;
-      --cream-2: #fbf8f2;
-      --sand: #e7d7bd;
-      --bronze: #9b7653;
-      --brown: #2b211b;
-      --bordeaux: #7a2f28;
-      --text: #15120f;
-      --muted: #6e6258;
-      --line: rgba(43, 33, 27, 0.10);
-      --white: rgba(255,255,255,0.72);
-      --shadow: 0 24px 80px rgba(43, 33, 27, 0.10);
+    :root{
+      --cream:#f7f1e7;
+      --ivory:#fbf8f2;
+      --sand:#e6d5bb;
+      --bronze:#9b7653;
+      --brown:#2b211b;
+      --bordeaux:#7a2f28;
+      --text:#17130f;
+      --muted:#6f6258;
+      --line:rgba(43,33,27,.10);
+      --soft:rgba(255,255,255,.62);
+      --shadow:0 28px 90px rgba(43,33,27,.11);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Manrope",sans-serif;
+      background:var(--cream);
+      color:var(--text);
+      overflow-x:hidden;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: "Manrope", sans-serif;
-      background: var(--cream);
-      color: var(--text);
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -2;
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-2;
       background:
-        radial-gradient(circle at 88% 8%, rgba(122,47,40,.16), transparent 30%),
-        radial-gradient(circle at 10% 30%, rgba(155,118,83,.15), transparent 28%),
-        linear-gradient(180deg, var(--cream), var(--cream-2));
+        radial-gradient(circle at 90% 8%, rgba(122,47,40,.15), transparent 30%),
+        radial-gradient(circle at 8% 35%, rgba(155,118,83,.14), transparent 28%),
+        linear-gradient(180deg,var(--cream),var(--ivory));
     }
 
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      opacity: .28;
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      opacity:.22;
       background-image:
-        linear-gradient(rgba(43,33,27,.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(43,33,27,.05) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: linear-gradient(to bottom, #000, transparent 75%);
+        linear-gradient(rgba(43,33,27,.055) 1px, transparent 1px),
+        linear-gradient(90deg,rgba(43,33,27,.055) 1px, transparent 1px);
+      background-size:76px 76px;
+      mask-image:linear-gradient(to bottom,#000,transparent 78%);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1240px,calc(100% - 40px));margin:0 auto}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:30;
+      backdrop-filter:blur(18px);
+      background:rgba(247,241,231,.78);
+      border-bottom:1px solid var(--line);
     }
 
-    .container {
-      width: min(1240px, calc(100% - 40px));
-      margin: 0 auto;
+    .nav{
+      height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:28px;
     }
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(18px);
-      background: rgba(247, 241, 231, .78);
-      border-bottom: 1px solid var(--line);
+    .brand strong{
+      display:block;
+      font-size:18px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-weight:800;
     }
 
-    .nav {
-      height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
+    .brand span{
+      display:block;
+      margin-top:7px;
+      color:var(--muted);
+      font-size:10px;
+      letter-spacing:.25em;
+      text-transform:uppercase;
+      font-weight:700;
     }
 
-    .brand {
-      line-height: 1;
+    .menu{
+      display:flex;
+      gap:26px;
+      color:var(--muted);
+      font-size:14px;
+      font-weight:700;
     }
 
-    .brand strong {
-      display: block;
-      font-size: 18px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      font-weight: 800;
+    .menu a{transition:.25s}
+    .menu a:hover{color:var(--text)}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      padding:14px 22px;
+      font-size:14px;
+      font-weight:800;
+      transition:.25s;
+      border:0;
+      cursor:pointer;
+      white-space:nowrap;
     }
 
-    .brand span {
-      display: block;
-      margin-top: 7px;
-      color: var(--muted);
-      font-size: 11px;
-      letter-spacing: .28em;
-      text-transform: uppercase;
+    .btn-primary{
+      background:var(--brown);
+      color:var(--ivory);
+      box-shadow:0 16px 45px rgba(43,33,27,.16);
     }
 
-    .menu {
-      display: flex;
-      gap: 28px;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 600;
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      background:#3a2a21;
     }
 
-    .menu a {
-      transition: color .25s ease;
+    .btn-secondary{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.55);
+      color:var(--text);
     }
 
-    .menu a:hover {
-      color: var(--text);
+    .btn-secondary:hover{
+      transform:translateY(-2px);
+      background:var(--brown);
+      color:var(--ivory);
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      padding: 14px 22px;
-      font-size: 14px;
-      font-weight: 800;
-      transition: transform .25s ease, background .25s ease, color .25s ease;
-      cursor: pointer;
-      border: 0;
+    .hero{
+      padding:118px 0 100px;
     }
 
-    .btn-primary {
-      background: var(--brown);
-      color: var(--cream-2);
-      box-shadow: 0 14px 40px rgba(43, 33, 27, .15);
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:70px;
+      align-items:center;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      background: #3a2a21;
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 16px;
+      border-radius:999px;
+      border:1px solid rgba(122,47,40,.15);
+      background:rgba(255,255,255,.56);
+      color:var(--muted);
+      font-size:13px;
+      font-weight:800;
+      margin-bottom:34px;
     }
 
-    .btn-secondary {
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.55);
-      color: var(--text);
+    .dot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--bordeaux);
+      box-shadow:0 0 0 6px rgba(122,47,40,.10);
     }
 
-    .btn-secondary:hover {
-      transform: translateY(-2px);
-      background: var(--brown);
-      color: var(--cream-2);
+    h1{
+      font-size:clamp(54px,7.4vw,104px);
+      line-height:.9;
+      letter-spacing:-.075em;
+      font-weight:800;
+      max-width:950px;
     }
 
-    .hero {
-      padding: 118px 0 96px;
+    .hero p{
+      margin-top:34px;
+      max-width:780px;
+      color:var(--muted);
+      font-size:clamp(19px,2vw,24px);
+      line-height:1.58;
+      font-weight:500;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 70px;
-      align-items: center;
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:42px;
     }
 
-    .eyebrow {
-      display: inline-flex;
-      gap: 10px;
-      align-items: center;
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(122,47,40,.14);
-      background: rgba(255,255,255,.55);
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 34px;
+    .hero-note{
+      margin-top:28px;
+      color:var(--muted);
+      font-size:14px;
+      font-weight:700;
     }
 
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--bordeaux);
-      box-shadow: 0 0 0 6px rgba(122,47,40,.10);
-    }
-
-    h1 {
-      font-size: clamp(56px, 7.8vw, 108px);
-      line-height: .9;
-      letter-spacing: -.075em;
-      font-weight: 800;
-      max-width: 940px;
-    }
-
-    .hero p {
-      margin-top: 34px;
-      max-width: 760px;
-      color: var(--muted);
-      font-size: clamp(19px, 2vw, 25px);
-      line-height: 1.55;
-      font-weight: 500;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 42px;
-    }
-
-    .visual {
-      position: relative;
-      min-height: 540px;
-      border-radius: 42px;
-      border: 1px solid var(--line);
+    .visual{
+      position:relative;
+      min-height:560px;
+      border-radius:44px;
+      border:1px solid var(--line);
       background:
-        linear-gradient(145deg, rgba(255,255,255,.80), rgba(255,255,255,.28)),
-        radial-gradient(circle at 20% 10%, rgba(122,47,40,.16), transparent 38%);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      padding: 30px;
+        linear-gradient(145deg,rgba(255,255,255,.80),rgba(255,255,255,.28)),
+        radial-gradient(circle at 20% 10%,rgba(122,47,40,.14),transparent 38%);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      padding:30px;
     }
 
-    .visual::before {
-      content: "";
-      position: absolute;
-      inset: 0;
+    .visual::before{
+      content:"";
+      position:absolute;
+      inset:0;
       background-image:
         linear-gradient(rgba(43,33,27,.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(43,33,27,.06) 1px, transparent 1px);
-      background-size: 42px 42px;
-      opacity: .45;
+        linear-gradient(90deg,rgba(43,33,27,.06) 1px, transparent 1px);
+      background-size:44px 44px;
+      opacity:.42;
     }
 
-    .dashboard {
-      position: relative;
-      z-index: 2;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 22px;
+    .advisor-map{
+      position:relative;
+      z-index:2;
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:22px;
     }
 
-    .mini-card {
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(43,33,27,.08);
-      border-radius: 24px;
-      padding: 22px;
-      box-shadow: 0 18px 50px rgba(43,33,27,.08);
-      backdrop-filter: blur(10px);
+    .map-card{
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(43,33,27,.08);
+      border-radius:26px;
+      padding:24px;
+      box-shadow:0 18px 55px rgba(43,33,27,.08);
+      backdrop-filter:blur(10px);
     }
 
-    .mini-card:nth-child(2) {
-      margin-left: 70px;
+    .map-card:nth-child(2){margin-left:76px}
+    .map-card:nth-child(3){margin-right:58px}
+
+    .map-label{
+      color:var(--muted);
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      margin-bottom:14px;
+      font-weight:800;
     }
 
-    .mini-card:nth-child(3) {
-      margin-right: 55px;
+    .map-title{
+      font-size:28px;
+      font-weight:800;
+      letter-spacing:-.04em;
     }
 
-    .mini-label {
-      color: var(--muted);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: .18em;
-      margin-bottom: 14px;
+    .bar{
+      height:10px;
+      border-radius:999px;
+      background:rgba(43,33,27,.09);
+      margin-top:16px;
+      overflow:hidden;
     }
 
-    .mini-title {
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: -.04em;
+    .bar span{
+      display:block;
+      height:100%;
+      border-radius:inherit;
+      background:linear-gradient(90deg,var(--bordeaux),var(--bronze));
+      width:var(--w);
     }
 
-    .bar {
-      height: 10px;
-      border-radius: 999px;
-      background: rgba(43,33,27,.09);
-      margin-top: 16px;
-      overflow: hidden;
+    section{
+      padding:108px 0;
+      border-top:1px solid var(--line);
     }
 
-    .bar span {
-      display: block;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--bordeaux), var(--bronze));
-      width: var(--w);
+    .label{
+      text-transform:uppercase;
+      letter-spacing:.26em;
+      color:var(--muted);
+      font-size:12px;
+      font-weight:900;
+      margin-bottom:24px;
     }
 
-    section {
-      padding: 105px 0;
-      border-top: 1px solid var(--line);
+    h2{
+      font-size:clamp(42px,5.6vw,76px);
+      line-height:.95;
+      letter-spacing:-.06em;
+      font-weight:800;
     }
 
-    .section-head {
-      display: grid;
-      grid-template-columns: .85fr 1.15fr;
-      gap: 70px;
-      align-items: start;
-      margin-bottom: 62px;
+    .lead{
+      color:var(--muted);
+      font-size:clamp(18px,2vw,22px);
+      line-height:1.65;
+      font-weight:500;
     }
 
-    .label {
-      text-transform: uppercase;
-      letter-spacing: .26em;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 800;
-      margin-bottom: 24px;
+    .section-head{
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:70px;
+      align-items:start;
+      margin-bottom:62px;
     }
 
-    h2 {
-      font-size: clamp(42px, 5.6vw, 76px);
-      line-height: .95;
-      letter-spacing: -.06em;
-      font-weight: 800;
+    .approach-box{
+      border-radius:42px;
+      background:rgba(255,255,255,.62);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      padding:54px;
     }
 
-    .lead {
-      color: var(--muted);
-      font-size: clamp(18px, 2vw, 22px);
-      line-height: 1.65;
-      font-weight: 500;
+    .approach-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:70px;
     }
 
-    .about-box {
-      border-radius: 38px;
-      background: rgba(255,255,255,.62);
-      border: 1px solid var(--line);
-      padding: 48px;
-      box-shadow: var(--shadow);
+    .approach-text{
+      color:var(--muted);
+      font-size:20px;
+      line-height:1.75;
     }
 
-    .about-grid {
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 70px;
-      align-items: start;
+    .approach-text p + p{margin-top:22px}
+
+    .direct-list{
+      display:grid;
+      gap:14px;
+      margin-top:34px;
     }
 
-    .about-text {
-      color: var(--muted);
-      font-size: 20px;
-      line-height: 1.75;
+    .direct-item{
+      padding:18px;
+      border-radius:22px;
+      background:rgba(247,241,231,.72);
+      border:1px solid rgba(43,33,27,.07);
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      color:var(--muted);
+      font-weight:700;
+      line-height:1.45;
     }
 
-    .about-text p + p {
-      margin-top: 22px;
+    .check{
+      width:24px;
+      height:24px;
+      border-radius:50%;
+      flex:0 0 auto;
+      background:rgba(122,47,40,.10);
+      color:var(--bordeaux);
+      display:grid;
+      place-items:center;
+      font-size:13px;
+      font-weight:900;
     }
 
-    .trust-list {
-      display: grid;
-      gap: 14px;
+    .areas-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
     }
 
-    .trust-item {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      padding: 18px;
-      border-radius: 22px;
-      background: rgba(247,241,231,.72);
-      border: 1px solid rgba(43,33,27,.07);
+    .area-card{
+      min-height:385px;
+      border-radius:32px;
+      padding:30px;
+      background:rgba(255,255,255,.62);
+      border:1px solid var(--line);
+      box-shadow:0 16px 45px rgba(43,33,27,.06);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
     }
 
-    .check {
-      flex: 0 0 auto;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: rgba(122,47,40,.10);
-      color: var(--bordeaux);
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      font-size: 13px;
+    .area-top small{
+      color:var(--bronze);
+      font-weight:900;
+      letter-spacing:.18em;
     }
 
-    .services-intro {
-      max-width: 900px;
-      margin-bottom: 58px;
+    .area-card h3{
+      margin-top:22px;
+      font-size:29px;
+      line-height:1;
+      letter-spacing:-.045em;
     }
 
-    .service-list {
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
+    .area-card ul{
+      list-style:none;
+      display:grid;
+      gap:11px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.45;
+      font-weight:650;
     }
 
-    .service-row {
-      display: grid;
-      grid-template-columns: 80px 1fr auto;
-      gap: 28px;
-      align-items: center;
-      padding: 28px 0;
-      border-bottom: 1px solid var(--line);
-      transition: transform .25s ease, color .25s ease;
+    .private{
+      background:rgba(255,255,255,.42);
     }
 
-    .service-row:last-child {
-      border-bottom: 0;
+    .private-layout{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:70px;
+      align-items:center;
     }
 
-    .service-row:hover {
-      transform: translateX(8px);
+    .quote-card{
+      border-radius:42px;
+      background:var(--brown);
+      color:var(--ivory);
+      padding:54px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
     }
 
-    .service-row small {
-      color: var(--bronze);
-      font-weight: 800;
-      letter-spacing: .14em;
+    .quote-card::after{
+      content:"";
+      position:absolute;
+      width:340px;
+      height:340px;
+      border-radius:50%;
+      background:rgba(231,215,189,.10);
+      right:-130px;
+      top:-130px;
     }
 
-    .service-row h3 {
-      font-size: clamp(25px, 3.4vw, 45px);
-      line-height: 1;
-      letter-spacing: -.045em;
-      font-weight: 750;
+    .quote-card h2{
+      color:var(--ivory);
+      font-size:clamp(38px,4.6vw,64px);
     }
 
-    .arrow {
-      color: var(--bronze);
-      font-size: 28px;
+    .quote-card p{
+      position:relative;
+      z-index:2;
+      color:rgba(247,241,231,.72);
+      margin-top:26px;
     }
 
-    .media {
-      background: rgba(255,255,255,.42);
+    .private-points{
+      display:grid;
+      gap:16px;
     }
 
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 34px;
+    .private-point{
+      padding:22px 0;
+      border-bottom:1px solid var(--line);
     }
 
-    .chip {
-      border: 1px solid rgba(43,33,27,.10);
-      background: rgba(255,255,255,.56);
-      color: var(--muted);
-      padding: 12px 16px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 700;
+    .private-point h3{
+      font-size:25px;
+      letter-spacing:-.035em;
+      margin-bottom:8px;
     }
 
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 18px;
+    .private-point p{
+      color:var(--muted);
+      line-height:1.6;
+      font-weight:550;
     }
 
-    .process-card {
-      min-height: 260px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      border-radius: 30px;
-      padding: 26px;
-      background: rgba(255,255,255,.62);
-      border: 1px solid var(--line);
-      box-shadow: 0 14px 40px rgba(43,33,27,.06);
+    .process-grid{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:18px;
     }
 
-    .process-card small {
-      color: var(--bronze);
-      letter-spacing: .18em;
-      font-weight: 900;
+    .process-card{
+      min-height:268px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      border-radius:30px;
+      padding:26px;
+      background:rgba(255,255,255,.62);
+      border:1px solid var(--line);
+      box-shadow:0 14px 40px rgba(43,33,27,.06);
     }
 
-    .process-card h3 {
-      font-size: 27px;
-      letter-spacing: -.035em;
-      margin-bottom: 12px;
+    .process-card small{
+      color:var(--bronze);
+      letter-spacing:.18em;
+      font-weight:900;
     }
 
-    .process-card p {
-      color: var(--muted);
-      line-height: 1.55;
-      font-size: 15px;
-      font-weight: 500;
+    .process-card h3{
+      font-size:27px;
+      letter-spacing:-.035em;
+      margin-bottom:12px;
     }
 
-    .complete {
-      border-radius: 44px;
+    .process-card p{
+      color:var(--muted);
+      line-height:1.55;
+      font-size:15px;
+      font-weight:550;
+    }
+
+    .complete{
+      border-radius:44px;
       background:
-        linear-gradient(135deg, rgba(43,33,27,.96), rgba(72,52,39,.92)),
-        radial-gradient(circle at 80% 20%, rgba(122,47,40,.35), transparent 30%);
-      color: var(--cream-2);
-      padding: 68px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      position: relative;
+        linear-gradient(135deg,rgba(43,33,27,.96),rgba(72,52,39,.93)),
+        radial-gradient(circle at 80% 20%,rgba(122,47,40,.35),transparent 30%);
+      color:var(--ivory);
+      padding:68px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
     }
 
-    .complete::after {
-      content: "";
-      position: absolute;
-      right: -120px;
-      top: -120px;
-      width: 360px;
-      height: 360px;
-      border-radius: 50%;
-      background: rgba(231,215,189,.10);
-      filter: blur(12px);
+    .complete::after{
+      content:"";
+      position:absolute;
+      right:-120px;
+      top:-120px;
+      width:360px;
+      height:360px;
+      border-radius:50%;
+      background:rgba(231,215,189,.10);
+      filter:blur(12px);
     }
 
-    .complete-grid {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 70px;
-      align-items: center;
+    .complete-grid{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:70px;
+      align-items:center;
     }
 
-    .complete h2 {
-      color: var(--cream-2);
+    .complete h2{color:var(--ivory)}
+    .complete p{color:rgba(247,241,231,.74)}
+
+    .why-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
     }
 
-    .complete p {
-      color: rgba(247,241,231,.74);
+    .why-card{
+      padding:28px;
+      border-radius:30px;
+      background:rgba(255,255,255,.62);
+      border:1px solid var(--line);
     }
 
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+    .why-card h3{
+      font-size:23px;
+      letter-spacing:-.03em;
+      margin-bottom:14px;
     }
 
-    .why-card {
-      padding: 28px;
-      border-radius: 30px;
-      background: rgba(255,255,255,.62);
-      border: 1px solid var(--line);
+    .why-card p{
+      color:var(--muted);
+      line-height:1.6;
+      font-weight:550;
     }
 
-    .why-card h3 {
-      font-size: 23px;
-      letter-spacing: -.03em;
-      margin-bottom: 14px;
+    .advisor{
+      background:rgba(255,255,255,.42);
     }
 
-    .why-card p {
-      color: var(--muted);
-      line-height: 1.6;
-      font-weight: 500;
+    .advisor-panel{
+      border-radius:44px;
+      border:1px solid var(--line);
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.72),rgba(255,255,255,.36));
+      box-shadow:var(--shadow);
+      padding:54px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:70px;
+      align-items:center;
     }
 
-    .contact-grid {
-      display: grid;
-      grid-template-columns: .85fr 1.15fr;
-      gap: 70px;
-      align-items: start;
+    .advisor-window{
+      border-radius:32px;
+      background:var(--brown);
+      color:var(--ivory);
+      padding:30px;
+      min-height:360px;
+      position:relative;
+      overflow:hidden;
     }
 
-    form {
-      border-radius: 38px;
-      padding: 42px;
-      background: rgba(255,255,255,.62);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
+    .advisor-window::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(247,241,231,.055) 1px, transparent 1px),
+        linear-gradient(90deg,rgba(247,241,231,.055) 1px, transparent 1px);
+      background-size:36px 36px;
     }
 
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
+    .advisor-inner{
+      position:relative;
+      z-index:2;
+      display:grid;
+      gap:16px;
     }
 
-    input, textarea, select {
-      width: 100%;
-      border: 0;
-      border-bottom: 1px solid rgba(43,33,27,.18);
-      background: transparent;
-      padding: 18px 0;
-      font: inherit;
-      font-size: 17px;
-      outline: none;
-      color: var(--text);
-      border-radius: 0;
+    .advisor-message{
+      padding:18px;
+      border-radius:22px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      color:rgba(247,241,231,.78);
+      line-height:1.5;
+      font-size:15px;
     }
 
-    textarea {
-      resize: vertical;
-      min-height: 130px;
+    .advisor-message strong{
+      color:var(--ivory);
     }
 
-    input:focus, textarea:focus, select:focus {
-      border-bottom-color: var(--bordeaux);
+    .contact-grid{
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:70px;
+      align-items:start;
     }
 
-    .submit {
-      margin-top: 28px;
+    form{
+      border-radius:38px;
+      padding:42px;
+      background:rgba(255,255,255,.62);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
     }
 
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 34px 0;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 600;
+    .form-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
     }
 
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
+    input,textarea,select{
+      width:100%;
+      border:0;
+      border-bottom:1px solid rgba(43,33,27,.18);
+      background:transparent;
+      padding:18px 0;
+      font:inherit;
+      font-size:17px;
+      outline:none;
+      color:var(--text);
+      border-radius:0;
     }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity .75s ease, transform .75s ease;
+    textarea{
+      resize:vertical;
+      min-height:130px;
     }
 
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
+    input:focus,textarea:focus,select:focus{
+      border-bottom-color:var(--bordeaux);
     }
 
-    @media (max-width: 980px) {
-      .menu {
-        display: none;
-      }
+    .availability{
+      margin-top:22px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.5;
+      font-weight:700;
+    }
 
-      .hero {
-        padding: 84px 0 72px;
-      }
+    .submit{margin-top:28px}
 
+    footer{
+      border-top:1px solid var(--line);
+      padding:34px 0;
+      color:var(--muted);
+      font-size:14px;
+      font-weight:650;
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(24px);
+      transition:opacity .75s ease, transform .75s ease;
+    }
+
+    .reveal.is-visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media(max-width:1050px){
+      .menu{display:none}
+      .hero{padding:88px 0 76px}
       .hero-grid,
       .section-head,
-      .about-grid,
+      .approach-grid,
+      .private-layout,
       .complete-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 42px;
+      .advisor-panel,
+      .contact-grid{
+        grid-template-columns:1fr;
+        gap:42px;
       }
-
-      .visual {
-        min-height: 420px;
-      }
-
+      .visual{min-height:430px}
+      .areas-grid,
       .process-grid,
-      .why-grid {
-        grid-template-columns: 1fr;
+      .why-grid{
+        grid-template-columns:1fr;
       }
-
-      .service-row {
-        grid-template-columns: 44px 1fr auto;
-        gap: 14px;
+      .approach-box,
+      .quote-card,
+      .advisor-panel,
+      form{
+        padding:30px;
+        border-radius:32px;
       }
-
-      .complete {
-        padding: 42px 26px;
-        border-radius: 32px;
-      }
-
-      .about-box,
-      form {
-        padding: 28px;
-        border-radius: 30px;
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
-        gap: 0;
+      .complete{
+        padding:42px 28px;
+        border-radius:34px;
       }
     }
 
-    @media (max-width: 560px) {
-      .container {
-        width: min(100% - 28px, 1240px);
-      }
-
-      .nav {
-        height: 72px;
-      }
-
-      .brand strong {
-        font-size: 15px;
-      }
-
-      .brand span {
-        font-size: 9px;
-      }
-
-      header .btn {
-        padding: 11px 14px;
-        font-size: 12px;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
-      .hero-actions .btn {
-        width: 100%;
-      }
-
-      .visual {
-        display: none;
-      }
-
-      .service-row h3 {
-        font-size: 25px;
-      }
-
-      section {
-        padding: 76px 0;
-      }
+    @media(max-width:560px){
+      .container{width:min(100% - 28px,1240px)}
+      .nav{height:72px}
+      .brand strong{font-size:15px}
+      .brand span{font-size:9px}
+      header .btn{padding:11px 14px;font-size:12px}
+      .hero-actions{flex-direction:column}
+      .hero-actions .btn{width:100%}
+      .visual{display:none}
+      section{padding:78px 0}
+      .form-row{grid-template-columns:1fr;gap:0}
+      .map-card:nth-child(2),
+      .map-card:nth-child(3){margin:0}
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <div class="container nav">
-      <a href="#" class="brand">
-        <strong>Di Spirito</strong>
-        <span>Consulting</span>
-      </a>
+<header>
+  <div class="container nav">
+    <a href="#" class="brand">
+      <strong>Di Spirito</strong>
+      <span>Private Strategic Consulting</span>
+    </a>
 
-      <nav class="menu">
-        <a href="#chi-sono">Chi sono</a>
-        <a href="#servizi">Servizi</a>
-        <a href="#come-lavoro">Come lavoro</a>
-        <a href="#contatti">Contatti</a>
-      </nav>
+    <nav class="menu">
+      <a href="#approccio">Approccio</a>
+      <a href="#aree">Aree strategiche</a>
+      <a href="#come-lavoro">Come lavoro</a>
+      <a href="#private">Private Consulting</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
 
-      <a class="btn btn-primary" href="#contatti">Prenota una call</a>
+    <a class="btn btn-primary" href="#contatti">Prenota una call</a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <div class="eyebrow"><span class="dot"></span> Private Strategic Digital Consulting</div>
+
+      <h1>Affianco imprenditori e aziende nella crescita digitale dei loro business.</h1>
+
+      <p>
+        Consulenza strategica privata su funnel, media, analytics, conversione ed ecosistemi digitali.
+        Un rapporto diretto, selettivo e orientato alla crescita reale del business.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#contatti" class="btn btn-primary">Richiedi una consulenza privata</a>
+        <a href="#approccio" class="btn btn-secondary">Scopri l’approccio</a>
+      </div>
+
+      <div class="hero-note">
+        Seguo direttamente un numero limitato di progetti.
+      </div>
     </div>
-  </header>
 
-  <main>
-
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="reveal">
-          <div class="eyebrow"><span class="dot"></span> Strategia digitale, dati e conversione</div>
-
-          <h1>Costruisco sistemi digitali orientati alla crescita.</h1>
-
-          <p>
-            Strategia, funnel, media, analytics, conversione e sviluppo rapido di siti web
-            per aziende, professionisti e PMI.
-          </p>
-
-          <div class="hero-actions">
-            <a href="#contatti" class="btn btn-primary">Richiedi una consulenza</a>
-            <a href="#servizi" class="btn btn-secondary">Scopri i servizi</a>
-          </div>
+    <div class="visual reveal">
+      <div class="advisor-map">
+        <div class="map-card">
+          <div class="map-label">Business direction</div>
+          <div class="map-title">Strategia → crescita</div>
+          <div class="bar"><span style="--w:82%;"></span></div>
         </div>
 
-        <div class="visual reveal">
-          <div class="dashboard">
-            <div class="mini-card">
-              <div class="mini-label">Funnel performance</div>
-              <div class="mini-title">Acquisition → Conversion</div>
-              <div class="bar"><span style="--w: 78%;"></span></div>
-            </div>
+        <div class="map-card">
+          <div class="map-label">Customer journey</div>
+          <div class="map-title">Funnel → conversione</div>
+          <div class="bar"><span style="--w:68%;"></span></div>
+        </div>
 
-            <div class="mini-card">
-              <div class="mini-label">Analytics system</div>
-              <div class="mini-title">KPI, tracking, dashboard</div>
-              <div class="bar"><span style="--w: 64%;"></span></div>
-            </div>
-
-            <div class="mini-card">
-              <div class="mini-label">Digital build</div>
-              <div class="mini-title">Landing page & site</div>
-              <div class="bar"><span style="--w: 86%;"></span></div>
-            </div>
-          </div>
+        <div class="map-card">
+          <div class="map-label">Performance system</div>
+          <div class="map-title">Dati → decisioni</div>
+          <div class="bar"><span style="--w:76%;"></span></div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section id="chi-sono">
-      <div class="container">
-        <div class="about-box reveal">
-          <div class="about-grid">
-            <div>
-              <div class="label">Chi sono</div>
-              <h2>Un supporto diretto, strategico e operativo.</h2>
-            </div>
-
-            <div class="about-text">
-              <p>
-                Lavoro nel digital marketing con un focus su analytics, funnel, customer journey,
-                conversione e performance digitali.
-              </p>
-              <p>
-                Porto esperienza da contesti enterprise e la applico a PMI, professionisti e progetti
-                digitali che vogliono crescere con più chiarezza, metodo e misurazione.
-              </p>
-              <p>
-                Posso affiancarti nella fase strategica, nella realizzazione operativa e
-                nell’ottimizzazione continua delle performance.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="servizi">
-      <div class="container">
-        <div class="services-intro reveal">
-          <div class="label">Strategia, dati e conversione</div>
-          <h2>Scegli il supporto più adatto al tuo progetto.</h2>
-          <p class="lead" style="margin-top: 30px;">
-            Puoi richiedere singoli servizi specifici oppure costruire un pacchetto completo
-            che includa strategia, sito web, funnel, campagne, tracking, analytics e ottimizzazione
-            delle performance.
-          </p>
+<section id="approccio">
+  <div class="container">
+    <div class="approach-box reveal">
+      <div class="approach-grid">
+        <div>
+          <div class="label">Approccio</div>
+          <h2>Non una struttura dispersiva. Un confronto diretto.</h2>
         </div>
 
-        <div class="service-list reveal">
-          <div class="service-row"><small>01</small><h3>Audit sito web e mobile app</h3><span class="arrow">→</span></div>
-          <div class="service-row"><small>02</small><h3>Strategia funnel acquisition & conversion</h3><span class="arrow">→</span></div>
-          <div class="service-row"><small>03</small><h3>Media strategy e piano campagne</h3><span class="arrow">→</span></div>
-          <div class="service-row"><small>04</small><h3>Analisi target, audience e canali</h3><span class="arrow">→</span></div>
-          <div class="service-row"><small>05</small><h3>Analytics, tracking e KPI</h3><span class="arrow">→</span></div>
-          <div class="service-row"><small>06</small><h3>Adobe Analytics e tool enterprise</h3><span class="arrow">→</span></div>
-          <div class="service-row"><small>07</small><h3>CRO, A/B test e customer journey</h3><span class="arrow">→</span></div>
-          <div class="service-row"><small>08</small><h3>Sviluppo rapido siti web e landing page</h3><span class="arrow">→</span></div>
-          <div class="service-row"><small>09</small><h3>Strategia digitale end-to-end</h3><span class="arrow">→</span></div>
-          <div class="service-row"><small>10</small><h3>Pacchetto completo</h3><span class="arrow">→</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="media">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <div class="label">Media strategy</div>
-            <h2>Campagne costruite sul target, non sul caso.</h2>
-          </div>
-
-          <div>
-            <p class="lead">
-              Posso costruire un piano media completo: obiettivi, target, audience, canali,
-              budget allocation, fasi del funnel e KPI di misurazione.
+        <div>
+          <div class="approach-text">
+            <p>
+              Collaboro con un numero limitato di progetti per garantire qualità, velocità e visione strategica.
             </p>
+            <p>
+              Ogni progetto viene seguito direttamente: dall’analisi iniziale alla strategia, fino alla realizzazione
+              e all’ottimizzazione delle performance.
+            </p>
+            <p>
+              Strategia, dati e implementazione devono lavorare insieme. È lì che il digitale smette di essere
+              un costo e diventa un asset di crescita.
+            </p>
+          </div>
 
-            <div class="chips">
-              <span class="chip">Awareness</span>
-              <span class="chip">Consideration</span>
-              <span class="chip">Reputation</span>
-              <span class="chip">Performance</span>
-              <span class="chip">Retargeting</span>
-              <span class="chip">Conversione</span>
-              <span class="chip">Loyalty</span>
-              <span class="chip">Reporting</span>
-            </div>
+          <div class="direct-list">
+            <div class="direct-item"><span class="check">✓</span> Rapporto diretto, senza passaggi intermedi inutili.</div>
+            <div class="direct-item"><span class="check">✓</span> Visione business prima della singola attività operativa.</div>
+            <div class="direct-item"><span class="check">✓</span> Qualità e selezione dei progetti, non volume.</div>
           </div>
         </div>
       </div>
-    </section>
-
-    <section id="come-lavoro">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <div class="label">Come lavoro</div>
-            <h2>Un processo chiaro dalla visione alla performance.</h2>
-          </div>
-          <p class="lead">
-            Ogni fase serve a ridurre dispersione, aumentare controllo e costruire un sistema digitale
-            più efficace, misurabile e migliorabile nel tempo.
-          </p>
-        </div>
-
-        <div class="process-grid reveal">
-          <div class="process-card"><small>01</small><div><h3>Analisi</h3><p>Studio del business, del funnel e dei punti critici.</p></div></div>
-          <div class="process-card"><small>02</small><div><h3>Strategia</h3><p>Definizione di obiettivi, customer journey e priorità.</p></div></div>
-          <div class="process-card"><small>03</small><div><h3>Realizzazione</h3><p>Sviluppo rapido di sito, landing page e sistemi digitali.</p></div></div>
-          <div class="process-card"><small>04</small><div><h3>Tracking</h3><p>Implementazione analytics, KPI, eventi e dashboard.</p></div></div>
-          <div class="process-card"><small>05</small><div><h3>Ottimizzazione</h3><p>CRO, test e miglioramento continuo delle performance.</p></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="container">
-        <div class="complete reveal">
-          <div class="complete-grid">
-            <div>
-              <div class="label" style="color: rgba(247,241,231,.62);">Dall’idea alla realizzazione</div>
-              <h2>Strategia. Sviluppo. Crescita.</h2>
-            </div>
-
-            <div>
-              <p class="lead">
-                Posso seguire tutto il percorso: idea, posizionamento, strategia, sviluppo sito o landing,
-                sistemi integrati, tracking, campagne, dashboard e ottimizzazione.
-              </p>
-              <br>
-              <p class="lead">
-                L’obiettivo è trasformare un’intuizione in un ecosistema digitale concreto,
-                misurabile e pronto a crescere.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <div class="label">Perché lavorare con me</div>
-            <h2>Competenza tecnica, visione di business e rapidità operativa.</h2>
-          </div>
-          <p class="lead">
-            Non vendo complessità. Ti aiuto a capire cosa serve davvero, cosa misurare e come trasformare
-            il digitale in un asset più utile per il tuo business.
-          </p>
-        </div>
-
-        <div class="why-grid reveal">
-          <div class="why-card"><h3>Approccio data-driven</h3><p>Decisioni basate su dati, KPI, tracking e lettura reale delle performance.</p></div>
-          <div class="why-card"><h3>Funnel completo</h3><p>Visione su awareness, consideration, conversione, loyalty e media strategy.</p></div>
-          <div class="why-card"><h3>Tool enterprise</h3><p>Esperienza su strumenti analytics avanzati, report suite e sistemi di misurazione.</p></div>
-          <div class="why-card"><h3>Siti in tempi rapidi</h3><p>Landing page e siti moderni, responsive e progettati per convertire.</p></div>
-          <div class="why-card"><h3>CRO e performance</h3><p>Attenzione costante a UX, conversion rate, test e customer journey.</p></div>
-          <div class="why-card"><h3>Supporto diretto</h3><p>Un rapporto personale, concreto e senza struttura finta da agenzia.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contatti">
-      <div class="container contact-grid">
-        <div class="reveal">
-          <div class="label">Contatti</div>
-          <h2>Raccontami il tuo progetto.</h2>
-          <p class="lead" style="margin-top: 28px;">
-            Possiamo partire da un audit, una consulenza strategica, un piano media o dalla realizzazione
-            completa del tuo ecosistema digitale.
-          </p>
-        </div>
-
-        <form class="reveal">
-          <div class="form-row">
-            <input type="text" placeholder="Nome" required>
-            <input type="email" placeholder="Email" required>
-          </div>
-
-          <select required>
-            <option value="">Servizio richiesto</option>
-            <option>Audit sito/app</option>
-            <option>Strategia funnel</option>
-            <option>Media strategy</option>
-            <option>Analytics & tracking</option>
-            <option>Adobe Analytics</option>
-            <option>Sito web / landing page</option>
-            <option>Pacchetto completo</option>
-          </select>
-
-          <textarea placeholder="Messaggio"></textarea>
-
-          <button class="btn btn-primary submit" type="submit">Invia richiesta</button>
-        </form>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="container footer-inner">
-      <span>© 2026 Di Spirito Consulting</span>
-      <span>dispiritoconsulting.it</span>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script>
-    const reveals = document.querySelectorAll('.reveal');
+<section id="aree">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="label">Aree strategiche</div>
+        <h2>Advisory digitale per costruire sistemi più solidi e misurabili.</h2>
+      </div>
+      <p class="lead">
+        Non parto dal singolo servizio, ma dal problema di business: acquisire meglio, convertire di più,
+        misurare correttamente e costruire un ecosistema digitale più efficace.
+      </p>
+    </div>
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        }
-      });
-    }, { threshold: 0.12 });
+    <div class="areas-grid reveal">
+      <div class="area-card">
+        <div class="area-top">
+          <small>01</small>
+          <h3>Strategia & Posizionamento</h3>
+        </div>
+        <ul>
+          <li>Funnel</li>
+          <li>Acquisizione</li>
+          <li>Customer journey</li>
+          <li>Posizionamento digitale</li>
+          <li>Crescita</li>
+        </ul>
+      </div>
 
-    reveals.forEach(el => observer.observe(el));
+      <div class="area-card">
+        <div class="area-top">
+          <small>02</small>
+          <h3>Dati & Performance</h3>
+        </div>
+        <ul>
+          <li>Analytics</li>
+          <li>Tracking</li>
+          <li>KPI</li>
+          <li>Adobe Analytics</li>
+          <li>CRO e A/B test</li>
+        </ul>
+      </div>
 
-    document.querySelector("form").addEventListener("submit", function(e) {
-      e.preventDefault();
-      alert("Richiesta pronta. Per ora il form è statico: possiamo collegarlo a email, Formspree o Google Forms.");
+      <div class="area-card">
+        <div class="area-top">
+          <small>03</small>
+          <h3>Ecosistema Digitale</h3>
+        </div>
+        <ul>
+          <li>Siti web</li>
+          <li>Landing page</li>
+          <li>Sistemi integrati</li>
+          <li>Architetture digitali</li>
+          <li>Dashboard</li>
+        </ul>
+      </div>
+
+      <div class="area-card">
+        <div class="area-top">
+          <small>04</small>
+          <h3>Media & Acquisizione</h3>
+        </div>
+        <ul>
+          <li>Target e audience</li>
+          <li>Campagne</li>
+          <li>Awareness</li>
+          <li>Conversione</li>
+          <li>Loyalty e retargeting</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="private" class="private">
+  <div class="container private-layout">
+    <div class="quote-card reveal">
+      <div class="label" style="color:rgba(247,241,231,.62);">Private Consulting</div>
+      <h2>La differenza è essere seguito direttamente.</h2>
+      <p class="lead">
+        Meno dispersione, più controllo, più qualità. Un unico interlocutore che tiene insieme visione,
+        dati, strategia e realizzazione.
+      </p>
+    </div>
+
+    <div class="private-points reveal">
+      <div class="private-point">
+        <h3>Rapporto diretto</h3>
+        <p>Collabori con me, non con passaggi intermedi che rallentano decisioni e qualità.</p>
+      </div>
+      <div class="private-point">
+        <h3>Visione unificata</h3>
+        <p>Strategia, funnel, media, tracking e conversione vengono letti come un unico sistema.</p>
+      </div>
+      <div class="private-point">
+        <h3>Approccio selettivo</h3>
+        <p>Seguo pochi progetti per mantenere attenzione, velocità e profondità strategica.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="come-lavoro">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="label">Come lavoro</div>
+        <h2>Un processo chiaro dalla visione alla performance.</h2>
+      </div>
+      <p class="lead">
+        Ogni fase serve a ridurre dispersione, aumentare controllo e costruire un sistema digitale
+        più efficace, misurabile e migliorabile nel tempo.
+      </p>
+    </div>
+
+    <div class="process-grid reveal">
+      <div class="process-card"><small>01</small><div><h3>Analisi</h3><p>Studio business, funnel, target, canali e punti critici.</p></div></div>
+      <div class="process-card"><small>02</small><div><h3>Strategia</h3><p>Definizione priorità, customer journey, media e obiettivi.</p></div></div>
+      <div class="process-card"><small>03</small><div><h3>Realizzazione</h3><p>Sviluppo rapido di sito, landing page e sistemi digitali.</p></div></div>
+      <div class="process-card"><small>04</small><div><h3>Tracking</h3><p>Implementazione analytics, eventi, KPI e dashboard.</p></div></div>
+      <div class="process-card"><small>05</small><div><h3>Ottimizzazione</h3><p>CRO, test, lettura dati e miglioramento continuo.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="complete reveal">
+      <div class="complete-grid">
+        <div>
+          <div class="label" style="color:rgba(247,241,231,.62);">Dall’idea alla crescita</div>
+          <h2>Idea. Strategia. Ecosistema. Performance.</h2>
+        </div>
+
+        <div>
+          <p class="lead">
+            Posso seguire tutto il percorso: idea, posizionamento, funnel, media, sito, tracking,
+            dashboard, conversione e ottimizzazione.
+          </p>
+          <br>
+          <p class="lead">
+            L’obiettivo è trasformare un’intuizione o un bisogno di business in un ecosistema digitale
+            concreto, misurabile e pronto a crescere.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="label">Perché lavorare con me</div>
+        <h2>Competenza tecnica, visione di business e supporto diretto.</h2>
+      </div>
+      <p class="lead">
+        Ti aiuto a capire cosa serve davvero, cosa misurare e come trasformare il digitale
+        in un asset più utile per il tuo business.
+      </p>
+    </div>
+
+    <div class="why-grid reveal">
+      <div class="why-card"><h3>Approccio data-driven</h3><p>Decisioni basate su dati, KPI, tracking e performance reali.</p></div>
+      <div class="why-card"><h3>Esperienza enterprise</h3><p>Metodo e strumenti maturati in contesti strutturati e complessi.</p></div>
+      <div class="why-card"><h3>Supporto diretto</h3><p>Un rapporto personale, concreto e senza dispersione da struttura intermedia.</p></div>
+      <div class="why-card"><h3>Visione funnel/business</h3><p>Acquisizione, conversione e loyalty vengono progettate insieme.</p></div>
+      <div class="why-card"><h3>Rapidità realizzativa</h3><p>Siti e landing page in tempi rapidi, già pensati per misurazione e crescita.</p></div>
+      <div class="why-card"><h3>Qualità & selezione</h3><p>Seguo pochi progetti per garantire attenzione e qualità strategica.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="advisor">
+  <div class="container">
+    <div class="advisor-panel reveal">
+      <div>
+        <div class="label">Digital Growth Advisor</div>
+        <h2>Presto potrai iniziare da un primo confronto guidato.</h2>
+        <p class="lead" style="margin-top:26px;">
+          Sto lavorando a un Digital Growth Advisor pensato per aiutare professionisti e business
+          a chiarire problemi digitali, funnel, canali, criticità e possibili roadmap strategiche.
+        </p>
+      </div>
+
+      <div class="advisor-window">
+        <div class="advisor-inner">
+          <div class="advisor-message"><strong>Business:</strong> “Ho un sito, ma non capisco perché arrivano pochi clienti.”</div>
+          <div class="advisor-message"><strong>Advisor:</strong> “Analizziamo funnel, target, canali, tracciamento e punti di conversione.”</div>
+          <div class="advisor-message"><strong>Output:</strong> criticità principali, priorità, roadmap e possibile piano d’azione.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contatti">
+  <div class="container contact-grid">
+    <div class="reveal">
+      <div class="label">Contatti</div>
+      <h2>Raccontami il tuo progetto.</h2>
+      <p class="lead" style="margin-top:28px;">
+        Possiamo partire da un confronto strategico, un audit, un piano media o dalla costruzione
+        completa del tuo ecosistema digitale.
+      </p>
+    </div>
+
+    <form class="reveal">
+      <div class="form-row">
+        <input type="text" placeholder="Nome" required>
+        <input type="email" placeholder="Email" required>
+      </div>
+
+      <input type="text" placeholder="Azienda / progetto">
+
+      <select required>
+        <option value="">Area di interesse</option>
+        <option>Consulenza strategica privata</option>
+        <option>Strategia funnel</option>
+        <option>Media strategy</option>
+        <option>Analytics & tracking</option>
+        <option>Adobe Analytics</option>
+        <option>Sito web / landing page</option>
+        <option>Pacchetto completo</option>
+      </select>
+
+      <textarea placeholder="Messaggio"></textarea>
+
+      <p class="availability">
+        Collaboro con un numero limitato di progetti per garantire attenzione, velocità e qualità.
+      </p>
+
+      <button class="btn btn-primary submit" type="submit">Richiedi una consulenza privata</button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© 2026 Di Spirito Consulting</span>
+    <span>Private Strategic Digital Consulting — dispiritoconsulting.it</span>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+      }
     });
-  </script>
+  }, { threshold: 0.12 });
+
+  reveals.forEach(el => observer.observe(el));
+
+  const form = document.querySelector("form");
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    alert("Richiesta pronta. Il form è statico: posso collegarlo a Formspree, Google Forms o email.");
+  });
+</script>
 
 </body>
 </html>
