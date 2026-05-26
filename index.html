@@ -2426,26 +2426,26 @@
       </p>
     </div>
 
-    <form class="reveal">
+    <form class="reveal" id="privateConsultingForm">
       <div class="form-row">
         <div>
           <label class="required-label req">Nome</label>
-          <input type="text" placeholder="Il tuo nome" required>
+          <input id="contactName" type="text" placeholder="Il tuo nome" required>
         </div>
         <div>
           <label class="required-label req">Email</label>
-          <input type="email" placeholder="La tua email" required>
+          <input id="contactEmail" type="email" placeholder="La tua email" required>
         </div>
       </div>
 
       <div class="form-row">
         <div>
           <label class="required-label">Telefono</label>
-          <input type="tel" placeholder="Numero di telefono">
+          <input id="contactPhone" type="tel" placeholder="Numero di telefono">
         </div>
         <div>
           <label class="required-label">Azienda / progetto</label>
-          <input type="text" placeholder="Nome azienda o progetto">
+          <input id="contactProject" type="text" placeholder="Nome azienda o progetto">
         </div>
       </div>
 
@@ -2463,15 +2463,17 @@
       </div>
 
       <input class="hidden-selection" id="selectedServicesInput" name="consulenze" readonly>
+      <input class="hidden-selection" id="advisorResultInput" name="risultatoAssessment" readonly>
+      <input class="hidden-selection" id="advisorAnswersInput" name="risposteAssessment" readonly>
 
       <label class="required-label">Messaggio</label>
-      <textarea placeholder="Puoi iniziare a descrivere il tuo progetto, il contesto in cui ti trovi e l’area digitale su cui vorresti maggiore chiarezza."></textarea>
+      <textarea id="contactMessage" placeholder="Puoi iniziare a descrivere il tuo progetto, il contesto in cui ti trovi e l’area digitale su cui vorresti maggiore chiarezza."></textarea>
 
       <p class="availability">
         Collaboro con un numero limitato di progetti per garantire attenzione, velocità e qualità.
       </p>
 
-      <div class="form-response-note">
+      <div class="form-response-note" id="formResponseNote">
         Riceverai una risposta in meno di 1 ora.
       </div>
 
@@ -2745,11 +2747,115 @@
 
   reveals.forEach(el => observer.observe(el));
 
-  const form = document.querySelector("form");
+  const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSe6PjzlISdr9HvtOF4V6bexeeOadOUoVWX9nNVt8YQDvE9rWg/formResponse";
+
+  /*
+    Google Forms mapping.
+    Appena hai il link precompilato, sostituisci i valori REPLACE_* con i veri entry.xxxxx.
+    La struttura grafica del sito resta identica.
+  */
+  const GOOGLE_FORM_FIELDS = {
+    nome: "REPLACE_NOME",
+    email: "REPLACE_EMAIL",
+    telefono: "REPLACE_TELEFONO",
+    progetto: "REPLACE_PROGETTO",
+    servizio: "REPLACE_SERVIZIO",
+    risultato: "REPLACE_RISULTATO",
+    risposte: "REPLACE_RISPOSTE",
+    messaggio: "REPLACE_MESSAGGIO"
+  };
+
+  function googleFormIsConfigured(){
+    return Object.values(GOOGLE_FORM_FIELDS).every(value => value && !value.includes('REPLACE_'));
+  }
+
+  function setFormNote(text, isSuccess){
+    const note = document.getElementById('formResponseNote');
+    if(!note) return;
+    note.textContent = text;
+    note.style.background = isSuccess ? 'rgba(43,33,27,.07)' : 'rgba(122,47,40,.07)';
+    note.style.borderColor = isSuccess ? 'rgba(43,33,27,.10)' : 'rgba(122,47,40,.10)';
+  }
+
+  function buildAdvisorAnswersText(){
+    if(!advisorAnswers || !advisorAnswers.length) return '';
+    return advisorAnswers.map(item => `${item.question}: ${item.answers.join(', ')}`).join('\n');
+  }
+
+  function syncAdvisorHiddenFields(){
+    const advisorResultInput = document.getElementById('advisorResultInput');
+    const advisorAnswersInput = document.getElementById('advisorAnswersInput');
+    if(advisorResultInput) advisorResultInput.value = lastAdvisorResult || '';
+    if(advisorAnswersInput) advisorAnswersInput.value = buildAdvisorAnswersText();
+  }
+
+  function submitToGoogleForms(payload){
+    const data = new FormData();
+    data.append(GOOGLE_FORM_FIELDS.nome, payload.nome);
+    data.append(GOOGLE_FORM_FIELDS.email, payload.email);
+    data.append(GOOGLE_FORM_FIELDS.telefono, payload.telefono);
+    data.append(GOOGLE_FORM_FIELDS.progetto, payload.progetto);
+    data.append(GOOGLE_FORM_FIELDS.servizio, payload.servizio);
+    data.append(GOOGLE_FORM_FIELDS.risultato, payload.risultato);
+    data.append(GOOGLE_FORM_FIELDS.risposte, payload.risposte);
+    data.append(GOOGLE_FORM_FIELDS.messaggio, payload.messaggio);
+
+    return fetch(GOOGLE_FORM_ACTION, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: data
+    });
+  }
+
+  const form = document.getElementById('privateConsultingForm');
   if(form){
-    form.addEventListener("submit", function(e){
+    form.addEventListener('submit', async function(e){
       e.preventDefault();
-      alert("Richiesta pronta. Il form è statico: posso collegarlo a Formspree, Google Forms o email.");
+      syncAdvisorHiddenFields();
+
+      const payload = {
+        nome: document.getElementById('contactName')?.value.trim() || '',
+        email: document.getElementById('contactEmail')?.value.trim() || '',
+        telefono: document.getElementById('contactPhone')?.value.trim() || '',
+        progetto: document.getElementById('contactProject')?.value.trim() || '',
+        servizio: document.getElementById('selectedServicesInput')?.value.trim() || lastAdvisorService || '',
+        risultato: document.getElementById('advisorResultInput')?.value.trim() || lastAdvisorResult || '',
+        risposte: document.getElementById('advisorAnswersInput')?.value.trim() || buildAdvisorAnswersText(),
+        messaggio: document.getElementById('contactMessage')?.value.trim() || ''
+      };
+
+      if(!payload.nome || !payload.email){
+        setFormNote('Inserisci almeno nome ed email per inviare la richiesta.', false);
+        return;
+      }
+
+      if(!googleFormIsConfigured()){
+        setFormNote('Collegamento Google Forms quasi pronto: mancano solo gli entry ID del link precompilato. La struttura del sito è già predisposta.', false);
+        return;
+      }
+
+      const submitButton = form.querySelector('button[type="submit"]');
+      const originalText = submitButton ? submitButton.textContent : '';
+
+      try{
+        if(submitButton){
+          submitButton.disabled = true;
+          submitButton.textContent = 'Invio in corso...';
+        }
+
+        await submitToGoogleForms(payload);
+        setFormNote('Richiesta inviata correttamente. Ti risponderò con una prima valutazione privata.', true);
+        form.reset();
+        selectedServices = new Set();
+        updateSelectionUI();
+      } catch(error){
+        setFormNote('Non sono riuscito a inviare la richiesta. Riprova tra qualche minuto.', false);
+      } finally{
+        if(submitButton){
+          submitButton.disabled = false;
+          submitButton.textContent = originalText;
+        }
+      }
     });
   }
 
@@ -3045,6 +3151,7 @@
       const cleanValue = messageTextarea.value.replace(/\n\n--- VALUTAZIONE PRIVATE CONSULTING ASSESSMENT ---[\s\S]*$/,'').trim();
       messageTextarea.value = `${cleanValue ? cleanValue + '\n\n' : ''}--- VALUTAZIONE PRIVATE CONSULTING ASSESSMENT ---\n${lastAdvisorResult}`;
     }
+    if(typeof syncAdvisorHiddenFields === 'function') syncAdvisorHiddenFields();
   }
 
   function generateAdvisorAnalysis(){
