@@ -234,7 +234,7 @@
         radial-gradient(circle at 88% 0%,rgba(122,47,40,.12),transparent 34%);
       backdrop-filter:blur(22px);
       box-shadow:0 34px 100px rgba(43,33,27,.24);
-      padding:18px;
+      padding:68px 18px 18px;
       transform:translateY(-10px) scale(.98);
       opacity:0;
       pointer-events:none;
@@ -243,6 +243,27 @@
     }
 
     body.menu-open .mobile-panel{transform:translateY(0) scale(1);opacity:1;pointer-events:auto}
+
+    .mobile-close{
+      position:absolute;
+      top:14px;
+      right:14px;
+      width:42px!important;
+      height:42px;
+      border-radius:50%!important;
+      border:1px solid rgba(43,33,27,.10)!important;
+      background:rgba(255,255,255,.58)!important;
+      color:var(--brown)!important;
+      display:grid!important;
+      place-items:center!important;
+      padding:0!important;
+      font-size:24px!important;
+      line-height:1!important;
+      font-weight:500!important;
+      box-shadow:0 12px 30px rgba(43,33,27,.08);
+    }
+
+    .mobile-close::after{display:none!important}
 
     .mobile-panel a,
     .mobile-panel button{
@@ -639,18 +660,18 @@
     }
 
     .offer-card.is-selected{
-      border-color:rgba(43,33,27,.42);
-      background:linear-gradient(145deg,rgba(43,33,27,.92),rgba(75,55,42,.90));
-      color:var(--ivory);
-      box-shadow:0 30px 80px rgba(43,33,27,.18);
+      border-color:rgba(122,47,40,.42);
+      background:rgba(255,255,255,.62);
+      color:var(--text);
+      box-shadow:0 24px 62px rgba(122,47,40,.10);
       transform:translateY(-4px);
     }
 
-    .offer-card.is-selected small,
+    .offer-card.is-selected small{color:var(--bronze)}
     .offer-card.is-selected p,
-    .offer-card.is-selected li{color:rgba(43,33,27,.58)}
-    .offer-card.is-selected h3{color:var(--ivory)}
-    .offer-card.is-selected li::before{color:var(--sand)}
+    .offer-card.is-selected li{color:var(--muted)}
+    .offer-card.is-selected h3{color:var(--text)}
+    .offer-card.is-selected li::before{color:var(--bordeaux)}
 
     .offer-card.is-complete{
       background:
@@ -665,6 +686,21 @@
 
     .offer-card.is-complete h3{color:var(--ivory)}
     .offer-card.is-complete li::before{color:var(--sand)}
+
+    .offer-card.is-complete.is-selected{
+      background:
+        linear-gradient(145deg,rgba(43,33,27,.96),rgba(72,52,39,.92)),
+        radial-gradient(circle at 80% 10%,rgba(122,47,40,.32),transparent 34%);
+      color:var(--ivory);
+      border-color:rgba(247,241,231,.18);
+      box-shadow:0 30px 80px rgba(43,33,27,.18);
+    }
+
+    .offer-card.is-complete.is-selected small,
+    .offer-card.is-complete.is-selected p,
+    .offer-card.is-complete.is-selected li{color:rgba(247,241,231,.72)}
+    .offer-card.is-complete.is-selected h3{color:var(--ivory)}
+    .offer-card.is-complete.is-selected li::before{color:var(--sand)}
 
     .offer-card small{
       color:var(--bronze);
@@ -719,10 +755,16 @@
       transition:.25s;
     }
 
-    .is-complete .select-pill,
     .offer-card.is-selected .select-pill{
       background:transparent;
-      color:rgba(122,47,40,.75);
+      color:rgba(122,47,40,.78);
+      border:0;
+    }
+
+    .is-complete .select-pill,
+    .offer-card.is-complete.is-selected .select-pill{
+      background:transparent;
+      color:rgba(247,241,231,.92);
       border:0;
     }
 
@@ -739,6 +781,13 @@
       background:var(--bordeaux);
       border-color:var(--bordeaux);
       box-shadow:inset 0 0 0 4px rgba(255,255,255,.72);
+    }
+
+    .offer-card.is-complete .select-pill::before,
+    .offer-card.is-complete.is-selected .select-pill::before{
+      background:rgba(247,241,231,.92);
+      border-color:rgba(247,241,231,.92);
+      box-shadow:inset 0 0 0 4px rgba(43,33,27,.22);
     }
 
     .offer-card > div:last-child{
@@ -765,7 +814,8 @@
     }
 
     .learn-more:hover{color:var(--bordeaux);border-bottom-color:var(--bordeaux);transform:translateY(-1px)}
-    .is-complete .learn-more,.offer-card.is-selected .learn-more{color:var(--ivory);border-bottom-color:rgba(247,241,231,.42)}
+    .offer-card.is-selected .learn-more{color:var(--brown);border-bottom-color:rgba(43,33,27,.28)}
+    .is-complete .learn-more,.offer-card.is-complete.is-selected .learn-more{color:var(--ivory);border-bottom-color:rgba(247,241,231,.42)}
 
     .selection-panel{
       margin-top:22px;
@@ -843,7 +893,7 @@
     .quote-card p{
       position:relative;
       z-index:2;
-      color:rgba(43,33,27,.58);
+      color:rgba(247,241,231,.72);
       margin-top:26px;
     }
 
@@ -851,7 +901,7 @@
       position:relative;
       z-index:2;
       margin-top:20px;
-      color:rgba(43,33,27,.58);
+      color:rgba(247,241,231,.72);
       font-size:15px;
       line-height:1.65;
       font-weight:650;
@@ -1490,6 +1540,7 @@
 <div class="mobile-backdrop" data-close-menu></div>
 
 <nav class="mobile-panel" aria-label="Menu mobile">
+  <button class="mobile-close" type="button" data-close-menu aria-label="Chiudi menu">×</button>
   <button type="button" data-open-about>Chi sono</button>
   <a href="#approccio">Approccio</a>
   <a href="#consulenze">Consulenze</a>
@@ -1938,6 +1989,7 @@
   }
 
   if(mobileBackdrop) mobileBackdrop.addEventListener('click', closeMobileMenu);
+  document.querySelectorAll('[data-close-menu]').forEach(el => el.addEventListener('click', closeMobileMenu));
   if(mobilePanel){
     mobilePanel.querySelectorAll('a, button').forEach(item => {
       item.addEventListener('click', closeMobileMenu);
