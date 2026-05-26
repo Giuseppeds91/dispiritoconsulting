@@ -1949,7 +1949,7 @@
       <a href="#approccio">Approccio</a>
       <a href="#consulenze">Consulenze</a>
       <a href="#come-lavoro">Come lavoro</a>
-      <a href="#advisor">Advisor</a>
+      <a href="#advisor">Assessment</a>
       <a href="#contatti">Contatti</a>
     </nav>
 
@@ -1969,7 +1969,7 @@
   <a href="#approccio">Approccio</a>
   <a href="#consulenze">Consulenze</a>
   <a href="#come-lavoro">Come lavoro</a>
-  <a href="#advisor">Advisor</a>
+  <a href="#advisor">Assessment</a>
   <a href="#contatti">Contatti</a>
   <a class="btn btn-primary" href="#contatti">Prenota una call</a>
 </nav>
@@ -2301,30 +2301,29 @@
   <div class="container">
     <div class="advisor-panel private-advisor-panel reveal">
       <div>
-        <div class="label">Private Digital Advisor</div>
-        <h2>Capisci quale percorso digitale ha più senso per il tuo progetto.</h2>
+        <div class="label">Private Consulting Assessment</div>
+        <h2>Una prima valutazione privata per capire dove intervenire.</h2>
         <p class="lead" style="margin-top:26px;">
-          Rispondi a 6 domande: il sistema legge le risposte, individua la priorità più urgente
-          e ti suggerisce il percorso più adatto tra strategia, sito, funnel, media, dati e automazioni.
+          Rispondi a 6 domande guidate: riceverai una prima analisi preliminare del progetto, con una direzione chiara sulle aree da migliorare e sul percorso più adatto da approfondire.
         </p>
       </div>
 
       <div class="advisor-window private-advisor-window">
         <div class="advisor-ai-shell">
           <div class="advisor-ai-top">
-            <span>Assessment privato</span>
+            <span>Valutazione riservata</span>
             <small id="advisorStepLabel">Pronto</small>
           </div>
 
           <div id="advisorStart" class="advisor-start-state">
             <div class="advisor-intro-message">
-              <strong>Private Digital Advisor</strong>
+              <strong>Private Consulting Assessment</strong>
               <p>
-                Non è un agent esterno: è un modello guidato costruito sulle risposte. Alla fine ricevi una prima diagnosi e puoi inviarla direttamente nel modulo.
+                Un assessment riservato progettato per leggere il tuo progetto, individuare le priorità digitali e orientarti verso il percorso più coerente con i tuoi obiettivi.
               </p>
             </div>
             <button class="advisor-start-btn" type="button" id="startAdvisorBtn">
-              Avvia l’analisi guidata
+              Avvia la valutazione privata
             </button>
           </div>
 
@@ -2345,8 +2344,8 @@
           <div id="advisorResult" class="advisor-result advisor-hidden">
             <div class="advisor-result-label">Analisi preliminare</div>
             <div class="advisor-result-text" id="advisorResultText"></div>
-            <button class="advisor-reset-btn" type="button" id="advisorResetBtn">Rifai assessment</button>
-            <a href="#contatti" class="advisor-contact-btn" id="advisorContactBtn">Invia la diagnosi nel form</a>
+            <button class="advisor-reset-btn" type="button" id="advisorResetBtn">Rifai la valutazione</button>
+            <a href="#contatti" class="advisor-contact-btn" id="advisorContactBtn">Invia la valutazione nel form</a>
           </div>
         </div>
       </div>
@@ -2936,16 +2935,15 @@
 
   function buildAdvisorResult(service){
     const rule = advisorServiceRules[service] || advisorServiceRules['Pacchetto completo'];
-    const summary = advisorAnswers.map(item => `• ${item.question} ${item.answer}`).join('\n');
 
-    return `${rule.title}\n\n${rule.intro}\n\nPerché: ${rule.why}\n\nProssimo passo: ${rule.next}\n\nSintesi risposte:\n${summary}`;
+    return `${rule.title}\n\n${rule.intro}\n\nPerché: ${rule.why}\n\nProssimo passo: ${rule.next}`;
   }
 
   function writeAdvisorResultToForm(){
     const messageTextarea = document.querySelector('form textarea');
     if(messageTextarea && lastAdvisorResult){
-      const cleanValue = messageTextarea.value.replace(/\n\n--- DIAGNOSI PRIVATE DIGITAL ADVISOR ---[\s\S]*$/,'').trim();
-      messageTextarea.value = `${cleanValue ? cleanValue + '\n\n' : ''}--- DIAGNOSI PRIVATE DIGITAL ADVISOR ---\n${lastAdvisorResult}`;
+      const cleanValue = messageTextarea.value.replace(/\n\n--- VALUTAZIONE PRIVATE CONSULTING ASSESSMENT ---[\s\S]*$/,'').trim();
+      messageTextarea.value = `${cleanValue ? cleanValue + '\n\n' : ''}--- VALUTAZIONE PRIVATE CONSULTING ASSESSMENT ---\n${lastAdvisorResult}`;
     }
   }
 
