@@ -684,7 +684,7 @@
 
     .offer-card.is-selected{
       border-color:rgba(122,47,40,.62);
-      border-width:2px;
+      border-width:3px;
       background:rgba(255,255,255,.62);
       color:var(--text);
       box-shadow:0 24px 62px rgba(122,47,40,.10);
@@ -717,7 +717,7 @@
         radial-gradient(circle at 80% 10%,rgba(122,47,40,.32),transparent 34%);
       color:var(--ivory);
       border-color:rgba(230,213,187,.98);
-      border-width:3px;
+      border-width:4px;
       box-shadow:0 30px 82px rgba(43,33,27,.22), 0 0 0 1px rgba(230,213,187,.18);
     }
 
@@ -870,6 +870,26 @@
       font-size:15px;
       line-height:1.45;
       font-weight:700;
+    }
+
+    .selected-list .selected-helper{
+      display:block;
+      margin-top:9px;
+      color:rgba(111,98,88,.82);
+      font-size:13px;
+      line-height:1.45;
+      font-weight:750;
+    }
+
+    .selected-list .selected-names{
+      display:block;
+      color:var(--text);
+      font-weight:850;
+    }
+
+    .selected-list .selected-empty{
+      color:var(--muted);
+      font-weight:720;
     }
 
     .private{
@@ -1474,6 +1494,72 @@
       color:var(--brown);
     }
 
+
+    .back-to-top{
+      position:fixed;
+      right:24px;
+      bottom:24px;
+      z-index:90;
+      width:56px;
+      height:56px;
+      border-radius:50%;
+      border:1px solid rgba(155,118,83,.36);
+      background:
+        linear-gradient(145deg,rgba(251,248,242,.88),rgba(247,241,231,.62)),
+        radial-gradient(circle at 32% 18%,rgba(255,255,255,.68),transparent 34%);
+      color:var(--brown);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      box-shadow:0 20px 54px rgba(43,33,27,.18), inset 0 1px 0 rgba(255,255,255,.72);
+      backdrop-filter:blur(18px);
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(14px) scale(.94);
+      transition:opacity .28s ease, transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+    }
+
+    .back-to-top.is-visible{
+      opacity:1;
+      pointer-events:auto;
+      transform:translateY(0) scale(1);
+    }
+
+    .back-to-top:hover{
+      transform:translateY(-3px) scale(1.02);
+      border-color:rgba(155,118,83,.62);
+      box-shadow:0 26px 68px rgba(43,33,27,.22), 0 0 0 1px rgba(230,213,187,.30), inset 0 1px 0 rgba(255,255,255,.76);
+    }
+
+    .back-to-top::before{
+      content:"";
+      width:13px;
+      height:13px;
+      border-left:2px solid var(--brown);
+      border-top:2px solid var(--brown);
+      transform:translateY(4px) rotate(45deg);
+      border-radius:1px;
+    }
+
+    .back-to-top::after{
+      content:"";
+      position:absolute;
+      width:1px;
+      height:18px;
+      background:linear-gradient(180deg,var(--brown),rgba(43,33,27,.18));
+      transform:translateY(8px);
+      border-radius:999px;
+    }
+
+    .back-to-top span{
+      position:absolute;
+      width:1px;
+      height:1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+    }
+
     @media(max-width:1050px){
       .about-content{grid-template-columns:1fr}
       .about-photo{min-height:auto;padding:34px}
@@ -1537,6 +1623,7 @@
       .form-row{grid-template-columns:1fr;gap:0}
       .service-options{grid-template-columns:1fr}
       .mobile-panel a,.mobile-panel button{font-size:16px;padding:15px 6px}
+      .back-to-top{right:16px;bottom:16px;width:50px;height:50px}
     }
   </style>
 </head>
@@ -1818,7 +1905,7 @@
     <div class="selection-panel reveal">
       <strong>Consulenze selezionate</strong>
       <div class="selected-list" id="selectedList">
-        Nessuna consulenza selezionata. Clicca su “Seleziona” nei box: la scelta verrà riportata automaticamente nel form in fondo alla pagina.
+        <span class="selected-empty">Nessuna consulenza selezionata.</span><span class="selected-helper">Clicca su “Seleziona” nei box: le consulenze scelte verranno riportate automaticamente nel modulo in fondo alla pagina.</span>
       </div>
     </div>
   </div>
@@ -2007,6 +2094,11 @@
   </div>
 </footer>
 
+
+<button class="back-to-top" type="button" data-back-to-top aria-label="Torna all'inizio">
+  <span>Torna su</span>
+</button>
+
 <script>
   const body = document.body;
   const mobileToggle = document.querySelector('.mobile-toggle');
@@ -2156,7 +2248,14 @@
     });
 
     const selectedArray = Array.from(selectedServices);
-    if(selectedList) selectedList.textContent = selectedArray.length ? selectedArray.join(', ') : 'Nessuna consulenza selezionata.';
+    if(selectedList){
+      if(selectedArray.length){
+        selectedList.innerHTML = '<span class="selected-names"></span><span class="selected-helper">Le consulenze selezionate verranno riportate automaticamente nel modulo in fondo alla pagina.</span>';
+        selectedList.querySelector('.selected-names').textContent = selectedArray.join(', ');
+      } else {
+        selectedList.innerHTML = '<span class="selected-empty">Nessuna consulenza selezionata.</span><span class="selected-helper">Clicca su “Seleziona” nei box: le consulenze scelte verranno riportate automaticamente nel modulo in fondo alla pagina.</span>';
+      }
+    }
 
     if(selectedServicesInput) selectedServicesInput.value = selectedArray.join(', ');
 
@@ -2241,6 +2340,43 @@
       e.preventDefault();
       alert("Richiesta pronta. Il form è statico: posso collegarlo a Formspree, Google Forms o email.");
     });
+  }
+
+
+  const backToTop = document.querySelector('[data-back-to-top]');
+
+  function toggleBackToTop(){
+    if(!backToTop) return;
+    backToTop.classList.toggle('is-visible', window.scrollY > 520);
+  }
+
+  function scrollToTopInOneSecond(){
+    const startPosition = window.scrollY;
+    const startTime = performance.now();
+    const duration = 1000;
+
+    function easeInOutCubic(t){
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function animate(currentTime){
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeInOutCubic(progress);
+      window.scrollTo(0, startPosition * (1 - eased));
+
+      if(progress < 1){
+        requestAnimationFrame(animate);
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  if(backToTop){
+    toggleBackToTop();
+    window.addEventListener('scroll', toggleBackToTop, { passive:true });
+    backToTop.addEventListener('click', scrollToTopInOneSecond);
   }
 
   document.addEventListener('keydown', (event) => {
