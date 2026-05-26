@@ -1585,6 +1585,257 @@
     }
 
 
+
+
+    .private-advisor-panel{
+      grid-template-columns:.92fr 1.08fr;
+      align-items:stretch;
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.72),rgba(255,255,255,.34)),
+        radial-gradient(circle at 14% 10%,rgba(122,47,40,.08),transparent 32%);
+    }
+
+    .private-advisor-window{
+      min-height:420px;
+      padding:0;
+      background:
+        linear-gradient(145deg,rgba(43,33,27,.96),rgba(63,46,35,.94)),
+        radial-gradient(circle at 88% 0%,rgba(155,118,83,.18),transparent 34%);
+      box-shadow:0 28px 80px rgba(43,33,27,.18);
+    }
+
+    .private-advisor-window::before{
+      opacity:.78;
+    }
+
+    .advisor-ai-shell{
+      position:relative;
+      z-index:2;
+      min-height:420px;
+      padding:30px;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .advisor-ai-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:24px;
+      color:rgba(247,241,231,.58);
+      font-size:11px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-weight:900;
+    }
+
+    .advisor-ai-top small{
+      color:rgba(230,213,187,.82);
+      font-size:11px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      font-weight:900;
+    }
+
+    .advisor-start-state,
+    .advisor-flow,
+    .advisor-loading,
+    .advisor-result{
+      margin-top:auto;
+      margin-bottom:auto;
+    }
+
+    .advisor-intro-message{
+      border-radius:28px;
+      padding:24px;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.10);
+      margin-bottom:18px;
+    }
+
+    .advisor-intro-message strong{
+      display:block;
+      color:var(--ivory);
+      font-size:24px;
+      line-height:1.05;
+      letter-spacing:-.04em;
+      margin-bottom:10px;
+    }
+
+    .advisor-intro-message p{
+      color:rgba(247,241,231,.70);
+      line-height:1.6;
+      font-size:15px;
+      font-weight:560;
+    }
+
+    .advisor-start-btn,
+    .advisor-contact-btn,
+    .advisor-reset-btn{
+      border:0;
+      cursor:pointer;
+      border-radius:999px;
+      font:inherit;
+      font-size:14px;
+      font-weight:900;
+      transition:.22s ease;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    .advisor-start-btn{
+      width:100%;
+      padding:16px 20px;
+      background:var(--ivory);
+      color:var(--brown);
+      box-shadow:0 18px 46px rgba(0,0,0,.18);
+    }
+
+    .advisor-start-btn:hover,
+    .advisor-contact-btn:hover{
+      transform:translateY(-2px);
+      background:#fff;
+    }
+
+    .advisor-progress{
+      height:4px;
+      width:100%;
+      overflow:hidden;
+      border-radius:999px;
+      background:rgba(255,255,255,.10);
+      margin-bottom:28px;
+    }
+
+    .advisor-progress span{
+      display:block;
+      height:100%;
+      width:0%;
+      border-radius:999px;
+      background:linear-gradient(90deg,rgba(230,213,187,.58),rgba(247,241,231,.96));
+      transition:width .32s ease;
+    }
+
+    .advisor-question{
+      color:var(--ivory);
+      font-size:25px;
+      line-height:1.18;
+      letter-spacing:-.035em;
+      font-weight:850;
+      margin-bottom:20px;
+    }
+
+    .advisor-options{
+      display:grid;
+      gap:10px;
+    }
+
+    .advisor-option{
+      width:100%;
+      border:1px solid rgba(247,241,231,.12);
+      background:rgba(255,255,255,.065);
+      color:rgba(247,241,231,.86);
+      border-radius:18px;
+      padding:14px 15px;
+      font:inherit;
+      text-align:left;
+      font-size:14px;
+      font-weight:820;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .advisor-option:hover{
+      transform:translateY(-1px);
+      border-color:rgba(230,213,187,.34);
+      background:rgba(255,255,255,.10);
+      color:var(--ivory);
+    }
+
+    .advisor-loading{
+      text-align:center;
+      color:var(--ivory);
+      padding:34px 0;
+    }
+
+    .advisor-loading strong{
+      display:block;
+      font-size:22px;
+      letter-spacing:-.035em;
+      margin-bottom:10px;
+    }
+
+    .advisor-loading p{
+      max-width:340px;
+      margin:0 auto;
+      color:rgba(247,241,231,.64);
+      line-height:1.55;
+      font-size:14px;
+      font-weight:650;
+    }
+
+    .advisor-loader{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      border:2px solid rgba(247,241,231,.14);
+      border-top-color:rgba(230,213,187,.95);
+      margin:0 auto 18px;
+      animation:advisorSpin .8s linear infinite;
+    }
+
+    @keyframes advisorSpin{to{transform:rotate(360deg)}}
+
+    .advisor-result-label{
+      color:rgba(230,213,187,.88);
+      font-size:11px;
+      letter-spacing:.19em;
+      text-transform:uppercase;
+      font-weight:900;
+      margin-bottom:14px;
+    }
+
+    .advisor-result-text{
+      color:rgba(247,241,231,.78);
+      line-height:1.68;
+      font-size:15px;
+      font-weight:560;
+      white-space:pre-line;
+      margin-bottom:20px;
+    }
+
+    .advisor-contact-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 18px;
+      background:var(--ivory);
+      color:var(--brown);
+      margin-right:10px;
+      margin-top:8px;
+    }
+
+    .advisor-reset-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 18px;
+      background:transparent;
+      border:1px solid rgba(247,241,231,.18);
+      color:rgba(247,241,231,.82);
+      margin-right:10px;
+      margin-top:8px;
+    }
+
+    .advisor-reset-btn:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.08);
+      color:var(--ivory);
+    }
+
+    .advisor-hidden{
+      display:none!important;
+    }
+
     @media(max-width:1050px){
       .about-content{grid-template-columns:1fr}
       .about-photo{min-height:auto;padding:34px}
@@ -1650,6 +1901,37 @@
       .mobile-panel a,.mobile-panel button{font-size:16px;padding:15px 6px}
       .back-to-top{right:14px;bottom:14px;width:44px;height:44px}
     }
+    @media(max-width:1050px){
+      .private-advisor-panel{
+        grid-template-columns:1fr;
+      }
+      .private-advisor-window,
+      .advisor-ai-shell{
+        min-height:380px;
+      }
+    }
+
+    @media(max-width:560px){
+      .advisor-ai-shell{
+        padding:22px;
+      }
+      .advisor-question{
+        font-size:21px;
+      }
+      .advisor-intro-message{
+        padding:20px;
+        border-radius:24px;
+      }
+      .advisor-intro-message strong{
+        font-size:22px;
+      }
+      .advisor-contact-btn,
+      .advisor-reset-btn{
+        width:100%;
+        margin-right:0;
+      }
+    }
+
   </style>
 </head>
 
@@ -2017,21 +2299,55 @@
 
 <section id="advisor" class="advisor">
   <div class="container">
-    <div class="advisor-panel reveal">
+    <div class="advisor-panel private-advisor-panel reveal">
       <div>
-        <div class="label">Digital Growth Advisor</div>
-        <h2>Presto potrai iniziare da un primo confronto guidato.</h2>
+        <div class="label">Private Digital Advisor</div>
+        <h2>Un primo assessment guidato per capire dove intervenire.</h2>
         <p class="lead" style="margin-top:26px;">
-          Sto lavorando a un Digital Growth Advisor pensato per aiutare professionisti e business
-          a chiarire problemi digitali, priorità, canali e possibili roadmap strategiche.
+          Rispondi a poche domande sul tuo progetto: l’advisor analizza strategia, sito, funnel, dati,
+          conversione e processi AI per restituirti una prima lettura chiara e un percorso consigliato.
         </p>
       </div>
 
-      <div class="advisor-window">
-        <div class="advisor-inner">
-          <div class="advisor-message"><strong>Business:</strong> “Ho una presenza digitale, ma non capisco dove intervenire.”</div>
-          <div class="advisor-message"><strong>Advisor:</strong> “Analizziamo percorso utente, canali, tracciamento e priorità.”</div>
-          <div class="advisor-message"><strong>Output:</strong> criticità principali, priorità e possibile piano d’azione.</div>
+      <div class="advisor-window private-advisor-window">
+        <div class="advisor-ai-shell">
+          <div class="advisor-ai-top">
+            <span>Assessment privato</span>
+            <small id="advisorStepLabel">Pronto</small>
+          </div>
+
+          <div id="advisorStart" class="advisor-start-state">
+            <div class="advisor-intro-message">
+              <strong>Private Digital Advisor</strong>
+              <p>
+                Un confronto guidato, rapido e riservato per individuare le priorità digitali del tuo progetto.
+              </p>
+            </div>
+            <button class="advisor-start-btn" type="button" id="startAdvisorBtn">
+              Avvia l’analisi guidata
+            </button>
+          </div>
+
+          <div id="advisorFlow" class="advisor-flow advisor-hidden">
+            <div class="advisor-progress">
+              <span id="advisorProgressBar"></span>
+            </div>
+            <div class="advisor-question" id="advisorQuestion"></div>
+            <div class="advisor-options" id="advisorOptions"></div>
+          </div>
+
+          <div id="advisorLoading" class="advisor-loading advisor-hidden">
+            <div class="advisor-loader" aria-hidden="true"></div>
+            <strong>Analisi in corso</strong>
+            <p>Sto leggendo le risposte e costruendo una prima valutazione del progetto.</p>
+          </div>
+
+          <div id="advisorResult" class="advisor-result advisor-hidden">
+            <div class="advisor-result-label">Analisi preliminare</div>
+            <div class="advisor-result-text" id="advisorResultText"></div>
+            <button class="advisor-reset-btn" type="button" id="advisorResetBtn">Rifai assessment</button>
+            <a href="#contatti" class="advisor-contact-btn" id="advisorContactBtn">Richiedi una consulenza privata</a>
+          </div>
         </div>
       </div>
     </div>
@@ -2357,6 +2673,165 @@
     form.addEventListener("submit", function(e){
       e.preventDefault();
       alert("Richiesta pronta. Il form è statico: posso collegarlo a Formspree, Google Forms o email.");
+    });
+  }
+
+
+
+  const ADVISOR_API_URL = "https://project-29xe0.vercel.app/api/advisor";
+
+  const advisorQuestions = [
+    {
+      question: "Che tipo di progetto vuoi migliorare?",
+      options: ["Professionista", "PMI", "Studio professionale", "Brand personale", "E-commerce", "Altro"]
+    },
+    {
+      question: "Qual è oggi la difficoltà principale?",
+      options: ["Pochi contatti", "Sito poco efficace", "Strategia non chiara", "Campagne che non convertono", "Dati confusi", "Voglio integrare AI"]
+    },
+    {
+      question: "Hai già una presenza digitale attiva?",
+      options: ["Sì", "Parzialmente", "No"]
+    },
+    {
+      question: "Misuri già risultati, conversioni o performance?",
+      options: ["Sì", "Solo in parte", "No"]
+    },
+    {
+      question: "Vuoi migliorare anche processi interni con AI o automazioni?",
+      options: ["Sì", "Può interessarmi", "Non è prioritario"]
+    },
+    {
+      question: "Quanto è importante intervenire nei prossimi mesi?",
+      options: ["Molto", "Abbastanza", "Sto valutando"]
+    }
+  ];
+
+  const advisorStart = document.getElementById('advisorStart');
+  const advisorFlow = document.getElementById('advisorFlow');
+  const advisorLoading = document.getElementById('advisorLoading');
+  const advisorResult = document.getElementById('advisorResult');
+  const advisorQuestion = document.getElementById('advisorQuestion');
+  const advisorOptions = document.getElementById('advisorOptions');
+  const advisorProgressBar = document.getElementById('advisorProgressBar');
+  const advisorResultText = document.getElementById('advisorResultText');
+  const advisorStepLabel = document.getElementById('advisorStepLabel');
+  const startAdvisorBtn = document.getElementById('startAdvisorBtn');
+  const advisorResetBtn = document.getElementById('advisorResetBtn');
+  const advisorContactBtn = document.getElementById('advisorContactBtn');
+
+  let advisorIndex = 0;
+  let advisorAnswers = [];
+  let lastAdvisorResult = "";
+
+  function setAdvisorStepLabel(text){
+    if(advisorStepLabel) advisorStepLabel.textContent = text;
+  }
+
+  function showAdvisorState(state){
+    if(advisorStart) advisorStart.classList.toggle('advisor-hidden', state !== 'start');
+    if(advisorFlow) advisorFlow.classList.toggle('advisor-hidden', state !== 'flow');
+    if(advisorLoading) advisorLoading.classList.toggle('advisor-hidden', state !== 'loading');
+    if(advisorResult) advisorResult.classList.toggle('advisor-hidden', state !== 'result');
+  }
+
+  function renderAdvisorQuestion(){
+    if(!advisorQuestion || !advisorOptions || !advisorProgressBar) return;
+
+    const item = advisorQuestions[advisorIndex];
+    advisorQuestion.textContent = item.question;
+    advisorProgressBar.style.width = `${((advisorIndex + 1) / advisorQuestions.length) * 100}%`;
+    setAdvisorStepLabel(`${advisorIndex + 1}/${advisorQuestions.length}`);
+
+    advisorOptions.innerHTML = '';
+
+    item.options.forEach(option => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'advisor-option';
+      button.textContent = option;
+      button.addEventListener('click', () => {
+        advisorAnswers.push({
+          question: item.question,
+          answer: option
+        });
+
+        advisorIndex += 1;
+
+        if(advisorIndex < advisorQuestions.length){
+          renderAdvisorQuestion();
+        } else {
+          generateAdvisorAnalysis();
+        }
+      });
+      advisorOptions.appendChild(button);
+    });
+  }
+
+  function startAdvisor(){
+    advisorIndex = 0;
+    advisorAnswers = [];
+    lastAdvisorResult = "";
+    showAdvisorState('flow');
+    renderAdvisorQuestion();
+  }
+
+  async function generateAdvisorAnalysis(){
+    showAdvisorState('loading');
+    setAdvisorStepLabel('Analisi');
+
+    try{
+      const response = await fetch(ADVISOR_API_URL, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({ answers: advisorAnswers })
+      });
+
+      const data = await response.json();
+
+      if(!response.ok || !data.result){
+        throw new Error('Analisi non disponibile');
+      }
+
+      lastAdvisorResult = data.result;
+      if(advisorResultText) advisorResultText.textContent = lastAdvisorResult;
+
+      const messageTextarea = document.querySelector('form textarea');
+      if(messageTextarea){
+        const cleanValue = messageTextarea.value.replace(/\n\n--- RISULTATO ADVISOR ---[\s\S]*$/,'').trim();
+        messageTextarea.value = `${cleanValue ? cleanValue + '\n\n' : ''}--- RISULTATO ADVISOR ---\n${lastAdvisorResult}`;
+      }
+
+      showAdvisorState('result');
+      setAdvisorStepLabel('Completato');
+
+    } catch(error){
+      lastAdvisorResult = "Analisi non disponibile in questo momento. Puoi comunque richiedere una consulenza privata e descrivere il tuo progetto nel modulo.";
+      if(advisorResultText) advisorResultText.textContent = lastAdvisorResult;
+      showAdvisorState('result');
+      setAdvisorStepLabel('Errore');
+    }
+  }
+
+  if(startAdvisorBtn) startAdvisorBtn.addEventListener('click', startAdvisor);
+
+  if(advisorResetBtn){
+    advisorResetBtn.addEventListener('click', () => {
+      advisorIndex = 0;
+      advisorAnswers = [];
+      lastAdvisorResult = "";
+      showAdvisorState('start');
+      setAdvisorStepLabel('Pronto');
+    });
+  }
+
+  if(advisorContactBtn){
+    advisorContactBtn.addEventListener('click', () => {
+      const messageTextarea = document.querySelector('form textarea');
+      if(messageTextarea && lastAdvisorResult){
+        const cleanValue = messageTextarea.value.replace(/\n\n--- RISULTATO ADVISOR ---[\s\S]*$/,'').trim();
+        messageTextarea.value = `${cleanValue ? cleanValue + '\n\n' : ''}--- RISULTATO ADVISOR ---\n${lastAdvisorResult}`;
+      }
     });
   }
 
