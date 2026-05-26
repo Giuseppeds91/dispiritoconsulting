@@ -2248,9 +2248,7 @@
         </p>
 
         <div class="direct-contact-card">
-          <span class="direct-contact-kicker">Canale riservato</span>
-          <strong>Private Access</strong>
-          <p>Per un confronto diretto sul progetto, puoi contattarmi anche dai canali personali.</p>
+          <span class="direct-contact-kicker">Private Access</span>
           <div class="direct-contact-links">
             <a href="tel:+393493732259">+39 349 3732259</a>
             <a href="mailto:giuseppedispirito91@gmail.com">giuseppedispirito91@gmail.com</a>
@@ -2609,9 +2607,7 @@
       </p>
 
       <div class="direct-contact-card">
-        <span class="direct-contact-kicker">Canale riservato</span>
-        <strong>Private Access</strong>
-        <p>Preferisci un contatto immediato? Puoi scrivermi o chiamarmi direttamente.</p>
+        <span class="direct-contact-kicker">Private Access</span>
         <div class="direct-contact-links">
           <a href="tel:+393493732259">+39 349 3732259</a>
           <a href="mailto:giuseppedispirito91@gmail.com">giuseppedispirito91@gmail.com</a>
@@ -3360,8 +3356,14 @@
   function writeAdvisorResultToForm(){
     const messageTextarea = document.querySelector('form textarea');
     if(messageTextarea && lastAdvisorResult){
-      const cleanValue = messageTextarea.value.replace(/\n\n--- VALUTAZIONE PRIVATE CONSULTING ASSESSMENT ---[\s\S]*$/,'').trim();
-      messageTextarea.value = `${cleanValue ? cleanValue + '\n\n' : ''}--- VALUTAZIONE PRIVATE CONSULTING ASSESSMENT ---\n${lastAdvisorResult}`;
+      const marker = '--- VALUTAZIONE PRIVATE CONSULTING ASSESSMENT ---';
+      const currentValue = messageTextarea.value || '';
+      const markerIndex = currentValue.indexOf(marker);
+      const cleanValue = (markerIndex >= 0 ? currentValue.slice(0, markerIndex) : currentValue).trim();
+      messageTextarea.value = `${cleanValue ? cleanValue + '
+
+' : ''}${marker}
+${lastAdvisorResult}`;
     }
     if(typeof syncAdvisorHiddenFields === 'function') syncAdvisorHiddenFields();
   }
@@ -3375,7 +3377,7 @@
       lastAdvisorResult = buildAdvisorResult(lastAdvisorService);
       if(advisorResultText) advisorResultText.textContent = lastAdvisorResult;
       selectServiceFromAdvisor(lastAdvisorService);
-      writeAdvisorResultToForm();
+      syncAdvisorHiddenFields();
       showAdvisorState('result');
       setAdvisorStepLabel('Completato');
     }, 650);
