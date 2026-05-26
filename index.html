@@ -1459,12 +1459,26 @@
     }
 
     .direct-contact-card{
-      margin-top:30px;
-      border-radius:30px;
-      padding:24px;
-      background:linear-gradient(145deg,rgba(255,255,255,.66),rgba(255,255,255,.36));
+      margin-top:34px;
+      border-radius:34px;
+      padding:28px;
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.74),rgba(255,255,255,.34)),
+        radial-gradient(circle at 88% 0%,rgba(155,118,83,.12),transparent 36%);
       border:1px solid rgba(43,33,27,.10);
-      box-shadow:0 18px 55px rgba(43,33,27,.075);
+      box-shadow:0 22px 70px rgba(43,33,27,.09), inset 0 1px 0 rgba(255,255,255,.62);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .direct-contact-card::before{
+      content:"";
+      position:absolute;
+      left:28px;
+      right:28px;
+      top:0;
+      height:1px;
+      background:linear-gradient(90deg,transparent,rgba(155,118,83,.42),transparent);
     }
 
     .direct-contact-card.dark{
@@ -1474,14 +1488,32 @@
       box-shadow:none;
     }
 
-    .direct-contact-card strong{
+    .direct-contact-kicker{
       display:block;
-      margin-bottom:14px;
-      color:var(--brown);
-      font-size:12px;
-      letter-spacing:.19em;
+      margin-bottom:8px;
+      color:var(--bronze);
+      font-size:11px;
+      letter-spacing:.26em;
       text-transform:uppercase;
       font-weight:950;
+    }
+
+    .direct-contact-card strong{
+      display:block;
+      margin-bottom:10px;
+      color:var(--brown);
+      font-size:26px;
+      line-height:1;
+      letter-spacing:-.045em;
+      font-weight:900;
+    }
+
+    .direct-contact-card p{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.55;
+      font-weight:720;
+      margin:0 0 18px;
     }
 
     .direct-contact-card.dark strong{color:rgba(247,241,231,.86)}
@@ -1492,22 +1524,28 @@
     }
 
     .direct-contact-links a{
-      display:inline-flex;
+      display:flex;
       align-items:center;
-      width:max-content;
-      max-width:100%;
-      gap:10px;
+      justify-content:space-between;
+      width:100%;
+      gap:16px;
       color:var(--text);
       font-size:16px;
-      font-weight:850;
+      font-weight:900;
       line-height:1.35;
       word-break:break-word;
       transition:.22s ease;
+      border-radius:22px;
+      padding:15px 16px;
+      background:rgba(255,255,255,.54);
+      border:1px solid rgba(43,33,27,.08);
     }
 
     .direct-contact-links a:hover{
       color:var(--bordeaux);
       transform:translateY(-1px);
+      background:rgba(255,255,255,.74);
+      border-color:rgba(155,118,83,.24);
     }
 
     .direct-contact-card.dark .direct-contact-links a{
@@ -1518,14 +1556,17 @@
       color:var(--ivory);
     }
 
-    .direct-contact-links a::before{
-      content:"";
-      width:8px;
-      height:8px;
+    .direct-contact-links a::after{
+      content:"↗";
+      width:28px;
+      height:28px;
       border-radius:50%;
-      background:var(--bronze);
-      box-shadow:0 0 0 5px rgba(155,118,83,.12);
+      display:grid;
+      place-items:center;
+      background:rgba(155,118,83,.12);
+      color:var(--bronze);
       flex-shrink:0;
+      font-size:14px;
     }
 
     .footer-direct{
@@ -2207,7 +2248,9 @@
         </p>
 
         <div class="direct-contact-card">
-          <strong>Contattami direttamente</strong>
+          <span class="direct-contact-kicker">Canale riservato</span>
+          <strong>Private Access</strong>
+          <p>Per un confronto diretto sul progetto, puoi contattarmi anche dai canali personali.</p>
           <div class="direct-contact-links">
             <a href="tel:+393493732259">+39 349 3732259</a>
             <a href="mailto:giuseppedispirito91@gmail.com">giuseppedispirito91@gmail.com</a>
@@ -2566,7 +2609,9 @@
       </p>
 
       <div class="direct-contact-card">
-        <strong>Contattami direttamente</strong>
+        <span class="direct-contact-kicker">Canale riservato</span>
+        <strong>Private Access</strong>
+        <p>Preferisci un contatto immediato? Puoi scrivermi o chiamarmi direttamente.</p>
         <div class="direct-contact-links">
           <a href="tel:+393493732259">+39 349 3732259</a>
           <a href="mailto:giuseppedispirito91@gmail.com">giuseppedispirito91@gmail.com</a>
@@ -2642,9 +2687,8 @@
     <span>© 2026 Di Spirito Consulting</span>
     <span>Private Strategic Consulting — dispiritoconsulting.it</span>
     <span class="footer-direct">
-      Contatti diretti:
+      Private Access:
       <a href="tel:+393493732259">+39 349 3732259</a>
-      <a href="mailto:giuseppedispirito91@gmail.com">giuseppedispirito91@gmail.com</a>
     </span>
   </div>
 </footer>
