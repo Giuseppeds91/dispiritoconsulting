@@ -683,7 +683,8 @@
     }
 
     .offer-card.is-selected{
-      border-color:rgba(122,47,40,.42);
+      border-color:rgba(122,47,40,.62);
+      border-width:2px;
       background:rgba(255,255,255,.62);
       color:var(--text);
       box-shadow:0 24px 62px rgba(122,47,40,.10);
@@ -715,8 +716,8 @@
         linear-gradient(145deg,rgba(43,33,27,.96),rgba(72,52,39,.92)),
         radial-gradient(circle at 80% 10%,rgba(122,47,40,.32),transparent 34%);
       color:var(--ivory);
-      border-color:rgba(230,213,187,.95);
-      border-width:2px;
+      border-color:rgba(230,213,187,.98);
+      border-width:3px;
       box-shadow:0 30px 82px rgba(43,33,27,.22), 0 0 0 1px rgba(230,213,187,.18);
     }
 
@@ -1812,6 +1813,13 @@
           <button class="learn-more" type="button" data-detail="cro">Scopri meglio il percorso</button>
         </div>
       </article>
+    </div>
+
+    <div class="selection-panel reveal">
+      <strong>Consulenze selezionate</strong>
+      <div class="selected-list" id="selectedList">
+        Nessuna consulenza selezionata. Clicca su “Seleziona” nei box: la scelta verrà riportata automaticamente nel form in fondo alla pagina.
+      </div>
     </div>
   </div>
 </section>
