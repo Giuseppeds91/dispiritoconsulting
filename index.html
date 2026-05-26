@@ -409,7 +409,10 @@
     .hero{
       position:relative;
       overflow:hidden;
-      padding:118px 0 96px;
+      padding:96px 0 76px;
+      min-height:calc(100svh - 78px);
+      display:flex;
+      align-items:center;
       isolation:isolate;
     }
 
@@ -494,7 +497,7 @@
     }
 
     .hero p{
-      margin-top:34px;
+      margin-top:44px;
       max-width:780px;
       color:var(--muted);
       font-size:clamp(19px,2vw,23px);
@@ -506,7 +509,7 @@
       display:flex;
       flex-wrap:wrap;
       gap:14px;
-      margin-top:42px;
+      margin-top:34px;
     }
 
     .hero-actions .btn-secondary{order:1}
@@ -693,7 +696,7 @@
     }
 
     .select-pill{
-      margin-top:22px;
+      margin-top:0;
       display:inline-flex;
       align-items:center;
       gap:9px;
@@ -729,8 +732,17 @@
       box-shadow:inset 0 0 0 4px rgba(255,255,255,.72);
     }
 
+    .offer-card > div:last-child{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:22px;
+    }
+
     .learn-more{
-      margin-top:18px;
+      margin-top:0;
       align-self:flex-start;
       border:0;
       background:transparent;
@@ -887,14 +899,14 @@
     }
 
     .method-visual{
-      min-height:450px;
+      min-height:470px;
       position:relative;
       z-index:2;
       border-radius:34px;
       background:
-        linear-gradient(145deg,rgba(43,33,27,.96),rgba(66,48,37,.94)),
-        radial-gradient(circle at 30% 25%,rgba(122,47,40,.30),transparent 36%);
-      box-shadow:0 30px 90px rgba(43,33,27,.20);
+        radial-gradient(circle at 50% 52%,rgba(122,47,40,.24),transparent 26%),
+        linear-gradient(145deg,rgba(28,22,18,.98),rgba(72,52,39,.94));
+      box-shadow:0 30px 90px rgba(43,33,27,.22);
       overflow:hidden;
       display:flex;
       align-items:center;
@@ -907,85 +919,101 @@
       position:absolute;
       inset:0;
       background-image:
-        linear-gradient(rgba(247,241,231,.045) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(247,241,231,.045) 1px,transparent 1px);
-      background-size:42px 42px;
-      opacity:.55;
+        linear-gradient(rgba(247,241,231,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(247,241,231,.035) 1px,transparent 1px);
+      background-size:38px 38px;
+      opacity:.7;
+      mask-image:radial-gradient(circle at center,#000 0 64%,transparent 82%);
     }
 
-    .method-line{
+    .growth-orbit{
       position:absolute;
-      left:16%;
-      right:16%;
-      height:1px;
-      background:linear-gradient(90deg,transparent,rgba(231,215,189,.55),transparent);
-      transform:rotate(var(--r));
-      opacity:.62;
-    }
-
-    .method-line.l1{--r:0deg}
-    .method-line.l2{--r:45deg}
-    .method-line.l3{--r:-45deg}
-    .method-line.l4{--r:90deg}
-
-    .method-pulse{
-      position:absolute;
-      width:250px;
-      height:250px;
+      width:86%;
+      aspect-ratio:1;
       border-radius:50%;
-      border:1px solid rgba(231,215,189,.18);
-      animation:pulseRing 4.4s ease-in-out infinite;
+      border:1px solid rgba(231,215,189,.12);
+      animation:spin 44s linear infinite;
     }
 
-    .method-pulse.p2{width:330px;height:330px;animation-delay:.8s;border-color:rgba(255,255,255,.10)}
-    .method-pulse.p3{width:170px;height:170px;animation-delay:1.4s;border-color:rgba(155,118,83,.25)}
+    .growth-orbit.o2{width:66%;animation-duration:31s;animation-direction:reverse;border-color:rgba(155,118,83,.18)}
+    .growth-orbit.o3{width:46%;animation-duration:22s;border-color:rgba(255,255,255,.10)}
 
-    @keyframes pulseRing{
-      0%,100%{transform:scale(.92);opacity:.45}
-      50%{transform:scale(1.05);opacity:.95}
-    }
-
-    .method-core{
+    .growth-core{
       position:relative;
-      z-index:4;
-      width:152px;
-      height:152px;
+      z-index:5;
+      width:178px;
+      height:178px;
       border-radius:50%;
       display:grid;
       place-items:center;
       text-align:center;
-      background:radial-gradient(circle at 32% 20%,rgba(122,47,40,.95),rgba(43,33,27,.90));
-      border:1px solid rgba(231,215,189,.25);
       color:var(--ivory);
-      box-shadow:0 0 70px rgba(122,47,40,.30);
+      background:
+        radial-gradient(circle at 30% 18%,rgba(255,255,255,.16),transparent 28%),
+        linear-gradient(145deg,rgba(122,47,40,.92),rgba(43,33,27,.96));
+      border:1px solid rgba(231,215,189,.26);
+      box-shadow:0 0 90px rgba(122,47,40,.34), inset 0 0 34px rgba(255,255,255,.05);
     }
 
-    .method-core strong{
-      font-size:27px;
-      line-height:.95;
-      letter-spacing:-.055em;
-    }
+    .growth-core strong{font-size:30px;line-height:.95;letter-spacing:-.055em}
+    .growth-core span{display:block;margin-top:8px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(247,241,231,.62);font-weight:900}
 
-    .method-dot{
+    .growth-node{
       position:absolute;
-      z-index:5;
-      width:13px;
-      height:13px;
-      border-radius:50%;
-      background:var(--sand);
-      box-shadow:0 0 0 8px rgba(231,215,189,.08),0 0 34px rgba(231,215,189,.32);
-      animation:floatDot 4.8s ease-in-out infinite;
+      z-index:6;
+      width:112px;
+      min-height:74px;
+      border-radius:24px;
+      padding:13px 14px;
+      background:rgba(251,248,242,.09);
+      border:1px solid rgba(247,241,231,.14);
+      backdrop-filter:blur(14px);
+      color:var(--ivory);
+      box-shadow:0 18px 50px rgba(0,0,0,.16);
+      animation:nodeFloat 5s ease-in-out infinite;
     }
 
-    .method-dot.d1{top:18%;left:22%;animation-delay:.1s}
-    .method-dot.d2{top:20%;right:24%;animation-delay:.7s}
-    .method-dot.d3{bottom:24%;right:18%;animation-delay:1.2s}
-    .method-dot.d4{bottom:18%;left:26%;animation-delay:1.8s}
+    .growth-node small{display:block;color:rgba(231,215,189,.70);font-size:10px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;margin-bottom:7px}
+    .growth-node b{font-size:15px;line-height:1.05;letter-spacing:-.03em}
+    .growth-node.n1{top:12%;left:13%;animation-delay:.1s}
+    .growth-node.n2{top:13%;right:11%;animation-delay:.7s}
+    .growth-node.n3{right:9%;bottom:15%;animation-delay:1.2s}
+    .growth-node.n4{left:12%;bottom:14%;animation-delay:1.7s}
 
-    @keyframes floatDot{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-12px)}
+    .growth-connector{
+      position:absolute;
+      z-index:2;
+      width:62%;
+      height:1px;
+      background:linear-gradient(90deg,transparent,rgba(231,215,189,.42),transparent);
+      transform:rotate(var(--r));
+      opacity:.75;
     }
+
+    .growth-connector.c1{--r:28deg}.growth-connector.c2{--r:-31deg}.growth-connector.c3{--r:118deg}.growth-connector.c4{--r:-118deg}
+
+    .growth-metric{
+      position:absolute;
+      left:50%;
+      bottom:34px;
+      transform:translateX(-50%);
+      z-index:7;
+      display:flex;
+      align-items:flex-end;
+      gap:7px;
+      height:84px;
+      padding:18px 22px;
+      border-radius:26px;
+      background:rgba(251,248,242,.08);
+      border:1px solid rgba(247,241,231,.13);
+      backdrop-filter:blur(14px);
+    }
+
+    .growth-bar{width:12px;border-radius:99px;background:linear-gradient(180deg,var(--sand),rgba(122,47,40,.72));animation:barGrow 2.8s ease-in-out infinite;box-shadow:0 0 22px rgba(231,215,189,.16)}
+    .growth-bar.b1{height:24px;animation-delay:.1s}.growth-bar.b2{height:38px;animation-delay:.25s}.growth-bar.b3{height:52px;animation-delay:.4s}.growth-bar.b4{height:66px;animation-delay:.55s}
+
+    @keyframes nodeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    @keyframes barGrow{0%,100%{filter:brightness(.86);transform:scaleY(.86);transform-origin:bottom}50%{filter:brightness(1.16);transform:scaleY(1)}}
 
     .method-list{
       position:relative;
@@ -1183,14 +1211,29 @@
       line-height:1.5;
     }
 
-    .service-add-row{
+    .service-options{
       display:grid;
-      grid-template-columns:1fr auto;
-      gap:12px;
-      align-items:end;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin-top:14px;
     }
 
-    .service-add-row .btn{padding:12px 18px}
+    .service-option{
+      border:1px solid rgba(43,33,27,.12);
+      background:rgba(255,255,255,.44);
+      color:var(--text);
+      border-radius:18px;
+      padding:13px 14px;
+      font:inherit;
+      font-size:14px;
+      font-weight:850;
+      text-align:left;
+      cursor:pointer;
+      transition:.22s ease;
+    }
+
+    .service-option:hover{transform:translateY(-1px);background:rgba(255,255,255,.70)}
+    .service-option.is-active{background:var(--brown);color:var(--ivory);border-color:var(--brown);box-shadow:0 14px 34px rgba(43,33,27,.14)}
 
     .hidden-selection{display:none!important}
 
@@ -1302,7 +1345,7 @@
       .mobile-panel,.mobile-backdrop{display:block}
       .nav > .btn-primary{display:none}
 
-      .hero{padding:86px 0 74px}
+      .hero{padding:58px 0 58px;min-height:calc(100svh - 72px);align-items:flex-start}
       .hero-orbit-bg{right:-30vw;top:70px;width:96vw;min-width:0;opacity:.70}
       .hero-grid{max-width:760px}
 
@@ -1320,7 +1363,11 @@
       .brand span{font-size:9px}
       header .btn{padding:11px 14px;font-size:12px}
 
-      h1{font-size:clamp(48px,15vw,68px)}
+      h1{font-size:clamp(42px,12.5vw,60px);line-height:.92}
+      .hero{padding-top:34px;padding-bottom:34px;min-height:calc(100svh - 72px)}
+      .hero p{margin-top:26px;font-size:17px;line-height:1.45}
+      .hero-actions{margin-top:22px}
+      .hero-note{margin-top:16px;font-size:12px}
       .hero-orbit-bg{inset:18px -50vw auto auto;width:138vw;opacity:.56}
       .hero::after{inset:9% -40% auto 10%;height:48%;opacity:.72}
       .hero-actions{flex-direction:column;gap:10px}
@@ -1338,16 +1385,17 @@
       .private-layout{gap:32px}
       .method-premium{padding:16px;border-radius:28px}
       .method-visual{min-height:320px;border-radius:24px}
-      .method-core{width:118px;height:118px}
-      .method-core strong{font-size:21px}
-      .method-pulse.p2{width:260px;height:260px}
-      .method-pulse{width:200px;height:200px}
+      .growth-core{width:132px;height:132px}
+      .growth-core strong{font-size:22px}
+      .growth-node{width:96px;min-height:64px;border-radius:20px;padding:10px 11px}
+      .growth-node b{font-size:13px}
+      .growth-metric{bottom:18px;height:66px;padding:13px 16px}
       .method-list article{padding:14px 0;gap:12px}
       .method-list h3{font-size:21px}
       .method-list p{font-size:14px}
       .advisor-panel{padding:24px}
       .form-row{grid-template-columns:1fr;gap:0}
-      .service-add-row{grid-template-columns:1fr}
+      .service-options{grid-template-columns:1fr}
       .mobile-panel a,.mobile-panel button{font-size:16px;padding:15px 6px}
     }
   </style>
@@ -1464,7 +1512,7 @@
 
       <p>
         Consulenza diretta su strategia, siti web, funnel, media, analytics e conversione.
-        Puoi partire da un singolo bisogno specifico oppure costruire un percorso completo.
+        Costruiamo un sistema digitale più chiaro, credibile e misurabile, pensato per generare più lead qualificati e trasformare meglio il traffico in fatturato.
       </p>
 
       <div class="hero-actions">
@@ -1500,7 +1548,7 @@
           </p>
           <p>
             L’obiettivo è capire dove intervenire, cosa prioritizzare e come trasformare sito, funnel,
-            campagne e analytics in un sistema più chiaro, leggibile e misurabile.
+            campagne e analytics in un sistema capace di aumentare fiducia, richieste commerciali e opportunità di fatturato.
           </p>
         </div>
       </div>
@@ -1517,7 +1565,7 @@
       </div>
       <p class="lead">
         Puoi richiedere supporto su una singola area oppure costruire un percorso integrato:
-        strategia, presenza digitale, contenuti, dati e ottimizzazione del sistema.
+        strategia, presenza digitale, contenuti, dati e ottimizzazione. L’obiettivo non è “fare digitale”, ma rendere il digitale più utile al business: più chiarezza, più lead, più conversioni.
       </p>
     </div>
 
@@ -1534,8 +1582,8 @@
           </ul>
         </div>
         <div>
-          <button class="learn-more" type="button" data-detail="completo">Scopri meglio il percorso</button>
           <span class="select-pill">Seleziona</span>
+          <button class="learn-more" type="button" data-detail="completo">Scopri meglio il percorso</button>
         </div>
       </article>
 
@@ -1543,7 +1591,7 @@
         <div>
           <small>02</small>
           <h3>Creazione sito o landing</h3>
-          <p>Sviluppo di siti web e landing page con struttura pensata per chiarezza, contenuti, UX/UI e misurazione.</p>
+          <p>Creazione di siti web e landing page progettati per presentare meglio il tuo business, generare fiducia e trasformare visite in contatti concreti.</p>
           <ul>
             <li>Design premium e responsive</li>
             <li>Contenuti, UX e UI</li>
@@ -1551,8 +1599,8 @@
           </ul>
         </div>
         <div>
-          <button class="learn-more" type="button" data-detail="sito">Scopri meglio il percorso</button>
           <span class="select-pill">Seleziona</span>
+          <button class="learn-more" type="button" data-detail="sito">Scopri meglio il percorso</button>
         </div>
       </article>
 
@@ -1568,8 +1616,8 @@
           </ul>
         </div>
         <div>
-          <button class="learn-more" type="button" data-detail="audit">Scopri meglio il percorso</button>
           <span class="select-pill">Seleziona</span>
+          <button class="learn-more" type="button" data-detail="audit">Scopri meglio il percorso</button>
         </div>
       </article>
 
@@ -1585,8 +1633,8 @@
           </ul>
         </div>
         <div>
-          <button class="learn-more" type="button" data-detail="media">Scopri meglio il percorso</button>
           <span class="select-pill">Seleziona</span>
+          <button class="learn-more" type="button" data-detail="media">Scopri meglio il percorso</button>
         </div>
       </article>
 
@@ -1602,8 +1650,8 @@
           </ul>
         </div>
         <div>
-          <button class="learn-more" type="button" data-detail="analytics">Scopri meglio il percorso</button>
           <span class="select-pill">Seleziona</span>
+          <button class="learn-more" type="button" data-detail="analytics">Scopri meglio il percorso</button>
         </div>
       </article>
 
@@ -1619,8 +1667,8 @@
           </ul>
         </div>
         <div>
-          <button class="learn-more" type="button" data-detail="cro">Scopri meglio il percorso</button>
           <span class="select-pill">Seleziona</span>
+          <button class="learn-more" type="button" data-detail="cro">Scopri meglio il percorso</button>
         </div>
       </article>
     </div>
@@ -1678,26 +1726,32 @@
 
     <div class="method-premium reveal">
       <div class="method-visual" aria-hidden="true">
-        <div class="method-line l1"></div>
-        <div class="method-line l2"></div>
-        <div class="method-line l3"></div>
-        <div class="method-line l4"></div>
-        <div class="method-pulse p1"></div>
-        <div class="method-pulse p2"></div>
-        <div class="method-pulse p3"></div>
-        <div class="method-dot d1"></div>
-        <div class="method-dot d2"></div>
-        <div class="method-dot d3"></div>
-        <div class="method-dot d4"></div>
-        <div class="method-core"><strong>Digital<br>System</strong></div>
+        <div class="growth-orbit o1"></div>
+        <div class="growth-orbit o2"></div>
+        <div class="growth-orbit o3"></div>
+        <div class="growth-connector c1"></div>
+        <div class="growth-connector c2"></div>
+        <div class="growth-connector c3"></div>
+        <div class="growth-connector c4"></div>
+        <div class="growth-node n1"><small>01</small><b>Strategia</b></div>
+        <div class="growth-node n2"><small>02</small><b>Sito web</b></div>
+        <div class="growth-node n3"><small>03</small><b>Lead</b></div>
+        <div class="growth-node n4"><small>04</small><b>Fatturato</b></div>
+        <div class="growth-core"><div><strong>Growth<br>Engine</strong><span>Digital system</span></div></div>
+        <div class="growth-metric">
+          <span class="growth-bar b1"></span>
+          <span class="growth-bar b2"></span>
+          <span class="growth-bar b3"></span>
+          <span class="growth-bar b4"></span>
+        </div>
       </div>
 
       <div class="method-list">
         <article><span>01</span><div><h3>Analisi</h3><p>Entro nel contesto del progetto, capisco obiettivi, pubblico, canali e punti critici.</p></div></article>
         <article><span>02</span><div><h3>Strategia</h3><p>Definisco priorità, direzione, messaggi e percorso operativo da seguire.</p></div></article>
-        <article><span>03</span><div><h3>Realizzazione</h3><p>Intervengo su sito, contenuti, tracking, funnel o asset necessari al progetto.</p></div></article>
+        <article><span>03</span><div><h3>Realizzazione</h3><p>Intervengo su sito web, contenuti, tracking, funnel o asset necessari per rendere il percorso più credibile e orientato alla conversione.</p></div></article>
         <article><span>04</span><div><h3>Misurazione</h3><p>Rendo leggibile ciò che accade attraverso KPI, eventi, dashboard e lettura dei dati.</p></div></article>
-        <article><span>05</span><div><h3>Ottimizzazione</h3><p>Miglioro progressivamente esperienza, messaggi, percorsi e decisioni operative.</p></div></article>
+        <article><span>05</span><div><h3>Ottimizzazione</h3><p>Miglioro progressivamente esperienza, messaggi e percorsi per aumentare qualità dei lead, conversioni e ritorno delle attività digitali.</p></div></article>
       </div>
     </div>
   </div>
@@ -1732,7 +1786,7 @@
       <div class="label">Contatti</div>
       <h2>Raccontami cosa vuoi migliorare.</h2>
       <p class="lead" style="margin-top:28px;">
-        Puoi richiedere una consulenza specifica, un audit o un percorso completo.
+        Puoi richiedere una consulenza specifica, un audit o un percorso completo per rendere il tuo digitale più chiaro, più misurabile e più orientato a lead e fatturato.
       </p>
     </div>
 
@@ -1762,25 +1816,20 @@
       <label class="required-label">Consulenza richiesta</label>
       <div class="form-selected-box">
         <div class="form-selected-head">
-          <span>Selezioni attive</span>
+          <span>Scegli con un click una o più aree</span>
           <span id="formSelectedCount">0</span>
         </div>
         <div class="form-chips" id="formChips">
-          <span class="form-empty">Seleziona una o più consulenze dai box sopra, oppure aggiungile da qui.</span>
+          <span class="form-empty">Nessuna consulenza selezionata. Tocca una voce qui sotto: la scelta si aggiorna subito.</span>
         </div>
-      </div>
-
-      <div class="service-add-row">
-        <select id="serviceSelect">
-          <option value="">Aggiungi una consulenza</option>
-          <option>Pacchetto completo</option>
-          <option>Creazione sito o landing</option>
-          <option>Audit sito e funnel</option>
-          <option>Media strategy</option>
-          <option>Analytics & tracking</option>
-          <option>CRO e ottimizzazione</option>
-        </select>
-        <button class="btn btn-secondary" type="button" id="addService">Aggiungi</button>
+        <div class="service-options" id="serviceOptions">
+          <button type="button" class="service-option" data-service-option="Pacchetto completo">Pacchetto completo</button>
+          <button type="button" class="service-option" data-service-option="Creazione sito o landing">Creazione sito o landing</button>
+          <button type="button" class="service-option" data-service-option="Audit sito e funnel">Audit sito e funnel</button>
+          <button type="button" class="service-option" data-service-option="Media strategy">Media strategy</button>
+          <button type="button" class="service-option" data-service-option="Analytics & tracking">Analytics & tracking</button>
+          <button type="button" class="service-option" data-service-option="CRO e ottimizzazione">CRO e ottimizzazione</button>
+        </div>
       </div>
 
       <input class="hidden-selection" id="selectedServicesInput" name="consulenze" readonly>
@@ -1866,32 +1915,32 @@
     completo: {
       label: 'Percorso completo',
       title: 'Pacchetto completo',
-      text: 'È il percorso più ampio: parte dalla comprensione del progetto e costruisce una direzione digitale coerente. Include strategia, struttura del sito o delle landing, contenuti, UX, tracciamento, lettura dei dati e ottimizzazione. È pensato per chi non vuole intervenire su un solo pezzo, ma mettere ordine nell’intero sistema digitale.'
+      text: 'È il percorso più completo per chi vuole mettere ordine in tutto il sistema digitale. Partiamo da obiettivi, offerta, posizionamento e pubblico; poi lavoriamo su sito web o landing, funnel, contenuti, tracciamento, media strategy e ottimizzazione. Il risultato non è solo “essere online”, ma costruire un percorso più credibile, misurabile e orientato a generare lead qualificati e opportunità di fatturato.'
     },
     sito: {
-      label: 'Sito e landing',
+      label: 'Creazione sito web',
       title: 'Creazione sito o landing',
-      text: 'È il percorso dedicato a chi vuole costruire o migliorare una pagina digitale chiara, credibile e facile da leggere. Non riguarda solo la grafica: lavoriamo su struttura, contenuti, UX/UI, messaggi, CTA e tracciamento, così ogni elemento della pagina ha una funzione precisa.'
+      text: 'È il percorso dedicato alla creazione concreta del sito web o della landing page. Si definiscono struttura, sezioni, testi, gerarchia dei contenuti, UX/UI, CTA e versione responsive. L’obiettivo è costruire una presenza digitale professionale, chiara e coerente con il tuo business: una pagina che spiega bene chi sei, aumenta fiducia e accompagna l’utente verso contatto, richiesta o acquisto.'
     },
     audit: {
       label: 'Analisi del percorso',
       title: 'Audit sito e funnel',
-      text: 'Serve a capire cosa non sta funzionando nel percorso attuale. Analizzo struttura, messaggi, navigazione, punti di frizione, chiarezza delle CTA e qualità della misurazione. Alla fine hai una lettura concreta delle priorità: cosa sistemare prima, perché e con quale logica.'
+      text: 'Serve a capire perché il sito o il funnel non stanno performando come dovrebbero. Analizzo navigazione, messaggi, CTA, frizioni, pagine chiave, tracciamento e qualità del percorso utente. Alla fine hai una lettura concreta: cosa blocca i contatti, quali interventi possono migliorare le conversioni e quali priorità hanno maggiore impatto su lead e fatturato.'
     },
     media: {
       label: 'Strategia media',
       title: 'Media strategy',
-      text: 'È il lavoro di direzione sui canali e sui messaggi. Aiuta a capire a chi parlare, con quale promessa, su quali canali e con quale sequenza. Non è solo “fare campagne”: è costruire una logica media coerente con il progetto e leggibile nei risultati.'
+      text: 'È il lavoro di direzione sui canali e sui messaggi. Aiuta a capire a chi parlare, con quale promessa, su quali canali investire e con quale sequenza. Non significa solo fare campagne: significa collegare budget, creatività, sito e dati per evitare dispersione e portare traffico più qualificato verso il tuo business.'
     },
     analytics: {
       label: 'Dati e misurazione',
       title: 'Analytics & tracking',
-      text: 'È il percorso per rendere il digitale misurabile. Si lavora su eventi, KPI, dashboard e qualità dei dati, così puoi capire cosa accade davvero nei punti importanti del percorso utente e prendere decisioni meno basate su sensazioni.'
+      text: 'È il percorso per rendere il digitale davvero misurabile. Si lavora su eventi, KPI, conversioni, dashboard e qualità dei dati, così puoi capire cosa succede nei punti importanti: da dove arrivano i contatti, dove si bloccano gli utenti e quali azioni contribuiscono davvero alla crescita del fatturato.'
     },
     cro: {
       label: 'Ottimizzazione',
       title: 'CRO e ottimizzazione',
-      text: 'È il lavoro sul miglioramento progressivo dell’esperienza. Analizzo pagine, messaggi, comportamenti e frizioni per individuare modifiche concrete. L’obiettivo è rendere il percorso più chiaro, fluido e coerente con ciò che l’utente si aspetta.'
+      text: 'È il lavoro sul miglioramento progressivo delle performance. Analizzo pagine, messaggi, comportamenti e frizioni per individuare modifiche concrete. L’obiettivo è aumentare la capacità del sito e del funnel di trasformare traffico già esistente in lead, richieste commerciali e risultati più leggibili.'
     }
   };
 
@@ -1938,8 +1987,7 @@
   const formChips = document.getElementById('formChips');
   const formSelectedCount = document.getElementById('formSelectedCount');
   const selectedServicesInput = document.getElementById('selectedServicesInput');
-  const serviceSelect = document.getElementById('serviceSelect');
-  const addService = document.getElementById('addService');
+  const serviceOptionButtons = [...document.querySelectorAll('[data-service-option]')];
 
   let selectedServices = new Set();
 
@@ -1970,7 +2018,7 @@
       if(!selectedArray.length){
         const empty = document.createElement('span');
         empty.className = 'form-empty';
-        empty.textContent = 'Seleziona una o più consulenze dai box sopra, oppure aggiungile da qui.';
+        empty.textContent = 'Nessuna consulenza selezionata. Tocca una voce qui sotto: la scelta si aggiorna subito.';
         formChips.appendChild(empty);
       } else {
         selectedArray.forEach(name => {
@@ -1987,49 +2035,43 @@
         });
       }
     }
+
+    serviceOptionButtons.forEach(button => {
+      const name = button.dataset.serviceOption;
+      button.classList.toggle('is-active', selectedServices.has(name));
+    });
+  }
+
+  function toggleService(service){
+    if(service === 'Pacchetto completo'){
+      if(selectedServices.has('Pacchetto completo')){
+        selectedServices.clear();
+      } else {
+        selectedServices = new Set(['Pacchetto completo', ...allServiceNames()]);
+      }
+    } else {
+      if(selectedServices.has(service)){
+        selectedServices.delete(service);
+        selectedServices.delete('Pacchetto completo');
+      } else {
+        selectedServices.add(service);
+        const allSpecificSelected = allServiceNames().every(name => selectedServices.has(name));
+        if(allSpecificSelected) selectedServices.add('Pacchetto completo');
+      }
+    }
+    updateSelectionUI();
   }
 
   serviceCards.forEach(card => {
     card.addEventListener('click', (event) => {
       if(event.target.closest('.learn-more')) return;
-
-      const service = card.dataset.service;
-
-      if(service === 'Pacchetto completo'){
-        if(selectedServices.has('Pacchetto completo')){
-          selectedServices.clear();
-        } else {
-          selectedServices = new Set(['Pacchetto completo', ...allServiceNames()]);
-        }
-      } else {
-        if(selectedServices.has(service)){
-          selectedServices.delete(service);
-          selectedServices.delete('Pacchetto completo');
-        } else {
-          selectedServices.add(service);
-          const allSpecificSelected = allServiceNames().every(name => selectedServices.has(name));
-          if(allSpecificSelected) selectedServices.add('Pacchetto completo');
-        }
-      }
-      updateSelectionUI();
+      toggleService(card.dataset.service);
     });
   });
 
-  if(addService){
-    addService.addEventListener('click', () => {
-      const value = serviceSelect.value;
-      if(!value) return;
-      if(value === 'Pacchetto completo'){
-        selectedServices = new Set(['Pacchetto completo', ...allServiceNames()]);
-      } else {
-        selectedServices.add(value);
-        const allSpecificSelected = allServiceNames().every(name => selectedServices.has(name));
-        if(allSpecificSelected) selectedServices.add('Pacchetto completo');
-      }
-      serviceSelect.value = '';
-      updateSelectionUI();
-    });
-  }
+  serviceOptionButtons.forEach(button => {
+    button.addEventListener('click', () => toggleService(button.dataset.serviceOption));
+  });
 
   updateSelectionUI();
 
