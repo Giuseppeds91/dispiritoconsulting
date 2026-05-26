@@ -1499,75 +1499,66 @@
       position:fixed;
       right:22px;
       bottom:22px;
-      z-index:90;
-      width:54px;
-      height:54px;
+      z-index:9999;
+      width:48px;
+      height:48px;
       border-radius:50%;
-      border:1px solid rgba(43,33,27,.12);
-      background:rgba(251,248,242,.78);
+      border:1px solid rgba(43,33,27,.14);
+      background:rgba(251,248,242,.74);
       color:var(--brown);
       display:grid;
       place-items:center;
       cursor:pointer;
-      box-shadow:0 16px 42px rgba(43,33,27,.13), inset 0 1px 0 rgba(255,255,255,.62);
-      backdrop-filter:blur(18px);
-      -webkit-backdrop-filter:blur(18px);
+      box-shadow:0 12px 30px rgba(43,33,27,.10), inset 0 1px 0 rgba(255,255,255,.55);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
       opacity:0;
+      visibility:hidden;
       pointer-events:none;
-      transform:translateY(12px) scale(.96);
-      transition:opacity .22s ease, transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease;
+      transform:translateY(10px) scale(.98);
+      transition:opacity .18s ease, visibility .18s ease, transform .18s ease, border-color .18s ease, background .18s ease;
       overflow:hidden;
       touch-action:manipulation;
       -webkit-tap-highlight-color:transparent;
-    }
-
-    .back-to-top::before{
-      content:"";
-      position:absolute;
-      inset:8px;
-      border-radius:50%;
-      border:1px solid rgba(155,118,83,.12);
-      pointer-events:none;
+      user-select:none;
+      -webkit-user-select:none;
     }
 
     .back-to-top.is-visible{
       opacity:1;
+      visibility:visible;
       pointer-events:auto;
       transform:translateY(0) scale(1);
     }
 
     .back-to-top:hover{
-      transform:translateY(-2px) scale(1.02);
+      transform:translateY(-1px) scale(1.01);
       border-color:rgba(155,118,83,.26);
-      background:rgba(251,248,242,.92);
-      box-shadow:0 20px 48px rgba(43,33,27,.16), inset 0 1px 0 rgba(255,255,255,.72);
+      background:rgba(251,248,242,.88);
     }
 
     .back-to-top:active{
-      transform:translateY(0) scale(.97);
+      transform:translateY(0) scale(.96);
     }
 
     .back-to-top .arrow-icon{
       position:relative;
       z-index:2;
-      width:17px;
-      height:21px;
+      width:15px;
+      height:19px;
       display:block;
-      transition:transform .2s ease;
       pointer-events:none;
     }
-
-    .back-to-top:hover .arrow-icon{transform:translateY(-1px)}
 
     .back-to-top .arrow-icon::before{
       content:"";
       position:absolute;
       left:50%;
       top:3px;
-      width:11px;
-      height:11px;
-      border-left:1.8px solid rgba(43,33,27,.86);
-      border-top:1.8px solid rgba(43,33,27,.86);
+      width:10px;
+      height:10px;
+      border-left:1.7px solid rgba(43,33,27,.82);
+      border-top:1.7px solid rgba(43,33,27,.82);
       transform:translateX(-50%) rotate(45deg);
       border-radius:1px;
     }
@@ -1577,9 +1568,9 @@
       position:absolute;
       left:50%;
       top:8px;
-      width:1.8px;
-      height:15px;
-      background:rgba(43,33,27,.72);
+      width:1.6px;
+      height:13px;
+      background:rgba(43,33,27,.68);
       transform:translateX(-50%);
       border-radius:999px;
     }
@@ -1592,6 +1583,7 @@
       clip:rect(0,0,0,0);
       white-space:nowrap;
     }
+
 
     @media(max-width:1050px){
       .about-content{grid-template-columns:1fr}
@@ -1656,7 +1648,7 @@
       .form-row{grid-template-columns:1fr;gap:0}
       .service-options{grid-template-columns:1fr}
       .mobile-panel a,.mobile-panel button{font-size:16px;padding:15px 6px}
-      .back-to-top{right:14px;bottom:14px;width:46px;height:46px}
+      .back-to-top{right:14px;bottom:14px;width:44px;height:44px}
     }
   </style>
 </head>
@@ -2378,57 +2370,49 @@
 
 
   const backToTop = document.querySelector('[data-back-to-top]');
-  let backToTopFrame = null;
 
   function toggleBackToTop(){
     if(!backToTop) return;
-    backToTop.classList.toggle('is-visible', window.scrollY > 520);
+    const y = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    backToTop.classList.toggle('is-visible', y > 420);
   }
 
-  function scrollToTopFast(event){
+  function goTopNow(event){
     if(event){
       event.preventDefault();
       event.stopPropagation();
     }
 
-    const startPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    if(startPosition <= 0) return;
+    // Evita conflitti con scroll-behavior:smooth e rende il tap affidabile anche da mobile.
+    const html = document.documentElement;
+    const previousScrollBehavior = html.style.scrollBehavior;
+    html.style.scrollBehavior = 'auto';
 
-    if(backToTopFrame) cancelAnimationFrame(backToTopFrame);
+    window.scrollTo({ top:0, left:0, behavior:'auto' });
+    html.scrollTop = 0;
+    document.body.scrollTop = 0;
 
-    const startTime = performance.now();
-    const duration = 340;
-
-    function easeOutCubic(t){
-      return 1 - Math.pow(1 - t, 3);
-    }
-
-    function animate(currentTime){
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-      const nextPosition = Math.round(startPosition * (1 - easeOutCubic(progress)));
-
-      window.scrollTo(0, nextPosition);
-      document.documentElement.scrollTop = nextPosition;
-      document.body.scrollTop = nextPosition;
-
-      if(progress < 1 && nextPosition > 0){
-        backToTopFrame = requestAnimationFrame(animate);
-      } else {
+    // Piccoli richiami per Safari/mobile quando la pagina è ancora in momentum scroll.
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+      html.scrollTop = 0;
+      document.body.scrollTop = 0;
+      toggleBackToTop();
+      setTimeout(() => {
         window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
+        html.scrollTop = 0;
         document.body.scrollTop = 0;
-        backToTopFrame = null;
-      }
-    }
-
-    backToTopFrame = requestAnimationFrame(animate);
+        html.style.scrollBehavior = previousScrollBehavior;
+        toggleBackToTop();
+      }, 60);
+    });
   }
 
   if(backToTop){
     toggleBackToTop();
     window.addEventListener('scroll', toggleBackToTop, { passive:true });
-    backToTop.addEventListener('click', scrollToTopFast, { passive:false });
-    backToTop.addEventListener('touchend', scrollToTopFast, { passive:false });
+    backToTop.addEventListener('pointerdown', goTopNow, { passive:false });
+    backToTop.addEventListener('click', goTopNow, { passive:false });
   }
 
   document.addEventListener('keydown', (event) => {
