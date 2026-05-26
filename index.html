@@ -72,7 +72,7 @@
       top:0;
       z-index:50;
       backdrop-filter:blur(18px);
-      background:rgba(247,241,231,.82);
+      background:rgba(122,47,40,.75);
       border-bottom:1px solid var(--line);
     }
 
@@ -380,7 +380,7 @@
       justify-content:center;
       text-align:center;
       padding:28px;
-      color:rgba(247,241,231,.72);
+      color:rgba(43,33,27,.58);
       line-height:1.6;
       font-weight:700;
       margin:auto;
@@ -509,7 +509,7 @@
       display:flex;
       flex-wrap:wrap;
       gap:14px;
-      margin-top:34px;
+      margin-top:28px;
     }
 
     .hero-actions .btn-secondary{order:1}
@@ -648,7 +648,7 @@
 
     .offer-card.is-selected small,
     .offer-card.is-selected p,
-    .offer-card.is-selected li{color:rgba(247,241,231,.72)}
+    .offer-card.is-selected li{color:rgba(43,33,27,.58)}
     .offer-card.is-selected h3{color:var(--ivory)}
     .offer-card.is-selected li::before{color:var(--sand)}
 
@@ -661,7 +661,7 @@
 
     .offer-card.is-complete small,
     .offer-card.is-complete p,
-    .offer-card.is-complete li{color:rgba(247,241,231,.72)}
+    .offer-card.is-complete li{color:rgba(43,33,27,.58)}
 
     .offer-card.is-complete h3{color:var(--ivory)}
     .offer-card.is-complete li::before{color:var(--sand)}
@@ -710,9 +710,9 @@
       gap:9px;
       width:max-content;
       border-radius:999px;
-      padding:11px 14px;
-      background:rgba(255,255,255,.68);
-      border:1px solid rgba(43,33,27,.10);
+      padding:0;
+      background:transparent;
+      border:0;
       color:var(--muted);
       font-size:13px;
       font-weight:900;
@@ -721,9 +721,9 @@
 
     .is-complete .select-pill,
     .offer-card.is-selected .select-pill{
-      background:rgba(255,255,255,.10);
-      color:rgba(247,241,231,.82);
-      border-color:rgba(255,255,255,.14);
+      background:transparent;
+      color:rgba(122,47,40,.75);
+      border:0;
     }
 
     .select-pill::before{
@@ -743,7 +743,7 @@
 
     .offer-card > div:last-child{
       display:flex;
-      align-items:flex-end;
+      align-items:center;
       justify-content:space-between;
       gap:14px;
       flex-wrap:wrap;
@@ -753,7 +753,7 @@
     .learn-more{
       margin-top:0;
       align-self:center;
-      transform:translateY(9px);
+      transform:translateY(1px);
       border:0;
       background:transparent;
       color:var(--brown);
@@ -764,7 +764,7 @@
       letter-spacing:-.01em;
     }
 
-    .learn-more:hover{color:var(--bordeaux);border-bottom-color:var(--bordeaux);transform:translateY(6px)}
+    .learn-more:hover{color:var(--bordeaux);border-bottom-color:var(--bordeaux);transform:translateY(-1px)}
     .is-complete .learn-more,.offer-card.is-selected .learn-more{color:var(--ivory);border-bottom-color:rgba(247,241,231,.42)}
 
     .selection-panel{
@@ -843,7 +843,7 @@
     .quote-card p{
       position:relative;
       z-index:2;
-      color:rgba(247,241,231,.72);
+      color:rgba(43,33,27,.58);
       margin-top:26px;
     }
 
@@ -851,7 +851,7 @@
       position:relative;
       z-index:2;
       margin-top:20px;
-      color:rgba(247,241,231,.72);
+      color:rgba(43,33,27,.58);
       font-size:15px;
       line-height:1.65;
       font-weight:650;
@@ -912,12 +912,12 @@
       min-height:500px;
       position:relative;
       z-index:2;
-      border-radius:34px;
+      border-radius:0;
       background:
-        radial-gradient(circle at 50% 44%,rgba(122,47,40,.23),transparent 30%),
-        radial-gradient(circle at 26% 72%,rgba(155,118,83,.16),transparent 28%),
-        linear-gradient(145deg,rgba(25,20,17,.98),rgba(67,49,38,.95));
-      box-shadow:0 30px 90px rgba(43,33,27,.22);
+        radial-gradient(circle at 54% 44%,rgba(122,47,40,.13),transparent 32%),
+        radial-gradient(circle at 26% 72%,rgba(155,118,83,.12),transparent 30%),
+        linear-gradient(180deg,rgba(247,241,231,0),rgba(255,255,255,.20));
+      box-shadow:none;
       overflow:hidden;
       display:flex;
       align-items:center;
@@ -930,8 +930,8 @@
       position:absolute;
       inset:0;
       background:
-        linear-gradient(rgba(247,241,231,.035) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(247,241,231,.035) 1px,transparent 1px);
+        linear-gradient(rgba(43,33,27,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(43,33,27,.035) 1px,transparent 1px);
       background-size:36px 36px;
       opacity:.75;
       mask-image:radial-gradient(circle at center,#000 0 60%,transparent 84%);
@@ -958,7 +958,7 @@
       left:10%;
       right:10%;
       height:1px;
-      background:linear-gradient(90deg,transparent,rgba(231,215,189,.16),rgba(231,215,189,.48),rgba(122,47,40,.36),transparent);
+      background:linear-gradient(90deg,transparent,rgba(43,33,27,.08),rgba(155,118,83,.34),rgba(122,47,40,.30),transparent);
       transform:rotate(var(--r));
       opacity:.72;
       overflow:hidden;
@@ -969,7 +969,7 @@
       position:absolute;
       inset:0 auto 0 -35%;
       width:34%;
-      background:linear-gradient(90deg,transparent,rgba(247,241,231,.82),transparent);
+      background:linear-gradient(90deg,transparent,rgba(122,47,40,.75),transparent);
       animation:signalMove 3.8s ease-in-out infinite;
       animation-delay:var(--d);
     }
@@ -986,7 +986,7 @@
     }
 
     .growth-curve svg{width:100%;height:100%;overflow:visible}
-    .curve-base{fill:none;stroke:rgba(247,241,231,.10);stroke-width:2}
+    .curve-base{fill:none;stroke:rgba(43,33,27,.12);stroke-width:2}
     .curve-main{fill:none;stroke:url(#growthGradient);stroke-width:3.4;stroke-linecap:round;stroke-dasharray:900;stroke-dashoffset:900;animation:drawCurve 3.2s ease forwards infinite alternate}
     .curve-glow{fill:none;stroke:rgba(231,215,189,.26);stroke-width:12;stroke-linecap:round;filter:blur(10px);opacity:.58;stroke-dasharray:900;stroke-dashoffset:900;animation:drawCurve 3.2s ease forwards infinite alternate}
 
@@ -997,7 +997,7 @@
       bottom:12%;
       height:42%;
       display:flex;
-      align-items:flex-end;
+      align-items:center;
       justify-content:space-between;
       z-index:2;
       opacity:.92;
@@ -1007,7 +1007,7 @@
       width:8.5%;
       height:var(--h);
       border-radius:999px 999px 8px 8px;
-      background:linear-gradient(180deg,rgba(231,215,189,.76),rgba(122,47,40,.48));
+      background:linear-gradient(180deg,rgba(155,118,83,.52),rgba(122,47,40,.36));
       box-shadow:0 0 30px rgba(231,215,189,.10);
       transform-origin:bottom;
       animation:columnPulse 3.8s ease-in-out infinite;
@@ -1046,13 +1046,16 @@
     .growth-focus strong{font-size:31px;line-height:.95;letter-spacing:-.055em}
     .growth-focus span{display:block;margin-top:9px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(247,241,231,.64);font-weight:900}
 
+    .growth-focus,
+    .growth-proof{display:none!important}
+
     .growth-proof{
       position:absolute;
       z-index:6;
       left:50%;
       bottom:28px;
       transform:translateX(-50%);
-      color:rgba(247,241,231,.72);
+      color:rgba(43,33,27,.58);
       font-size:12px;
       letter-spacing:.17em;
       text-transform:uppercase;
@@ -1407,7 +1410,7 @@
       .section-head,.approach-grid,.private-layout,.advisor-panel,.contact-grid{grid-template-columns:1fr;gap:42px}
       .offer-grid{grid-template-columns:1fr}
       .method-premium{grid-template-columns:1fr;padding:28px;border-radius:36px;gap:28px}
-      .method-visual{min-height:390px;border-radius:28px}
+      .method-visual{min-height:390px;border-radius:0}
       .approach-box,.quote-card,.advisor-panel,form{padding:30px;border-radius:32px}
     }
 
@@ -1440,7 +1443,7 @@
       .selection-panel{padding:16px;border-radius:22px}
       .private-layout{gap:32px}
       .method-premium{padding:16px;border-radius:28px}
-      .method-visual{min-height:320px;border-radius:24px}
+      .method-visual{min-height:320px;border-radius:0}
       .growth-focus{width:138px;height:138px}
       .growth-focus strong{font-size:23px}
       .growth-focus::before{inset:-22px}
@@ -1568,8 +1571,8 @@
       <h1>Affianco business e professionisti nella crescita digitale.</h1>
 
       <p>
-        Consulenza diretta su strategia, siti web, funnel, media, analytics e conversione.
-        Costruiamo un sistema digitale più chiaro, credibile e misurabile, pensato per generare più lead qualificati e trasformare meglio il traffico in fatturato.
+        Consulenza privata one-to-one su strategia digitale, siti web, funnel, media, analytics e conversione.
+        Lavoro direttamente con te per rendere il digitale più chiaro, credibile e orientato a lead e fatturato.
       </p>
 
       <div class="hero-actions">
@@ -1591,22 +1594,22 @@
         <div>
           <div class="label">Approccio</div>
           <h2>Un confronto diretto per prendere decisioni migliori.</h2>
-
-          <button class="profile-trigger" type="button" data-open-about>
-            <span class="profile-avatar-sm">GDS</span>
-            <span>Conosci chi sono</span>
-          </button>
         </div>
 
         <div class="approach-text">
           <p>
             Il digitale funziona quando strategia, dati e realizzazione lavorano insieme.
-            Per questo seguo i progetti in modo diretto, con un approccio pratico e orientato al business.
+            Per questo seguo ogni progetto in prima persona, con un approccio pratico e orientato al business.
           </p>
           <p>
-            L’obiettivo è capire dove intervenire, cosa prioritizzare e come trasformare sito, funnel,
+            Il mio obiettivo è capire dove intervenire, cosa prioritizzare e come trasformare sito, funnel,
             campagne e analytics in un sistema capace di aumentare fiducia, richieste commerciali e opportunità di fatturato.
           </p>
+
+          <button class="profile-trigger" type="button" data-open-about>
+            <span class="profile-avatar-sm">GDS</span>
+            <span>Conosci chi sono</span>
+          </button>
         </div>
       </div>
     </div>
@@ -1622,7 +1625,8 @@
       </div>
       <p class="lead">
         Puoi richiedere supporto su una singola area oppure costruire un percorso integrato:
-        strategia, presenza digitale, contenuti, dati e ottimizzazione. L’obiettivo non è “fare digitale”, ma rendere il digitale più utile al business: più chiarezza, più lead, più conversioni.
+        strategia, presenza digitale, contenuti, dati e ottimizzazione.<br><br>
+        L’obiettivo non è “fare digitale”, ma rendere il digitale più utile al business: più chiarezza, più lead, più conversioni.
       </p>
     </div>
 
@@ -1729,11 +1733,6 @@
         </div>
       </article>
     </div>
-
-    <div class="selection-panel reveal">
-      <strong>La tua selezione</strong>
-      <div class="selected-list" id="selectedList">Nessuna consulenza selezionata.</div>
-    </div>
   </div>
 </section>
 
@@ -1810,8 +1809,6 @@
             <path class="curve-main" d="M24 262 C88 244, 112 226, 156 214 C222 196, 226 150, 282 142 C350 132, 360 82, 496 54"/>
           </svg>
         </div>
-        <div class="growth-focus"><div><strong>Metodo<br>Diretto</strong><span>lead · dati · fatturato</span></div></div>
-        <div class="growth-proof">strategia misurabile, crescita leggibile</div>
       </div>
 
       <div class="method-list">
@@ -2069,7 +2066,7 @@
     });
 
     const selectedArray = Array.from(selectedServices);
-    selectedList.textContent = selectedArray.length ? selectedArray.join(', ') : 'Nessuna consulenza selezionata.';
+    if(selectedList) selectedList.textContent = selectedArray.length ? selectedArray.join(', ') : 'Nessuna consulenza selezionata.';
 
     if(selectedServicesInput) selectedServicesInput.value = selectedArray.join(', ');
 
