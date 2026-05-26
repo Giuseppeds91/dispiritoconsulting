@@ -2302,10 +2302,10 @@
     <div class="advisor-panel private-advisor-panel reveal">
       <div>
         <div class="label">Private Digital Advisor</div>
-        <h2>Un primo assessment guidato per capire dove intervenire.</h2>
+        <h2>Capisci quale percorso digitale ha più senso per il tuo progetto.</h2>
         <p class="lead" style="margin-top:26px;">
-          Rispondi a poche domande sul tuo progetto: l’advisor analizza strategia, sito, funnel, dati,
-          conversione e processi AI per restituirti una prima lettura chiara e un percorso consigliato.
+          Rispondi a 6 domande: il sistema legge le risposte, individua la priorità più urgente
+          e ti suggerisce il percorso più adatto tra strategia, sito, funnel, media, dati e automazioni.
         </p>
       </div>
 
@@ -2320,7 +2320,7 @@
             <div class="advisor-intro-message">
               <strong>Private Digital Advisor</strong>
               <p>
-                Un confronto guidato, rapido e riservato per individuare le priorità digitali del tuo progetto.
+                Non è un agent esterno: è un modello guidato costruito sulle risposte. Alla fine ricevi una prima diagnosi e puoi inviarla direttamente nel modulo.
               </p>
             </div>
             <button class="advisor-start-btn" type="button" id="startAdvisorBtn">
@@ -2339,14 +2339,14 @@
           <div id="advisorLoading" class="advisor-loading advisor-hidden">
             <div class="advisor-loader" aria-hidden="true"></div>
             <strong>Analisi in corso</strong>
-            <p>Sto leggendo le risposte e costruendo una prima valutazione del progetto.</p>
+            <p>Sto incrociando obiettivo, problema, maturità digitale, dati, urgenza e livello di supporto richiesto.</p>
           </div>
 
           <div id="advisorResult" class="advisor-result advisor-hidden">
             <div class="advisor-result-label">Analisi preliminare</div>
             <div class="advisor-result-text" id="advisorResultText"></div>
             <button class="advisor-reset-btn" type="button" id="advisorResetBtn">Rifai assessment</button>
-            <a href="#contatti" class="advisor-contact-btn" id="advisorContactBtn">Richiedi una consulenza privata</a>
+            <a href="#contatti" class="advisor-contact-btn" id="advisorContactBtn">Invia la diagnosi nel form</a>
           </div>
         </div>
       </div>
@@ -2678,34 +2678,114 @@
 
 
 
-  const ADVISOR_API_URL = "https://project-29xe0.vercel.app/api/advisor";
-
   const advisorQuestions = [
     {
+      id: "project",
       question: "Che tipo di progetto vuoi migliorare?",
-      options: ["Professionista", "PMI", "Studio professionale", "Brand personale", "E-commerce", "Altro"]
+      options: [
+        { label: "Professionista / consulente", value: "professionista" },
+        { label: "PMI o attività locale", value: "pmi" },
+        { label: "Studio professionale", value: "studio" },
+        { label: "Brand personale", value: "brand" },
+        { label: "E-commerce", value: "ecommerce" },
+        { label: "Nuovo progetto da lanciare", value: "startup" }
+      ]
     },
     {
-      question: "Qual è oggi la difficoltà principale?",
-      options: ["Pochi contatti", "Sito poco efficace", "Strategia non chiara", "Campagne che non convertono", "Dati confusi", "Voglio integrare AI"]
+      id: "goal",
+      question: "Qual è il risultato che vuoi ottenere prima?",
+      options: [
+        { label: "Più richieste e contatti qualificati", value: "lead" },
+        { label: "Presentarmi meglio e sembrare più autorevole", value: "trust" },
+        { label: "Capire cosa non funziona nel sito", value: "audit" },
+        { label: "Far rendere meglio campagne e budget", value: "media" },
+        { label: "Misurare meglio risultati e conversioni", value: "data" },
+        { label: "Automatizzare risposte, processi o contenuti", value: "ai" }
+      ]
     },
     {
-      question: "Hai già una presenza digitale attiva?",
-      options: ["Sì", "Parzialmente", "No"]
+      id: "problem",
+      question: "Qual è oggi il blocco principale?",
+      options: [
+        { label: "Non ho una direzione chiara", value: "strategy_gap" },
+        { label: "Il sito non convince o non converte", value: "site_gap" },
+        { label: "Ricevo traffico ma pochi contatti", value: "conversion_gap" },
+        { label: "Le campagne costano ma portano poco", value: "campaign_gap" },
+        { label: "Non capisco bene i dati", value: "tracking_gap" },
+        { label: "Perdo tempo in attività ripetitive", value: "process_gap" }
+      ]
     },
     {
-      question: "Misuri già risultati, conversioni o performance?",
-      options: ["Sì", "Solo in parte", "No"]
+      id: "stage",
+      question: "A che punto sei oggi con il digitale?",
+      options: [
+        { label: "Parto quasi da zero", value: "zero" },
+        { label: "Ho già sito/social ma poco metodo", value: "basic" },
+        { label: "Ho campagne o contenuti già attivi", value: "active" },
+        { label: "Ho già dati, funnel o CRM da ottimizzare", value: "advanced" }
+      ]
     },
     {
-      question: "Vuoi migliorare anche processi interni con AI o automazioni?",
-      options: ["Sì", "Può interessarmi", "Non è prioritario"]
+      id: "urgency",
+      question: "Quanto è importante intervenire ora?",
+      options: [
+        { label: "Molto: voglio sbloccare il progetto subito", value: "high" },
+        { label: "Abbastanza: voglio capire le priorità", value: "medium" },
+        { label: "Sto valutando: mi serve una prima direzione", value: "low" }
+      ]
     },
     {
-      question: "Quanto è importante intervenire nei prossimi mesi?",
-      options: ["Molto", "Abbastanza", "Sto valutando"]
+      id: "support",
+      question: "Che tipo di supporto ti sarebbe più utile?",
+      options: [
+        { label: "Un percorso completo con direzione e operatività", value: "full" },
+        { label: "Un audit chiaro con priorità e prossime azioni", value: "audit_only" },
+        { label: "Una landing/sito fatto meglio", value: "build" },
+        { label: "Una strategia per campagne e contenuti", value: "media_plan" },
+        { label: "Tracking, lettura dati e ottimizzazione", value: "cro" },
+        { label: "Automazioni leggere e AI applicata", value: "automation" }
+      ]
     }
   ];
+
+  const advisorServiceRules = {
+    "Pacchetto completo": {
+      title: "Percorso consigliato: Pacchetto completo",
+      intro: "Dalle risposte emerge che il progetto non ha bisogno di un intervento isolato, ma di una direzione unica: strategia, sito/funnel, comunicazione, dati e priorità operative devono essere letti insieme.",
+      why: "È la scelta migliore quando il rischio è lavorare a pezzi: rifare una pagina senza strategia, fare campagne senza tracking o guardare i dati senza sapere cosa decidere.",
+      next: "Nel form sotto puoi inviarmi questa diagnosi: la userò come base per capire se ha senso costruire un percorso completo o partire da una prima fase più leggera."
+    },
+    "Creazione sito o landing": {
+      title: "Percorso consigliato: Creazione sito o landing",
+      intro: "Le risposte indicano che il primo punto da sistemare è la presenza digitale: il progetto deve presentarsi meglio, spiegare più chiaramente il valore e trasformare l’interesse in contatto.",
+      why: "Qui la priorità non è solo estetica: servono struttura, messaggio, UX, CTA e una pagina pensata per generare fiducia e richieste concrete.",
+      next: "Nel form sotto puoi inviarmi il contesto: capirò se serve una nuova landing, un sito più completo o un restyling mirato."
+    },
+    "Audit sito e funnel": {
+      title: "Percorso consigliato: Audit sito e funnel",
+      intro: "Il progetto sembra avere già qualcosa online, ma ci sono frizioni che impediscono agli utenti di capire, fidarsi o lasciare una richiesta.",
+      why: "Prima di rifare tutto, conviene leggere percorso utente, messaggi, CTA, blocchi di conversione e priorità: così si interviene dove conta davvero.",
+      next: "Nel form sotto puoi inviarmi sito, obiettivo e problema principale: ti risponderò con una prima valutazione privata."
+    },
+    "Media strategy": {
+      title: "Percorso consigliato: Media strategy",
+      intro: "Dalle risposte emerge un tema di visibilità, traffico o campagne: il punto non è solo spendere, ma dare una direzione chiara a target, messaggi, canali e budget.",
+      why: "Quando le campagne non convertono, spesso il problema è a monte: offerta poco chiara, audience debole, creatività non coerenti o landing non allineata.",
+      next: "Nel form sotto puoi descrivermi cosa stai promuovendo e con quali canali: valuterò se serve strategia media, audit funnel o un percorso più completo."
+    },
+    "Analytics & CRO Optimization": {
+      title: "Percorso consigliato: Analytics & CRO Optimization",
+      intro: "Le risposte segnalano un bisogno forte di misurazione e ottimizzazione: devi capire cosa succede davvero tra traffico, comportamento utenti, conversioni e risultati.",
+      why: "Senza tracking e lettura corretta dei dati si rischia di decidere a sensazione. Qui il lavoro serve a rendere il progetto più misurabile e migliorabile nel tempo.",
+      next: "Nel form sotto puoi indicarmi strumenti, sito e obiettivo: capirò se partire da tracking, dashboard, audit dati o CRO."
+    },
+    "Integrazione AI & Automazione": {
+      title: "Percorso consigliato: Integrazione AI & Automazione",
+      intro: "Il bisogno principale sembra legato a processi, tempo operativo o gestione delle richieste: l’AI può aiutare, ma va inserita in modo semplice e sostenibile.",
+      why: "Non serve per forza un agent costoso: spesso bastano automazioni leggere, flussi guidati, template, raccolta dati e strumenti collegati bene al processo commerciale.",
+      next: "Nel form sotto puoi spiegare quale attività ti fa perdere più tempo: valuterò una soluzione concreta, senza infrastrutture inutilmente costose."
+    }
+  };
 
   const advisorStart = document.getElementById('advisorStart');
   const advisorFlow = document.getElementById('advisorFlow');
@@ -2723,6 +2803,7 @@
   let advisorIndex = 0;
   let advisorAnswers = [];
   let lastAdvisorResult = "";
+  let lastAdvisorService = "";
 
   function setAdvisorStepLabel(text){
     if(advisorStepLabel) advisorStepLabel.textContent = text;
@@ -2749,11 +2830,13 @@
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'advisor-option';
-      button.textContent = option;
+      button.textContent = option.label;
       button.addEventListener('click', () => {
         advisorAnswers.push({
+          id: item.id,
           question: item.question,
-          answer: option
+          answer: option.label,
+          value: option.value
         });
 
         advisorIndex += 1;
@@ -2772,45 +2855,113 @@
     advisorIndex = 0;
     advisorAnswers = [];
     lastAdvisorResult = "";
+    lastAdvisorService = "";
     showAdvisorState('flow');
     renderAdvisorQuestion();
   }
 
-  async function generateAdvisorAnalysis(){
+  function getAdvisorValue(id){
+    const found = advisorAnswers.find(item => item.id === id);
+    return found ? found.value : "";
+  }
+
+  function addScore(scores, service, points){
+    scores[service] = (scores[service] || 0) + points;
+  }
+
+  function selectRecommendedService(){
+    const scores = {
+      "Pacchetto completo": 0,
+      "Creazione sito o landing": 0,
+      "Audit sito e funnel": 0,
+      "Media strategy": 0,
+      "Analytics & CRO Optimization": 0,
+      "Integrazione AI & Automazione": 0
+    };
+
+    const project = getAdvisorValue('project');
+    const goal = getAdvisorValue('goal');
+    const problem = getAdvisorValue('problem');
+    const stage = getAdvisorValue('stage');
+    const urgency = getAdvisorValue('urgency');
+    const support = getAdvisorValue('support');
+
+    if(['startup','pmi','ecommerce'].includes(project)) addScore(scores, 'Pacchetto completo', 2);
+    if(['professionista','studio','brand'].includes(project)) addScore(scores, 'Creazione sito o landing', 1);
+    if(project === 'ecommerce') addScore(scores, 'Analytics & CRO Optimization', 2);
+
+    if(goal === 'lead') { addScore(scores, 'Creazione sito o landing', 2); addScore(scores, 'Media strategy', 1); addScore(scores, 'Pacchetto completo', 1); }
+    if(goal === 'trust') addScore(scores, 'Creazione sito o landing', 3);
+    if(goal === 'audit') addScore(scores, 'Audit sito e funnel', 3);
+    if(goal === 'media') addScore(scores, 'Media strategy', 3);
+    if(goal === 'data') addScore(scores, 'Analytics & CRO Optimization', 3);
+    if(goal === 'ai') addScore(scores, 'Integrazione AI & Automazione', 3);
+
+    if(problem === 'strategy_gap') addScore(scores, 'Pacchetto completo', 3);
+    if(problem === 'site_gap') addScore(scores, 'Creazione sito o landing', 3);
+    if(problem === 'conversion_gap') { addScore(scores, 'Audit sito e funnel', 2); addScore(scores, 'Analytics & CRO Optimization', 2); }
+    if(problem === 'campaign_gap') { addScore(scores, 'Media strategy', 3); addScore(scores, 'Audit sito e funnel', 1); }
+    if(problem === 'tracking_gap') addScore(scores, 'Analytics & CRO Optimization', 3);
+    if(problem === 'process_gap') addScore(scores, 'Integrazione AI & Automazione', 3);
+
+    if(stage === 'zero') { addScore(scores, 'Pacchetto completo', 2); addScore(scores, 'Creazione sito o landing', 2); }
+    if(stage === 'basic') { addScore(scores, 'Audit sito e funnel', 2); addScore(scores, 'Creazione sito o landing', 1); }
+    if(stage === 'active') { addScore(scores, 'Media strategy', 1); addScore(scores, 'Audit sito e funnel', 2); addScore(scores, 'Analytics & CRO Optimization', 1); }
+    if(stage === 'advanced') { addScore(scores, 'Analytics & CRO Optimization', 2); addScore(scores, 'Pacchetto completo', 1); }
+
+    if(urgency === 'high') addScore(scores, 'Pacchetto completo', 2);
+    if(urgency === 'medium') addScore(scores, 'Audit sito e funnel', 1);
+
+    if(support === 'full') addScore(scores, 'Pacchetto completo', 5);
+    if(support === 'audit_only') addScore(scores, 'Audit sito e funnel', 5);
+    if(support === 'build') addScore(scores, 'Creazione sito o landing', 5);
+    if(support === 'media_plan') addScore(scores, 'Media strategy', 5);
+    if(support === 'cro') addScore(scores, 'Analytics & CRO Optimization', 5);
+    if(support === 'automation') addScore(scores, 'Integrazione AI & Automazione', 5);
+
+    return Object.entries(scores).sort((a,b) => b[1] - a[1])[0][0];
+  }
+
+  function selectServiceFromAdvisor(service){
+    if(!service) return;
+    if(typeof selectedServices !== 'undefined'){
+      if(service === 'Pacchetto completo'){
+        selectedServices = new Set(['Pacchetto completo', ...allServiceNames()]);
+      } else {
+        selectedServices = new Set([service]);
+      }
+      updateSelectionUI();
+    }
+  }
+
+  function buildAdvisorResult(service){
+    const rule = advisorServiceRules[service] || advisorServiceRules['Pacchetto completo'];
+    const summary = advisorAnswers.map(item => `• ${item.question} ${item.answer}`).join('\n');
+
+    return `${rule.title}\n\n${rule.intro}\n\nPerché: ${rule.why}\n\nProssimo passo: ${rule.next}\n\nSintesi risposte:\n${summary}`;
+  }
+
+  function writeAdvisorResultToForm(){
+    const messageTextarea = document.querySelector('form textarea');
+    if(messageTextarea && lastAdvisorResult){
+      const cleanValue = messageTextarea.value.replace(/\n\n--- DIAGNOSI PRIVATE DIGITAL ADVISOR ---[\s\S]*$/,'').trim();
+      messageTextarea.value = `${cleanValue ? cleanValue + '\n\n' : ''}--- DIAGNOSI PRIVATE DIGITAL ADVISOR ---\n${lastAdvisorResult}`;
+    }
+  }
+
+  function generateAdvisorAnalysis(){
     showAdvisorState('loading');
     setAdvisorStepLabel('Analisi');
 
-    try{
-      const response = await fetch(ADVISOR_API_URL, {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({ answers: advisorAnswers })
-      });
-
-      const data = await response.json();
-
-      if(!response.ok || !data.result){
-        throw new Error('Analisi non disponibile');
-      }
-
-      lastAdvisorResult = data.result;
+    window.setTimeout(() => {
+      lastAdvisorService = selectRecommendedService();
+      lastAdvisorResult = buildAdvisorResult(lastAdvisorService);
       if(advisorResultText) advisorResultText.textContent = lastAdvisorResult;
-
-      const messageTextarea = document.querySelector('form textarea');
-      if(messageTextarea){
-        const cleanValue = messageTextarea.value.replace(/\n\n--- RISULTATO ADVISOR ---[\s\S]*$/,'').trim();
-        messageTextarea.value = `${cleanValue ? cleanValue + '\n\n' : ''}--- RISULTATO ADVISOR ---\n${lastAdvisorResult}`;
-      }
-
+      selectServiceFromAdvisor(lastAdvisorService);
+      writeAdvisorResultToForm();
       showAdvisorState('result');
       setAdvisorStepLabel('Completato');
-
-    } catch(error){
-      lastAdvisorResult = "Analisi non disponibile in questo momento. Puoi comunque richiedere una consulenza privata e descrivere il tuo progetto nel modulo.";
-      if(advisorResultText) advisorResultText.textContent = lastAdvisorResult;
-      showAdvisorState('result');
-      setAdvisorStepLabel('Errore');
-    }
+    }, 650);
   }
 
   if(startAdvisorBtn) startAdvisorBtn.addEventListener('click', startAdvisor);
@@ -2820,6 +2971,7 @@
       advisorIndex = 0;
       advisorAnswers = [];
       lastAdvisorResult = "";
+      lastAdvisorService = "";
       showAdvisorState('start');
       setAdvisorStepLabel('Pronto');
     });
@@ -2827,11 +2979,7 @@
 
   if(advisorContactBtn){
     advisorContactBtn.addEventListener('click', () => {
-      const messageTextarea = document.querySelector('form textarea');
-      if(messageTextarea && lastAdvisorResult){
-        const cleanValue = messageTextarea.value.replace(/\n\n--- RISULTATO ADVISOR ---[\s\S]*$/,'').trim();
-        messageTextarea.value = `${cleanValue ? cleanValue + '\n\n' : ''}--- RISULTATO ADVISOR ---\n${lastAdvisorResult}`;
-      }
+      writeAdvisorResultToForm();
     });
   }
 
