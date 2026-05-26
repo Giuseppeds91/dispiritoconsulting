@@ -1500,7 +1500,7 @@
       right:24px;
       bottom:24px;
       z-index:9999;
-      width:42px;
+      width:34px;
       height:58px;
       border:0;
       background:transparent;
@@ -1508,11 +1508,13 @@
       display:grid;
       place-items:center;
       cursor:pointer;
+      box-shadow:none;
       opacity:0;
       visibility:hidden;
       pointer-events:none;
       transform:translateY(14px);
-      transition:opacity .32s ease, visibility .32s ease, transform .32s cubic-bezier(.22,1,.36,1);
+      transition:opacity .28s ease, visibility .28s ease, transform .34s cubic-bezier(.2,.8,.2,1);
+      overflow:visible;
       touch-action:manipulation;
       -webkit-tap-highlight-color:transparent;
       user-select:none;
@@ -1520,7 +1522,7 @@
     }
 
     .back-to-top.is-visible{
-      opacity:.72;
+      opacity:.78;
       visibility:visible;
       pointer-events:auto;
       transform:translateY(0);
@@ -1539,10 +1541,10 @@
       position:relative;
       z-index:2;
       width:18px;
-      height:34px;
+      height:42px;
       display:block;
       pointer-events:none;
-      animation:arrowFloat 2.4s ease-in-out infinite;
+      filter:drop-shadow(0 8px 18px rgba(43,33,27,.10));
     }
 
     .back-to-top .arrow-icon::before{
@@ -1552,8 +1554,8 @@
       top:3px;
       width:12px;
       height:12px;
-      border-left:2px solid rgba(43,33,27,.78);
-      border-top:2px solid rgba(43,33,27,.78);
+      border-left:2px solid rgba(43,33,27,.82);
+      border-top:2px solid rgba(43,33,27,.82);
       transform:translateX(-50%) rotate(45deg);
       border-radius:1px;
     }
@@ -1564,15 +1566,10 @@
       left:50%;
       top:10px;
       width:2px;
-      height:24px;
-      background:linear-gradient(180deg,rgba(43,33,27,.74),rgba(43,33,27,.12));
+      height:30px;
+      background:linear-gradient(180deg,rgba(43,33,27,.78),rgba(43,33,27,.22));
       transform:translateX(-50%);
       border-radius:999px;
-    }
-
-    @keyframes arrowFloat{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-4px)}
     }
 
     .back-to-top span:not(.arrow-icon){
@@ -1664,12 +1661,15 @@
     }
 
     .advisor-intro-message.clean-intro{
-      min-height:150px;
+      min-height:auto;
       display:flex;
       align-items:center;
-      justify-content:center;
-      text-align:center;
-      background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.035));
+      justify-content:flex-start;
+      text-align:left;
+      background:transparent;
+      border:0;
+      padding:0;
+      margin-bottom:22px;
     }
 
     .advisor-intro-message p{
@@ -1765,6 +1765,47 @@
       background:rgba(255,255,255,.10);
       color:var(--ivory);
     }
+
+    .advisor-option.is-selected{
+      border-color:rgba(230,213,187,.72);
+      background:rgba(230,213,187,.15);
+      color:var(--ivory);
+      box-shadow:inset 0 0 0 1px rgba(247,241,231,.10), 0 14px 34px rgba(0,0,0,.10);
+    }
+
+    .advisor-option.is-selected::after{
+      content:"✓";
+      margin-left:auto;
+      color:rgba(230,213,187,.95);
+      font-weight:900;
+    }
+
+    .advisor-question-note{
+      margin:-10px 0 18px;
+      color:rgba(247,241,231,.58);
+      font-size:12px;
+      line-height:1.45;
+      font-weight:780;
+    }
+
+    .advisor-next-btn{
+      margin-top:18px;
+      width:100%;
+      border:0;
+      cursor:pointer;
+      border-radius:999px;
+      padding:15px 18px;
+      background:var(--ivory);
+      color:var(--brown);
+      font:inherit;
+      font-size:14px;
+      font-weight:900;
+      transition:.22s ease;
+      box-shadow:0 18px 46px rgba(0,0,0,.16);
+    }
+
+    .advisor-next-btn:hover{transform:translateY(-2px);background:#fff}
+    .advisor-next-btn:disabled{opacity:.36;cursor:not-allowed;transform:none;box-shadow:none}
 
     .advisor-loading{
       text-align:center;
@@ -1914,7 +1955,7 @@
       .form-row{grid-template-columns:1fr;gap:0}
       .service-options{grid-template-columns:1fr}
       .mobile-panel a,.mobile-panel button{font-size:16px;padding:15px 6px}
-      .back-to-top{right:12px;bottom:12px;width:38px;height:54px}
+      .back-to-top{right:14px;bottom:16px;width:30px;height:54px}
     }
     @media(max-width:1050px){
       .private-advisor-panel{
@@ -2451,6 +2492,21 @@
 </button>
 
 <script>
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+  window.addEventListener('beforeunload', () => {
+    if (window.location.hash) {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  });
+
+  window.addEventListener('load', () => {
+    if (window.location.hash) {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+    window.setTimeout(() => window.scrollTo({ top:0, left:0, behavior:'auto' }), 0);
+  });
+
   const body = document.body;
   const mobileToggle = document.querySelector('.mobile-toggle');
   const mobileBackdrop = document.querySelector('[data-close-menu]');
@@ -2700,68 +2756,65 @@
       id: "project",
       question: "Che tipo di progetto vuoi migliorare?",
       options: [
-        { label: "Professionista / consulente", value: "professionista" },
-        { label: "PMI o attività locale", value: "pmi" },
-        { label: "Studio professionale", value: "studio" },
-        { label: "Brand personale", value: "brand" },
-        { label: "E-commerce", value: "ecommerce" },
-        { label: "Nuovo progetto da lanciare", value: "startup" }
+        { label: "Professionista, consulente o brand personale", value: "professionista", weights: { "Creazione sito o landing": 2, "Pacchetto completo": 1 } },
+        { label: "PMI, attività locale o studio professionale", value: "pmi", weights: { "Pacchetto completo": 2, "Audit sito e funnel": 1 } },
+        { label: "E-commerce o vendita online", value: "ecommerce", weights: { "Analytics & CRO Optimization": 2, "Media strategy": 1, "Pacchetto completo": 1 } },
+        { label: "Nuovo progetto da lanciare", value: "startup", weights: { "Pacchetto completo": 3, "Creazione sito o landing": 1 } },
+        { label: "Progetto già avviato da scalare", value: "scale", weights: { "Pacchetto completo": 2, "Analytics & CRO Optimization": 2, "Media strategy": 1 } }
       ]
     },
     {
       id: "goal",
       question: "Qual è il risultato che vuoi ottenere prima?",
       options: [
-        { label: "Più richieste e contatti qualificati", value: "lead" },
-        { label: "Aumentare fatturato e valore delle opportunità", value: "revenue" },
-        { label: "Presentarmi meglio e sembrare più autorevole", value: "trust" },
-        { label: "Capire cosa non funziona nel sito", value: "audit" },
-        { label: "Far rendere meglio campagne e budget", value: "media" },
-        { label: "Misurare meglio risultati e conversioni", value: "data" },
-        { label: "Automatizzare risposte, processi o contenuti", value: "ai" }
+        { label: "Più richieste e contatti qualificati", value: "lead", weights: { "Creazione sito o landing": 2, "Media strategy": 1, "Pacchetto completo": 1 } },
+        { label: "Aumentare fatturato e valore delle opportunità", value: "revenue", weights: { "Pacchetto completo": 3, "Audit sito e funnel": 2, "Media strategy": 2 } },
+        { label: "Rendere il progetto più autorevole e credibile", value: "trust", weights: { "Creazione sito o landing": 3, "Pacchetto completo": 1 } },
+        { label: "Far rendere meglio campagne e budget", value: "media", weights: { "Media strategy": 3, "Audit sito e funnel": 1 } },
+        { label: "Misurare, capire e ottimizzare le conversioni", value: "data", weights: { "Analytics & CRO Optimization": 3, "Audit sito e funnel": 1 } }
       ]
     },
     {
       id: "problem",
       question: "Qual è oggi il blocco principale?",
       options: [
-        { label: "Non ho una direzione chiara", value: "strategy_gap" },
-        { label: "Il sito non convince o non converte", value: "site_gap" },
-        { label: "Ricevo traffico ma pochi contatti", value: "conversion_gap" },
-        { label: "Le campagne costano ma portano poco", value: "campaign_gap" },
-        { label: "Non capisco bene i dati", value: "tracking_gap" },
-        { label: "Perdo tempo in attività ripetitive", value: "process_gap" }
+        { label: "Manca una direzione chiara", value: "strategy_gap", weights: { "Pacchetto completo": 3 } },
+        { label: "Sito o landing non comunicano abbastanza valore", value: "site_gap", weights: { "Creazione sito o landing": 3, "Audit sito e funnel": 1 } },
+        { label: "Traffico, visite o follower non diventano contatti", value: "conversion_gap", weights: { "Audit sito e funnel": 3, "Analytics & CRO Optimization": 2 } },
+        { label: "Campagne attive ma ritorno poco chiaro", value: "campaign_gap", weights: { "Media strategy": 3, "Analytics & CRO Optimization": 1 } },
+        { label: "Processi manuali, risposte lente o attività ripetitive", value: "process_gap", weights: { "Integrazione AI & Automazione": 3, "Pacchetto completo": 1 } }
       ]
     },
     {
       id: "stage",
       question: "A che punto sei oggi con il digitale?",
       options: [
-        { label: "Parto quasi da zero", value: "zero" },
-        { label: "Ho già sito/social ma poco metodo", value: "basic" },
-        { label: "Ho campagne o contenuti già attivi", value: "active" },
-        { label: "Ho già dati, funnel o CRM da ottimizzare", value: "advanced" }
+        { label: "Parto quasi da zero", value: "zero", weights: { "Pacchetto completo": 2, "Creazione sito o landing": 2 } },
+        { label: "Ho sito/social ma poca strategia", value: "basic", weights: { "Audit sito e funnel": 2, "Creazione sito o landing": 1 } },
+        { label: "Ho campagne o contenuti attivi", value: "active", weights: { "Media strategy": 2, "Audit sito e funnel": 2 } },
+        { label: "Ho già dati, CRM o funnel da ottimizzare", value: "advanced", weights: { "Analytics & CRO Optimization": 3, "Pacchetto completo": 1 } },
+        { label: "Ho molte attività, ma non un sistema unico", value: "fragmented", weights: { "Pacchetto completo": 3, "Audit sito e funnel": 1 } }
       ]
     },
     {
       id: "urgency",
       question: "Quanto è importante intervenire ora?",
       options: [
-        { label: "Molto: voglio sbloccare il progetto subito", value: "high" },
-        { label: "Abbastanza: voglio capire le priorità", value: "medium" },
-        { label: "Sto valutando: mi serve una prima direzione", value: "low" }
+        { label: "Subito: il progetto deve sbloccarsi", value: "high", weights: { "Pacchetto completo": 2 } },
+        { label: "A breve: voglio definire le priorità", value: "medium", weights: { "Audit sito e funnel": 2 } },
+        { label: "Prima voglio capire dove sto perdendo valore", value: "diagnostic", weights: { "Audit sito e funnel": 2, "Analytics & CRO Optimization": 1 } },
+        { label: "Voglio preparare un lancio o una nuova fase", value: "launch", weights: { "Pacchetto completo": 2, "Creazione sito o landing": 1, "Media strategy": 1 } }
       ]
     },
     {
       id: "support",
       question: "Che tipo di supporto ti sarebbe più utile?",
       options: [
-        { label: "Un percorso completo con direzione e operatività", value: "full" },
-        { label: "Un audit chiaro con priorità e prossime azioni", value: "audit_only" },
-        { label: "Una landing/sito fatto meglio", value: "build" },
-        { label: "Una strategia per campagne e contenuti", value: "media_plan" },
-        { label: "Tracking, lettura dati e ottimizzazione", value: "cro" },
-        { label: "Automazioni leggere e AI applicata", value: "automation" }
+        { label: "Direzione completa: strategia, sito, funnel e dati", value: "full", weights: { "Pacchetto completo": 5 } },
+        { label: "Audit chiaro con priorità e prossime azioni", value: "audit_only", weights: { "Audit sito e funnel": 5 } },
+        { label: "Sito o landing più forte e orientata alla conversione", value: "build", weights: { "Creazione sito o landing": 5 } },
+        { label: "Strategia per campagne, contenuti e acquisizione", value: "media_plan", weights: { "Media strategy": 5 } },
+        { label: "Tracking, CRO, dati o automazioni leggere", value: "cro_auto", weights: { "Analytics & CRO Optimization": 4, "Integrazione AI & Automazione": 3 } }
       ]
     }
   ];
@@ -2769,39 +2822,39 @@
   const advisorServiceRules = {
     "Pacchetto completo": {
       title: "Percorso consigliato: Pacchetto completo",
-      intro: "Dalle risposte emerge che il progetto non ha bisogno di un intervento isolato, ma di una direzione unica: strategia, sito/funnel, comunicazione, dati e priorità operative devono essere letti insieme.",
-      why: "È la scelta migliore quando il rischio è lavorare a pezzi: rifare una pagina senza strategia, fare campagne senza tracking o guardare i dati senza sapere cosa decidere.",
-      next: "Nel form sotto puoi inviarmi questa diagnosi: la userò come base per capire se ha senso costruire un percorso completo o partire da una prima fase più leggera."
+      intro: "Dalle risposte emerge un progetto con più aree collegate tra loro: strategia, presenza digitale, funnel, campagne e misurazione non vanno trattati come pezzi separati.",
+      why: "La priorità è costruire una direzione unica: capire cosa vendere meglio, a chi parlarne, con quali asset, quali canali usare e quali dati leggere per prendere decisioni.",
+      next: "Nel form sotto puoi inviarmi il contesto: ti risponderò valutando se impostare un percorso completo o partire da una prima fase più mirata."
     },
     "Creazione sito o landing": {
       title: "Percorso consigliato: Creazione sito o landing",
-      intro: "Le risposte indicano che il primo punto da sistemare è la presenza digitale: il progetto deve presentarsi meglio, spiegare più chiaramente il valore e trasformare l’interesse in contatto.",
-      why: "Qui la priorità non è solo estetica: servono struttura, messaggio, UX, CTA e una pagina pensata per generare fiducia e richieste concrete.",
-      next: "Nel form sotto puoi inviarmi il contesto: capirò se serve una nuova landing, un sito più completo o un restyling mirato."
+      intro: "Le risposte indicano che il primo moltiplicatore è la percezione: il progetto deve spiegare meglio il proprio valore e trasformare l’interesse in richiesta concreta.",
+      why: "Qui non serve solo una pagina più bella. Serve una struttura che renda chiaro il posizionamento, riduca dubbi, aumenti fiducia e accompagni l’utente verso l’azione.",
+      next: "Nel form sotto puoi indicarmi sito, obiettivo e contesto: capirò se serve una nuova landing, un restyling mirato o una struttura più completa."
     },
     "Audit sito e funnel": {
       title: "Percorso consigliato: Audit sito e funnel",
-      intro: "Il progetto sembra avere già qualcosa online, ma ci sono frizioni che impediscono agli utenti di capire, fidarsi o lasciare una richiesta.",
-      why: "Prima di rifare tutto, conviene leggere percorso utente, messaggi, CTA, blocchi di conversione e priorità: così si interviene dove conta davvero.",
-      next: "Nel form sotto puoi inviarmi sito, obiettivo e problema principale: ti risponderò con una prima valutazione privata."
+      intro: "Il progetto sembra avere già una base, ma oggi perde valore in alcuni passaggi: messaggio, percorso utente, CTA, fiducia o continuità tra traffico e conversione.",
+      why: "Prima di rifare tutto, conviene capire dove si blocca davvero il percorso. Un audit permette di distinguere ciò che è urgente da ciò che è solo estetico.",
+      next: "Nel form sotto puoi inviarmi link e problema principale: ti risponderò con una prima lettura privata delle priorità."
     },
     "Media strategy": {
       title: "Percorso consigliato: Media strategy",
-      intro: "Dalle risposte emerge un tema di visibilità, traffico o campagne: il punto non è solo spendere, ma dare una direzione chiara a target, messaggi, canali e budget.",
-      why: "Quando le campagne non convertono, spesso il problema è a monte: offerta poco chiara, audience debole, creatività non coerenti o landing non allineata.",
-      next: "Nel form sotto puoi descrivermi cosa stai promuovendo e con quali canali: valuterò se serve strategia media, audit funnel o un percorso più completo."
+      intro: "Dalle risposte emerge un tema di acquisizione: traffico, campagne, contenuti o budget hanno bisogno di una direzione più coerente.",
+      why: "Quando la promozione non rende, spesso il problema non è solo il canale: può essere offerta, target, creatività, landing, tracciamento o messaggio commerciale.",
+      next: "Nel form sotto puoi descrivermi cosa stai promuovendo e con quali canali: valuterò se partire da strategia media, funnel o audit."
     },
     "Analytics & CRO Optimization": {
       title: "Percorso consigliato: Analytics & CRO Optimization",
-      intro: "Le risposte segnalano un bisogno forte di misurazione e ottimizzazione: devi capire cosa succede davvero tra traffico, comportamento utenti, conversioni e risultati.",
-      why: "Senza tracking e lettura corretta dei dati si rischia di decidere a sensazione. Qui il lavoro serve a rendere il progetto più misurabile e migliorabile nel tempo.",
-      next: "Nel form sotto puoi indicarmi strumenti, sito e obiettivo: capirò se partire da tracking, dashboard, audit dati o CRO."
+      intro: "Le risposte segnalano un bisogno di controllo: capire cosa accade davvero tra traffico, comportamento utenti, conversioni, qualità dei lead e ritorno delle attività.",
+      why: "Senza dati leggibili si decide a sensazione. Qui il lavoro serve a rendere il progetto misurabile, ottimizzabile e più utile al business.",
+      next: "Nel form sotto puoi indicarmi strumenti, sito e obiettivo: capirò se partire da tracking, dashboard, lettura dati o CRO."
     },
     "Integrazione AI & Automazione": {
       title: "Percorso consigliato: Integrazione AI & Automazione",
-      intro: "Il bisogno principale sembra legato a processi, tempo operativo o gestione delle richieste: l’AI può aiutare, ma va inserita in modo semplice e sostenibile.",
-      why: "Non serve per forza un agent costoso: spesso bastano automazioni leggere, flussi guidati, template, raccolta dati e strumenti collegati bene al processo commerciale.",
-      next: "Nel form sotto puoi spiegare quale attività ti fa perdere più tempo: valuterò una soluzione concreta, senza infrastrutture inutilmente costose."
+      intro: "Il bisogno principale sembra legato a processi, tempi di risposta, gestione richieste o attività ripetitive che assorbono energia operativa.",
+      why: "Non serve per forza un agent costoso: spesso bastano automazioni leggere, flussi guidati, template e raccolta dati collegata bene al processo commerciale.",
+      next: "Nel form sotto puoi spiegare quale attività ti fa perdere più tempo: valuterò una soluzione concreta, senza infrastrutture inutilmente complesse."
     }
   };
 
@@ -2838,11 +2891,19 @@
     if(!advisorQuestion || !advisorOptions || !advisorProgressBar) return;
 
     const item = advisorQuestions[advisorIndex];
+    const selectedValues = new Set();
+
     advisorQuestion.textContent = item.question;
     advisorProgressBar.style.width = `${((advisorIndex + 1) / advisorQuestions.length) * 100}%`;
     setAdvisorStepLabel(`${advisorIndex + 1}/${advisorQuestions.length}`);
 
     advisorOptions.innerHTML = '';
+
+    const note = document.createElement('div');
+    note.className = 'advisor-question-note';
+    note.textContent = 'Puoi selezionare una o più risposte.';
+    advisorOptions.before(note);
+    document.querySelectorAll('.advisor-question-note').forEach((el, idx, arr) => { if(idx < arr.length - 1) el.remove(); });
 
     item.options.forEach(option => {
       const button = document.createElement('button');
@@ -2850,23 +2911,43 @@
       button.className = 'advisor-option';
       button.textContent = option.label;
       button.addEventListener('click', () => {
-        advisorAnswers.push({
-          id: item.id,
-          question: item.question,
-          answer: option.label,
-          value: option.value
-        });
-
-        advisorIndex += 1;
-
-        if(advisorIndex < advisorQuestions.length){
-          renderAdvisorQuestion();
+        if(selectedValues.has(option.value)){
+          selectedValues.delete(option.value);
+          button.classList.remove('is-selected');
         } else {
-          generateAdvisorAnalysis();
+          selectedValues.add(option.value);
+          button.classList.add('is-selected');
         }
+        if(nextButton) nextButton.disabled = selectedValues.size === 0;
       });
       advisorOptions.appendChild(button);
     });
+
+    const nextButton = document.createElement('button');
+    nextButton.type = 'button';
+    nextButton.className = 'advisor-next-btn';
+    nextButton.textContent = advisorIndex === advisorQuestions.length - 1 ? 'Genera la valutazione' : 'Continua';
+    nextButton.disabled = true;
+    nextButton.addEventListener('click', () => {
+      const selectedOptions = item.options.filter(option => selectedValues.has(option.value));
+      advisorAnswers.push({
+        id: item.id,
+        question: item.question,
+        answers: selectedOptions.map(option => option.label),
+        values: selectedOptions.map(option => option.value),
+        options: selectedOptions
+      });
+
+      advisorIndex += 1;
+
+      if(advisorIndex < advisorQuestions.length){
+        renderAdvisorQuestion();
+      } else {
+        generateAdvisorAnalysis();
+      }
+    });
+    advisorOptions.after(nextButton);
+    document.querySelectorAll('.advisor-next-btn').forEach((el, idx, arr) => { if(idx < arr.length - 1) el.remove(); });
   }
 
   function startAdvisor(){
@@ -2878,16 +2959,20 @@
     renderAdvisorQuestion();
   }
 
-  function getAdvisorValue(id){
+  function getAdvisorValues(id){
     const found = advisorAnswers.find(item => item.id === id);
-    return found ? found.value : "";
+    return found ? found.values : [];
+  }
+
+  function hasValue(id, value){
+    return getAdvisorValues(id).includes(value);
   }
 
   function addScore(scores, service, points){
     scores[service] = (scores[service] || 0) + points;
   }
 
-  function selectRecommendedService(){
+  function calculateAdvisorScores(){
     const scores = {
       "Pacchetto completo": 0,
       "Creazione sito o landing": 0,
@@ -2897,48 +2982,33 @@
       "Integrazione AI & Automazione": 0
     };
 
-    const project = getAdvisorValue('project');
-    const goal = getAdvisorValue('goal');
-    const problem = getAdvisorValue('problem');
-    const stage = getAdvisorValue('stage');
-    const urgency = getAdvisorValue('urgency');
-    const support = getAdvisorValue('support');
+    advisorAnswers.forEach(answerGroup => {
+      answerGroup.options.forEach(option => {
+        Object.entries(option.weights || {}).forEach(([service, points]) => addScore(scores, service, points));
+      });
+    });
 
-    if(['startup','pmi','ecommerce'].includes(project)) addScore(scores, 'Pacchetto completo', 2);
-    if(['professionista','studio','brand'].includes(project)) addScore(scores, 'Creazione sito o landing', 1);
-    if(project === 'ecommerce') addScore(scores, 'Analytics & CRO Optimization', 2);
+    const totalSelections = advisorAnswers.reduce((sum, group) => sum + group.values.length, 0);
+    if(totalSelections >= 10) addScore(scores, 'Pacchetto completo', 2);
+    if(hasValue('goal','revenue') && hasValue('problem','conversion_gap')) addScore(scores, 'Audit sito e funnel', 2);
+    if(hasValue('goal','revenue') && hasValue('stage','fragmented')) addScore(scores, 'Pacchetto completo', 3);
+    if(hasValue('goal','media') && hasValue('problem','campaign_gap')) addScore(scores, 'Media strategy', 3);
+    if(hasValue('stage','advanced') && hasValue('goal','data')) addScore(scores, 'Analytics & CRO Optimization', 3);
+    if(hasValue('problem','process_gap') && hasValue('support','cro_auto')) addScore(scores, 'Integrazione AI & Automazione', 3);
+    if(hasValue('project','startup') && hasValue('urgency','launch')) addScore(scores, 'Pacchetto completo', 2);
+    if(hasValue('project','professionista') && hasValue('goal','trust')) addScore(scores, 'Creazione sito o landing', 2);
 
-    if(goal === 'lead') { addScore(scores, 'Creazione sito o landing', 2); addScore(scores, 'Media strategy', 1); addScore(scores, 'Pacchetto completo', 1); }
-    if(goal === 'revenue') { addScore(scores, 'Pacchetto completo', 3); addScore(scores, 'Audit sito e funnel', 2); addScore(scores, 'Media strategy', 2); }
-    if(goal === 'trust') addScore(scores, 'Creazione sito o landing', 3);
-    if(goal === 'audit') addScore(scores, 'Audit sito e funnel', 3);
-    if(goal === 'media') addScore(scores, 'Media strategy', 3);
-    if(goal === 'data') addScore(scores, 'Analytics & CRO Optimization', 3);
-    if(goal === 'ai') addScore(scores, 'Integrazione AI & Automazione', 3);
+    return scores;
+  }
 
-    if(problem === 'strategy_gap') addScore(scores, 'Pacchetto completo', 3);
-    if(problem === 'site_gap') addScore(scores, 'Creazione sito o landing', 3);
-    if(problem === 'conversion_gap') { addScore(scores, 'Audit sito e funnel', 2); addScore(scores, 'Analytics & CRO Optimization', 2); }
-    if(problem === 'campaign_gap') { addScore(scores, 'Media strategy', 3); addScore(scores, 'Audit sito e funnel', 1); }
-    if(problem === 'tracking_gap') addScore(scores, 'Analytics & CRO Optimization', 3);
-    if(problem === 'process_gap') addScore(scores, 'Integrazione AI & Automazione', 3);
+  function selectRecommendedService(){
+    return Object.entries(calculateAdvisorScores()).sort((a,b) => b[1] - a[1])[0][0];
+  }
 
-    if(stage === 'zero') { addScore(scores, 'Pacchetto completo', 2); addScore(scores, 'Creazione sito o landing', 2); }
-    if(stage === 'basic') { addScore(scores, 'Audit sito e funnel', 2); addScore(scores, 'Creazione sito o landing', 1); }
-    if(stage === 'active') { addScore(scores, 'Media strategy', 1); addScore(scores, 'Audit sito e funnel', 2); addScore(scores, 'Analytics & CRO Optimization', 1); }
-    if(stage === 'advanced') { addScore(scores, 'Analytics & CRO Optimization', 2); addScore(scores, 'Pacchetto completo', 1); }
-
-    if(urgency === 'high') addScore(scores, 'Pacchetto completo', 2);
-    if(urgency === 'medium') addScore(scores, 'Audit sito e funnel', 1);
-
-    if(support === 'full') addScore(scores, 'Pacchetto completo', 5);
-    if(support === 'audit_only') addScore(scores, 'Audit sito e funnel', 5);
-    if(support === 'build') addScore(scores, 'Creazione sito o landing', 5);
-    if(support === 'media_plan') addScore(scores, 'Media strategy', 5);
-    if(support === 'cro') addScore(scores, 'Analytics & CRO Optimization', 5);
-    if(support === 'automation') addScore(scores, 'Integrazione AI & Automazione', 5);
-
-    return Object.entries(scores).sort((a,b) => b[1] - a[1])[0][0];
+  function getSecondaryService(primary){
+    const ranked = Object.entries(calculateAdvisorScores()).sort((a,b) => b[1] - a[1]);
+    const secondary = ranked.find(([service]) => service !== primary);
+    return secondary ? secondary[0] : '';
   }
 
   function selectServiceFromAdvisor(service){
@@ -2955,8 +3025,21 @@
 
   function buildAdvisorResult(service){
     const rule = advisorServiceRules[service] || advisorServiceRules['Pacchetto completo'];
+    const secondary = getSecondaryService(service);
+    const signals = [];
 
-    return `${rule.title}\n\n${rule.intro}\n\nPerché: ${rule.why}\n\nProssimo passo: ${rule.next}`;
+    if(hasValue('goal','revenue')) signals.push('Il tema fatturato va letto insieme a qualità dei contatti, chiarezza dell’offerta e capacità del percorso digitale di generare opportunità reali.');
+    if(hasValue('problem','conversion_gap')) signals.push('C’è un segnale di dispersione: l’interesse esiste, ma il passaggio verso richiesta, fiducia o decisione va reso più lineare.');
+    if(hasValue('problem','campaign_gap')) signals.push('Prima di aumentare il budget, conviene verificare coerenza tra promessa, pubblico, creatività e pagina di atterraggio.');
+    if(hasValue('stage','fragmented')) signals.push('La presenza di più attività non coordinate suggerisce di trasformare il digitale in un sistema unico, non in una somma di iniziative isolate.');
+    if(hasValue('problem','process_gap')) signals.push('Le automazioni possono aiutare, ma devono nascere dal processo commerciale: raccolta dati, risposta, qualificazione e follow-up.');
+    if(hasValue('stage','zero')) signals.push('Essendo in una fase iniziale, è importante costruire prima fondamenta chiare: posizionamento, messaggio, asset e misurazione minima.');
+    if(hasValue('stage','advanced') || hasValue('goal','data')) signals.push('La parte dati diventa centrale: senza una lettura affidabile è difficile capire cosa scalare, cosa correggere e cosa eliminare.');
+
+    const signalText = signals.slice(0,3).join('\n\n');
+    const secondaryText = secondary && secondary !== service ? `\n\nArea secondaria da valutare: ${secondary}. Potrebbe diventare una fase successiva o un modulo da integrare nel percorso.` : '';
+
+    return `${rule.title}\n\n${rule.intro}\n\n${signalText ? signalText + '\n\n' : ''}Perché: ${rule.why}${secondaryText}\n\nProssimo passo: ${rule.next}`;
   }
 
   function writeAdvisorResultToForm(){
@@ -3016,29 +3099,8 @@
       event.stopPropagation();
     }
 
-    // Evita conflitti con scroll-behavior:smooth e rende il tap affidabile anche da mobile.
-    const html = document.documentElement;
-    const previousScrollBehavior = html.style.scrollBehavior;
-    html.style.scrollBehavior = 'auto';
-
-    window.scrollTo({ top:0, left:0, behavior:'auto' });
-    html.scrollTop = 0;
-    document.body.scrollTop = 0;
-
-    // Piccoli richiami per Safari/mobile quando la pagina è ancora in momentum scroll.
-    requestAnimationFrame(() => {
-      window.scrollTo(0, 0);
-      html.scrollTop = 0;
-      document.body.scrollTop = 0;
-      toggleBackToTop();
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        html.scrollTop = 0;
-        document.body.scrollTop = 0;
-        html.style.scrollBehavior = previousScrollBehavior;
-        toggleBackToTop();
-      }, 60);
-    });
+    window.scrollTo({ top:0, left:0, behavior:'smooth' });
+    window.setTimeout(toggleBackToTop, 420);
   }
 
   if(backToTop){
