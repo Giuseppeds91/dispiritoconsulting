@@ -1500,23 +1500,36 @@
       right:24px;
       bottom:24px;
       z-index:90;
-      width:56px;
-      height:56px;
+      width:62px;
+      height:62px;
       border-radius:50%;
-      border:1px solid rgba(155,118,83,.36);
+      border:1px solid rgba(230,213,187,.58);
       background:
-        linear-gradient(145deg,rgba(251,248,242,.88),rgba(247,241,231,.62)),
-        radial-gradient(circle at 32% 18%,rgba(255,255,255,.68),transparent 34%);
+        radial-gradient(circle at 32% 20%,rgba(255,255,255,.86),rgba(255,255,255,0) 34%),
+        linear-gradient(145deg,rgba(251,248,242,.94),rgba(230,213,187,.72) 52%,rgba(155,118,83,.34));
       color:var(--brown);
       display:grid;
       place-items:center;
       cursor:pointer;
-      box-shadow:0 20px 54px rgba(43,33,27,.18), inset 0 1px 0 rgba(255,255,255,.72);
-      backdrop-filter:blur(18px);
+      box-shadow:
+        0 22px 62px rgba(43,33,27,.22),
+        0 0 0 1px rgba(255,255,255,.46) inset,
+        0 0 38px rgba(155,118,83,.16);
+      backdrop-filter:blur(20px);
       opacity:0;
       pointer-events:none;
-      transform:translateY(14px) scale(.94);
-      transition:opacity .28s ease, transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+      transform:translateY(16px) scale(.92);
+      transition:opacity .24s ease, transform .24s ease, border-color .24s ease, box-shadow .24s ease;
+      overflow:hidden;
+    }
+
+    .back-to-top::before{
+      content:"";
+      position:absolute;
+      inset:7px;
+      border-radius:50%;
+      border:1px solid rgba(43,33,27,.08);
+      background:linear-gradient(145deg,rgba(255,255,255,.22),rgba(255,255,255,0));
     }
 
     .back-to-top.is-visible{
@@ -1526,32 +1539,55 @@
     }
 
     .back-to-top:hover{
-      transform:translateY(-3px) scale(1.02);
-      border-color:rgba(155,118,83,.62);
-      box-shadow:0 26px 68px rgba(43,33,27,.22), 0 0 0 1px rgba(230,213,187,.30), inset 0 1px 0 rgba(255,255,255,.76);
+      transform:translateY(-4px) scale(1.035);
+      border-color:rgba(155,118,83,.72);
+      box-shadow:
+        0 30px 78px rgba(43,33,27,.26),
+        0 0 0 1px rgba(255,255,255,.60) inset,
+        0 0 46px rgba(155,118,83,.24);
     }
 
-    .back-to-top::before{
+    .back-to-top:active{
+      transform:translateY(-1px) scale(.98);
+    }
+
+    .back-to-top .arrow-icon{
+      position:relative;
+      z-index:2;
+      width:20px;
+      height:24px;
+      display:block;
+      transition:transform .24s ease;
+    }
+
+    .back-to-top:hover .arrow-icon{transform:translateY(-2px)}
+
+    .back-to-top .arrow-icon::before{
       content:"";
+      position:absolute;
+      left:50%;
+      top:3px;
       width:13px;
       height:13px;
       border-left:2px solid var(--brown);
       border-top:2px solid var(--brown);
-      transform:translateY(4px) rotate(45deg);
+      transform:translateX(-50%) rotate(45deg);
       border-radius:1px;
     }
 
-    .back-to-top::after{
+    .back-to-top .arrow-icon::after{
       content:"";
       position:absolute;
-      width:1px;
-      height:18px;
-      background:linear-gradient(180deg,var(--brown),rgba(43,33,27,.18));
-      transform:translateY(8px);
+      left:50%;
+      top:8px;
+      width:2px;
+      height:17px;
+      background:linear-gradient(180deg,var(--brown),rgba(43,33,27,.22));
+      transform:translateX(-50%);
       border-radius:999px;
     }
 
-    .back-to-top span{
+    .back-to-top span:not(.arrow-icon){
       position:absolute;
       width:1px;
       height:1px;
@@ -1905,7 +1941,7 @@
     <div class="selection-panel reveal">
       <strong>Consulenze selezionate</strong>
       <div class="selected-list" id="selectedList">
-        <span class="selected-empty">Nessuna consulenza selezionata.</span><span class="selected-helper">Clicca su “Seleziona” nei box: le consulenze scelte verranno riportate automaticamente nel modulo in fondo alla pagina.</span>
+        <span class="selected-empty">Nessuna consulenza selezionata.</span>
       </div>
     </div>
   </div>
@@ -2096,6 +2132,7 @@
 
 
 <button class="back-to-top" type="button" data-back-to-top aria-label="Torna all'inizio">
+  <span class="arrow-icon" aria-hidden="true"></span>
   <span>Torna su</span>
 </button>
 
@@ -2253,7 +2290,7 @@
         selectedList.innerHTML = '<span class="selected-names"></span><span class="selected-helper">Le consulenze selezionate verranno riportate automaticamente nel modulo in fondo alla pagina.</span>';
         selectedList.querySelector('.selected-names').textContent = selectedArray.join(', ');
       } else {
-        selectedList.innerHTML = '<span class="selected-empty">Nessuna consulenza selezionata.</span><span class="selected-helper">Clicca su “Seleziona” nei box: le consulenze scelte verranno riportate automaticamente nel modulo in fondo alla pagina.</span>';
+        selectedList.innerHTML = '<span class="selected-empty">Nessuna consulenza selezionata.</span>';
       }
     }
 
@@ -2351,22 +2388,26 @@
   }
 
   function scrollToTopInOneSecond(){
-    const startPosition = window.scrollY;
-    const startTime = performance.now();
-    const duration = 1000;
+    const startPosition = window.scrollY || document.documentElement.scrollTop;
+    if(startPosition <= 0) return;
 
-    function easeInOutCubic(t){
-      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const startTime = performance.now();
+    const duration = Math.min(720, Math.max(360, startPosition / 3.2));
+
+    function easeOutQuint(t){
+      return 1 - Math.pow(1 - t, 5);
     }
 
     function animate(currentTime){
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      const eased = easeInOutCubic(progress);
-      window.scrollTo(0, startPosition * (1 - eased));
+      const eased = easeOutQuint(progress);
+      window.scrollTo(0, Math.round(startPosition * (1 - eased)));
 
       if(progress < 1){
         requestAnimationFrame(animate);
+      } else {
+        window.scrollTo(0, 0);
       }
     }
 
