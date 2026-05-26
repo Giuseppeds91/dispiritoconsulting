@@ -248,22 +248,45 @@
       position:absolute;
       top:14px;
       right:14px;
-      width:42px!important;
-      height:42px;
+      width:44px!important;
+      height:44px!important;
       border-radius:50%!important;
-      border:1px solid rgba(43,33,27,.10)!important;
-      background:rgba(255,255,255,.58)!important;
-      color:var(--brown)!important;
+      border:1px solid rgba(155,118,83,.26)!important;
+      background:linear-gradient(145deg,rgba(255,255,255,.82),rgba(247,241,231,.58))!important;
+      color:transparent!important;
       display:grid!important;
       place-items:center!important;
       padding:0!important;
-      font-size:24px!important;
+      font-size:0!important;
       line-height:1!important;
-      font-weight:500!important;
-      box-shadow:0 12px 30px rgba(43,33,27,.08);
+      box-shadow:0 14px 34px rgba(43,33,27,.12), inset 0 1px 0 rgba(255,255,255,.58);
+      transition:.22s ease;
     }
 
-    .mobile-close::after{display:none!important}
+    .mobile-close:hover{
+      transform:translateY(-1px);
+      border-color:rgba(155,118,83,.42)!important;
+      background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(247,241,231,.72))!important;
+    }
+
+    .mobile-panel .mobile-close::before,
+    .mobile-panel .mobile-close::after{
+      content:""!important;
+      position:absolute!important;
+      left:50%!important;
+      top:50%!important;
+      width:18px!important;
+      height:1.8px!important;
+      border-radius:999px!important;
+      background:var(--brown)!important;
+      display:block!important;
+      margin:0!important;
+      transform-origin:center!important;
+      opacity:.92!important;
+    }
+
+    .mobile-panel .mobile-close::before{transform:translate(-50%,-50%) rotate(45deg)!important}
+    .mobile-panel .mobile-close::after{transform:translate(-50%,-50%) rotate(-45deg)!important}
 
     .mobile-panel a,
     .mobile-panel button{
@@ -692,8 +715,9 @@
         linear-gradient(145deg,rgba(43,33,27,.96),rgba(72,52,39,.92)),
         radial-gradient(circle at 80% 10%,rgba(122,47,40,.32),transparent 34%);
       color:var(--ivory);
-      border-color:rgba(247,241,231,.18);
-      box-shadow:0 30px 80px rgba(43,33,27,.18);
+      border-color:rgba(230,213,187,.95);
+      border-width:2px;
+      box-shadow:0 30px 82px rgba(43,33,27,.22), 0 0 0 1px rgba(230,213,187,.18);
     }
 
     .offer-card.is-complete.is-selected small,
@@ -783,11 +807,16 @@
       box-shadow:inset 0 0 0 4px rgba(255,255,255,.72);
     }
 
-    .offer-card.is-complete .select-pill::before,
+    .offer-card.is-complete .select-pill::before{
+      background:rgba(255,255,255,.20);
+      border-color:rgba(247,241,231,.72);
+      box-shadow:none;
+    }
+
     .offer-card.is-complete.is-selected .select-pill::before{
-      background:rgba(247,241,231,.92);
-      border-color:rgba(247,241,231,.92);
-      box-shadow:inset 0 0 0 4px rgba(43,33,27,.22);
+      background:var(--bordeaux);
+      border-color:var(--bordeaux);
+      box-shadow:inset 0 0 0 4px rgba(255,255,255,.72);
     }
 
     .offer-card > div:last-child{
@@ -1622,8 +1651,8 @@
       <h1>Affianco business e professionisti nella crescita digitale.</h1>
 
       <p>
-        Consulenza privata one-to-one su strategia digitale, siti web, funnel, media, analytics e conversione.
-        Lavoro direttamente con te per rendere il digitale più chiaro, credibile e orientato a lead e fatturato.
+        Consulenza privata one-to-one per rendere più chiari strategia, sito, funnel, media e dati.
+        Un confronto diretto, concreto e riservato per capire dove intervenire e far crescere il tuo business con più fiducia.
       </p>
 
       <div class="hero-actions">
